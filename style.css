@@ -56,14 +56,16 @@ body.light-theme .nav-logo {
     align-items: center;
 }
 
+/* POINT 2: Navigation text smaller */
 .nav-links a {
     color: #fff;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: 0.85rem; /* Changed from 1rem to 0.85rem */
+    letter-spacing: 1px; /* Changed from 2px to 1px */
     text-transform: uppercase;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
+    padding: 0.5rem 0.8rem; /* Added padding for better spacing */
 }
 
 body.light-theme .nav-links a {
@@ -72,36 +74,62 @@ body.light-theme .nav-links a {
 
 .nav-links a:hover {
     color: #ffe066;
+    transform: translateY(-2px);
 }
 
 body.light-theme .nav-links a:hover {
     color: #21d4fd;
 }
 
+/* POINT 1: Language selector with flags */
 .language-selector {
     margin-left: 24px;
     display: flex;
     gap: 8px;
     align-items: center;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #ffe066;
-    font-size: 1rem;
+}
+
+.flag-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
     cursor: pointer;
+    padding: 0.25rem;
+    transition: all 0.3s cubic-bezier(0.4, 2, 0.6, 1);
+    border-radius: 4px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
 }
 
-body.light-theme .language-selector {
-    color: #21d4fd;
+.flag-btn:hover {
+    transform: scale(1.15);
+    background: rgba(255, 224, 102, 0.1);
 }
 
-.language-selector span {
-    cursor: pointer;
-    transition: opacity 0.3s;
+body.light-theme .flag-btn:hover {
+    background: rgba(33, 212, 253, 0.1);
 }
 
-.language-selector span:hover {
-    opacity: 0.7;
+.flag-btn.active {
+    background: rgba(255, 224, 102, 0.2);
+    transform: scale(1.1);
+}
+
+body.light-theme .flag-btn.active {
+    background: rgba(33, 212, 253, 0.2);
+}
+
+.flag-separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 300;
+}
+
+body.light-theme .flag-separator {
+    color: rgba(24, 27, 35, 0.3);
 }
 
 /* Intro Section */
@@ -624,154 +652,319 @@ body.light-theme .education-content h4 {
     font-size: 2.2rem;
     font-weight: 800;
     letter-spacing: 2px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     text-transform: uppercase;
 }
 
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 2rem;
-    justify-items: center;
-    align-items: center;
+.tools-container {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.tool-card {
-    background: #181b23;
-    border: 2px solid #ffe066;
-    border-radius: 16px;
-    width: 140px;
-    height: 140px;
+.tools-description {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.tools-description p {
+    color: #b0b3c6;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+body.light-theme .tools-description p {
+    color: #666;
+}
+
+/* POINT 3: Tools circular layout preparation */
+.tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.tool-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #87CEEB; /* Light blue background */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 1rem;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    transition: transform 0.35s cubic-bezier(.4,2,.6,1), box-shadow 0.35s, opacity 0.7s;
-    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 2, 0.6, 1);
+    position: relative;
+    overflow: hidden;
     opacity: 0;
     transform: scale(0.85) translateY(20px);
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(135, 206, 235, 0.2);
 }
 
-body.light-theme .tool-card {
-    background: #fff;
-    border-color: #21d4fd;
-    box-shadow: 0 4px 24px rgba(33,212,253,0.18);
-}
-
-.tool-card.visible {
+.tool-circle.visible {
     opacity: 1;
     transform: scale(1) translateY(0);
 }
 
-.tool-card:hover {
-    transform: scale(1.1) translateY(-8px);
-    box-shadow: 0 0 32px 0 #ffe066cc, 0 12px 40px rgba(0,0,0,0.3);
+.tool-circle:hover {
+    transform: scale(1.15) translateY(-8px);
+    box-shadow: 0 8px 32px rgba(135, 206, 235, 0.4);
 }
 
-body.light-theme .tool-card:hover {
-    box-shadow: 0 0 32px 0 #21d4fdcc, 0 12px 40px rgba(0,0,0,0.15);
-}
-
-.tool-icon {
+.tool-circle .tool-icon {
     font-size: 48px;
-    filter: grayscale(0);
-    transition: filter 0.3s;
+    transition: transform 0.3s;
 }
 
-.tool-card:hover .tool-icon {
-    filter: grayscale(0) brightness(1.2);
+.tool-circle:hover .tool-icon {
+    transform: scale(1.1);
 }
 
-.tool-name {
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-align: center;
-    letter-spacing: 0.5px;
+.tool-circle .tool-name {
+    position: absolute;
+    bottom: -30px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s, bottom 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.tool-circle:hover .tool-name {
+    opacity: 1;
+    bottom: -40px;
+}
+
+/* For future logo implementation */
+.tool-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.tool-fallback {
+    display: none;
+    font-size: 32px;
 }
 
 /* Contact Section */
+/* POINT 4: Redesigned smooth contact section */
 .contact-section {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 80px auto 100px auto;
-    padding: 3rem 2rem;
-    background: #181b23;
-    border: 2px solid #ffe066;
-    border-radius: 24px;
-    box-shadow: 0 8px 48px rgba(0,0,0,0.3);
+    padding: 4rem 2rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-body.light-theme .contact-section {
-    background: #fff;
-    border-color: #21d4fd;
-    box-shadow: 0 8px 48px rgba(33,212,253,0.2);
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        #ffe066, 
+        #b721ff, 
+        transparent);
+    opacity: 0.5;
+}
+
+body.light-theme .contact-section::before {
+    background: linear-gradient(90deg, 
+        transparent, 
+        #21d4fd, 
+        #b721ff, 
+        transparent);
+}
+
+.contact-content {
+    position: relative;
+    z-index: 1;
 }
 
 .contact-section h2 {
     font-size: 2.2rem;
     font-weight: 800;
     letter-spacing: 2px;
-    margin-bottom: 24px;
+    margin-bottom: 1rem;
     text-transform: uppercase;
+    background: linear-gradient(90deg, #ffe066, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.contact-section p {
+body.light-theme .contact-section h2 {
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-subtitle {
     font-size: 1.1rem;
     color: #b0b3c6;
-    margin-bottom: 40px;
+    margin-bottom: 3rem;
     line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.contact-links {
-    display: flex;
-    flex-wrap: wrap;
+body.light-theme .contact-subtitle {
+    color: #666;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    justify-content: center;
-    align-items: center;
+    margin: 3rem 0;
 }
 
-.contact-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 1rem 2rem;
-    background: #0b0d13;
-    border: 2px solid #ffe066;
-    border-radius: 12px;
-    color: #ffe066;
+.contact-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    transition: all 0.35s cubic-bezier(.4,2,.6,1);
+    color: inherit;
+    transition: all 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-body.light-theme .contact-link {
-    background: #f7f7fa;
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ffe066, #b721ff);
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+}
+
+.contact-card:hover::before {
+    transform: scaleX(1);
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 224, 102, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme .contact-card {
+    background: rgba(247, 247, 250, 0.8);
+    border: 1px solid rgba(227, 232, 240, 0.8);
+}
+
+body.light-theme .contact-card:hover {
+    background: white;
     border-color: #21d4fd;
+    box-shadow: 0 20px 40px rgba(33, 212, 253, 0.15);
+}
+
+.contact-card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s;
+}
+
+.contact-card:hover .contact-card-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.contact-card-content {
+    text-align: center;
+}
+
+.contact-card-content h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #ffe066;
+}
+
+body.light-theme .contact-card-content h3 {
     color: #21d4fd;
 }
 
-.contact-link:hover {
-    background: #ffe066;
-    color: #181b23;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(255, 224, 102, 0.4);
+.contact-card-content p {
+    color: #b0b3c6;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
 }
 
-body.light-theme .contact-link:hover {
-    background: #21d4fd;
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(33, 212, 253, 0.4);
+body.light-theme .contact-card-content p {
+    color: #666;
 }
 
-.contact-icon {
-    font-size: 24px;
+.contact-card-hint {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #b721ff;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
 }
+
+.contact-card:hover .contact-card-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-note {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-theme .contact-note {
+    border-top-color: rgba(24, 27, 35, 0.1);
+}
+
+.contact-note p {
+    color: #b0b3c6;
+    font-style: italic;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+body.light-theme .contact-note p {
+    color: #666;
+}
+
+/* Platform-specific colors */
+.email-card .contact-card-icon { color: #ea4335; }
+.linkedin-card .contact-card-icon { color: #0a66c2; }
+.github-card .contact-card-icon { color: #333; }
+.whatsapp-card .contact-card-icon { color: #25d366; }
+
+body.light-theme .email-card .contact-card-icon { color: #ea4335; }
+body.light-theme .linkedin-card .contact-card-icon { color: #0a66c2; }
+body.light-theme .github-card .contact-card-icon { color: #333; }
+body.light-theme .whatsapp-card .contact-card-icon { color: #25d366; }
 
 /* Projects Section */
 .projects-section {
@@ -983,12 +1176,13 @@ body.light-theme .theme-toggle {
         text-align: center;
     }
 
-    .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
-    .contact-links {
-        flex-direction: column;
+    .contact-card {
+        padding: 1.5rem 1rem;
     }
 
     .nav-links {
@@ -996,8 +1190,55 @@ body.light-theme .theme-toggle {
         gap: 1rem;
     }
 
+    .language-selector {
+        margin-left: 12px;
+    }
+
+    .flag-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1.3rem;
+    }
+
     .typed-name {
         font-size: 2rem;
+    }
+    
+    .tools-grid {
+        gap: 1.5rem;
+    }
+    
+    .tool-circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .tool-circle .tool-icon {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links a {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .nav-logo {
+        font-size: 1rem;
+    }
+    
+    .tools-grid {
+        gap: 1rem;
+    }
+    
+    .tool-circle {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .tool-circle .tool-icon {
+        font-size: 32px;
     }
 }
 
