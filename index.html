@@ -421,6 +421,282 @@
             margin-bottom: 10px;
         }
 
+        /* Education Section */
+        .education-section {
+            width: 100%;
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 2rem;
+        }
+
+        .education-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+
+        .education-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .education-item {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .education-logo-wrapper {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .education-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #ffe066;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 40px rgba(255, 224, 102, 0.25);
+            overflow: hidden;
+            position: relative;
+        }
+
+        body.light-theme .education-logo {
+            border-color: #21d4fd;
+            box-shadow: 0 12px 40px rgba(33, 212, 253, 0.25);
+        }
+
+        .education-logo img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+
+        .education-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 224, 102, 0.2), transparent 70%);
+            z-index: -1;
+        }
+
+        body.light-theme .education-glow {
+            background: radial-gradient(circle, rgba(33, 212, 253, 0.2), transparent 70%);
+        }
+
+        .education-content {
+            flex: 1;
+        }
+
+        .education-content h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 1px;
+        }
+
+        .education-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffe066;
+            margin: 0 0 0.5rem 0;
+            font-style: italic;
+        }
+
+        body.light-theme .education-content h4 {
+            color: #21d4fd;
+        }
+
+        .education-content .education-year {
+            color: #b0b3c6;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0 0 1.2rem 0;
+        }
+
+        .education-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+            text-align: justify;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            width: 100%;
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 2rem;
+        }
+
+        .tools-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .tool-card {
+            background: #181b23;
+            border: 2px solid #ffe066;
+            border-radius: 16px;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            transition: transform 0.35s cubic-bezier(.4,2,.6,1), box-shadow 0.35s, opacity 0.7s;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.85) translateY(20px);
+        }
+
+        body.light-theme .tool-card {
+            background: #fff;
+            border-color: #21d4fd;
+            box-shadow: 0 4px 24px rgba(33,212,253,0.18);
+        }
+
+        .tool-card.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .tool-card:hover {
+            transform: scale(1.1) translateY(-8px);
+            box-shadow: 0 0 32px 0 #ffe066cc, 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        body.light-theme .tool-card:hover {
+            box-shadow: 0 0 32px 0 #21d4fdcc, 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .tool-icon {
+            font-size: 48px;
+            filter: grayscale(0);
+            transition: filter 0.3s;
+        }
+
+        .tool-card:hover .tool-icon {
+            filter: grayscale(0) brightness(1.2);
+        }
+
+        .tool-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 80px auto 100px auto;
+            padding: 3rem 2rem;
+            background: #181b23;
+            border: 2px solid #ffe066;
+            border-radius: 24px;
+            box-shadow: 0 8px 48px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        body.light-theme .contact-section {
+            background: #fff;
+            border-color: #21d4fd;
+            box-shadow: 0 8px 48px rgba(33,212,253,0.2);
+        }
+
+        .contact-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            color: #b0b3c6;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 2rem;
+            background: #0b0d13;
+            border: 2px solid #ffe066;
+            border-radius: 12px;
+            color: #ffe066;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.35s cubic-bezier(.4,2,.6,1);
+        }
+
+        body.light-theme .contact-link {
+            background: #f7f7fa;
+            border-color: #21d4fd;
+            color: #21d4fd;
+        }
+
+        .contact-link:hover {
+            background: #ffe066;
+            color: #181b23;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(255, 224, 102, 0.4);
+        }
+
+        body.light-theme .contact-link:hover {
+            background: #21d4fd;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(33, 212, 253, 0.4);
+        }
+
+        .contact-icon {
+            font-size: 24px;
+        }
+
         .awards-section h2 {
             text-align: center;
             font-size: 2.2rem;
@@ -706,6 +982,23 @@
                 grid-template-columns: 1fr;
             }
 
+            .education-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .education-content p {
+                text-align: center;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
             .nav-links {
                 flex-wrap: wrap;
                 gap: 1rem;
@@ -734,9 +1027,11 @@
         <div class="nav-logo" data-translate="portfolio">ROBOTICS PORTFOLIO</div>
         <div class="nav-links">
             <a href="#about-me" data-translate="aboutMe">ABOUT ME</a>
+            <a href="#education" data-translate="education">EDUCATION</a>
             <a href="#awards" data-translate="awards">AWARDS</a>
             <a href="#experiences" data-translate="experiences">EXPERIENCES</a>
             <a href="#projects" data-translate="projects">PROJECTS</a>
+            <a href="#tools" data-translate="tools">TOOLS</a>
             <a href="#contact" data-translate="contact">CONTACT</a>
             <div class="language-selector">
                 <span onclick="changeLanguage('en')">EN</span>
@@ -783,6 +1078,12 @@
         </div>
     </section>
 
+    <!-- Education Section -->
+    <section class="education-section" id="education">
+        <h2 data-translate="education">EDUCATION BACKGROUND</h2>
+        <div class="education-container" id="educationContainer"></div>
+    </section>
+
     <!-- Awards Section -->
     <section class="awards-section" id="awards">
         <h2 data-translate="certificationsAwards">CERTIFICATIONS & AWARDS</h2>
@@ -802,6 +1103,36 @@
         <div id="projectsContainer"></div>
     </section>
 
+    <!-- Tools Section -->
+    <section class="tools-section" id="tools">
+        <h2 data-translate="tools">TOOLS & TECHNOLOGIES</h2>
+        <div class="tools-grid" id="toolsGrid"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 data-translate="getInTouch">GET IN TOUCH</h2>
+        <p data-translate="contactDescription">Let's connect! Feel free to reach out through any of these platforms.</p>
+        <div class="contact-links">
+            <a href="mailto:your.email@example.com" class="contact-link">
+                <span class="contact-icon">📧</span>
+                <span>Email</span>
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+                <span class="contact-icon">💼</span>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/hexadust" target="_blank" class="contact-link">
+                <span class="contact-icon">💻</span>
+                <span>GitHub</span>
+            </a>
+            <a href="https://wa.me/yourphonenumber" target="_blank" class="contact-link">
+                <span class="contact-icon">💬</span>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+    </section>
+
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
         <span id="themeIcon">☀️</span>
@@ -812,33 +1143,45 @@
         const translations = {
             en: {
                 aboutMe: "ABOUT ME",
+                education: "EDUCATION",
                 projects: "PROJECTS",
                 awards: "AWARDS",
                 experiences: "EXPERIENCES",
+                tools: "TOOLS",
                 contact: "CONTACT",
                 portfolio: "ROBOTICS PORTFOLIO",
                 certificationsAwards: "CERTIFICATIONS & AWARDS",
-                workExperiences: "WORK EXPERIENCES"
+                workExperiences: "WORK EXPERIENCES",
+                getInTouch: "GET IN TOUCH",
+                contactDescription: "Let's connect! Feel free to reach out through any of these platforms."
             },
             de: {
                 aboutMe: "ÜBER MICH",
+                education: "BILDUNG",
                 projects: "PROJEKTE",
                 awards: "AUSZEICHNUNGEN",
                 experiences: "ERFAHRUNGEN",
+                tools: "WERKZEUGE",
                 contact: "KONTAKT",
                 portfolio: "ROBOTIK-PORTFOLIO",
                 certificationsAwards: "ZERTIFIKATE & AUSZEICHNUNGEN",
-                workExperiences: "BERUFSERFAHRUNG"
+                workExperiences: "BERUFSERFAHRUNG",
+                getInTouch: "KONTAKTIEREN SIE MICH",
+                contactDescription: "Lassen Sie uns in Kontakt treten! Kontaktieren Sie mich gerne über eine dieser Plattformen."
             },
             ru: {
                 aboutMe: "ОБО МНЕ",
+                education: "ОБРАЗОВАНИЕ",
                 projects: "ПРОЕКТЫ",
                 awards: "НАГРАДЫ",
                 experiences: "ОПЫТ",
+                tools: "ИНСТРУМЕНТЫ",
                 contact: "КОНТАКТЫ",
                 portfolio: "РОБОТОТЕХНИКА ПОРТФОЛИО",
                 certificationsAwards: "СЕРТИФИКАТЫ И НАГРАДЫ",
-                workExperiences: "ОПЫТ РАБОТЫ"
+                workExperiences: "ОПЫТ РАБОТЫ",
+                getInTouch: "СВЯЖИТЕСЬ СО МНОЙ",
+                contactDescription: "Давайте свяжемся! Не стесняйтесь обращаться через любую из этих платформ."
             }
         };
 
@@ -1008,6 +1351,79 @@
             experiencesContainer.appendChild(item);
         });
 
+        // Education data
+        const education = [
+            {
+                school: "Bauman Moscow State Technical University",
+                degree: "Robotics System and Mechatronics",
+                year: "2020 • Moscow, Russia",
+                description: "Studying robotics at one of Russia's most prestigious technical universities. My studies focus on developing intelligent robotic systems that combine mechanical engineering with artificial intelligence, preparing me to contribute to the next generation of robotic innovations.",
+                logo: "assets/baumanlogo.jpeg"
+            },
+            {
+                school: "14 Senior High School Jakarta",
+                degree: "Science Major",
+                year: "2017 - 2020 • Jakarta, Indonesia",
+                description: "My academic foundation was built here through a rigorous science curriculum focusing on mathematics, physics, and chemistry. This period was essential in developing my analytical thinking and problem-solving skills, which prepared me for the challenges of studying abroad.",
+                logo: "assets/sma14logo.jpeg"
+            }
+        ];
+
+        // Render education
+        const educationContainer = document.getElementById('educationContainer');
+        education.forEach(edu => {
+            const item = document.createElement('div');
+            item.className = 'education-item';
+            item.innerHTML = `
+                <div class="education-logo-wrapper">
+                    <div class="education-logo">
+                        <img src="${edu.logo}" alt="${edu.school}" onerror="this.src='https://via.placeholder.com/120'">
+                        <div class="education-glow"></div>
+                    </div>
+                </div>
+                <div class="education-content">
+                    <h3>${edu.school}</h3>
+                    <h4>${edu.degree}</h4>
+                    <p class="education-year">${edu.year}</p>
+                    <p>${edu.description}</p>
+                </div>
+            `;
+            educationContainer.appendChild(item);
+        });
+
+        // Tools data
+        const tools = [
+            { name: "Python", icon: "🐍" },
+            { name: "C++", icon: "⚙️" },
+            { name: "JavaScript", icon: "🟨" },
+            { name: "ROS", icon: "🤖" },
+            { name: "Arduino", icon: "🔌" },
+            { name: "SolidWorks", icon: "📐" },
+            { name: "Fusion 360", icon: "🔧" },
+            { name: "MATLAB", icon: "📊" },
+            { name: "TensorFlow", icon: "🧠" },
+            { name: "Docker", icon: "🐳" },
+            { name: "Git", icon: "📦" },
+            { name: "AWS", icon: "☁️" },
+            { name: "Firebase", icon: "🔥" },
+            { name: "InfluxDB", icon: "📈" },
+            { name: "Grafana", icon: "📉" },
+            { name: "Node.js", icon: "🟩" }
+        ];
+
+        // Render tools
+        const toolsGrid = document.getElementById('toolsGrid');
+        tools.forEach((tool, idx) => {
+            const card = document.createElement('div');
+            card.className = 'tool-card';
+            card.innerHTML = `
+                <div class="tool-icon">${tool.icon}</div>
+                <div class="tool-name">${tool.name}</div>
+            `;
+            card.style.transitionDelay = `${idx * 80}ms`;
+            toolsGrid.appendChild(card);
+        });
+
         // Projects data
         const projects = [
             {
@@ -1052,7 +1468,7 @@
                 image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80"
             },
             {
-                title: "Adaptive Gripper with Computer Vision Integration",
+                title: "Adaptive Gripper for Smartphone Manufacture",
                 description: "An advanced robotic gripper system integrated with computer vision technology, designed to handle various smartphone components with adaptive force control and visual recognition for precise assembly and quality inspection.",
                 image: "https://images.unsplash.com/photo-1578663248512-2ee6f49c45a8?auto=format&fit=crop&w=800&q=80"
             }
@@ -1105,7 +1521,7 @@
         }, observerOptions);
 
         // Observe sections
-        document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card, .experience-item').forEach(el => {
+        document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card, .experience-item, .tool-card').forEach(el => {
             observer.observe(el);
         });
 
@@ -1122,4 +1538,3 @@
     </script>
 </body>
 </html>
-
