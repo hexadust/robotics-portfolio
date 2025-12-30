@@ -1,4 +1,4 @@
-// Language translations
+// Language translations - POINT 1: Ganti Jerman dengan Indonesia
 const translations = {
     en: {
         aboutMe: "ABOUT ME",
@@ -14,19 +14,19 @@ const translations = {
         getInTouch: "GET IN TOUCH",
         contactDescription: "Let's connect! Feel free to reach out through any of these platforms."
     },
-    de: {
-        aboutMe: "ÜBER MICH",
-        education: "BILDUNG",
-        projects: "PROJEKTE",
-        awards: "AUSZEICHNUNGEN",
-        experiences: "ERFAHRUNGEN",
-        tools: "WERKZEUGE",
-        contact: "KONTAKT",
-        portfolio: "ROBOTIK-PORTFOLIO",
-        certificationsAwards: "ZERTIFIKATE & AUSZEICHNUNGEN",
-        workExperiences: "BERUFSERFAHRUNG",
-        getInTouch: "KONTAKTIEREN SIE MICH",
-        contactDescription: "Lassen Sie uns in Kontakt treten! Kontaktieren Sie mich gerne über eine dieser Plattformen."
+    id: { // POINT 1: Ganti 'de' dengan 'id' (Bahasa Indonesia)
+        aboutMe: "TENTANG SAYA",
+        education: "PENDIDIKAN",
+        projects: "PROYEK",
+        awards: "PENGHARGAAN",
+        experiences: "PENGALAMAN",
+        tools: "ALAT",
+        contact: "KONTAK",
+        portfolio: "PORTOFOLIO ROBOTIKA",
+        certificationsAwards: "SERTIFIKASI & PENGHARGAAN",
+        workExperiences: "PENGALAMAN KERJA",
+        getInTouch: "HUBUNGI SAYA",
+        contactDescription: "Mari terhubung! Jangan ragu untuk menghubungi saya melalui salah satu platform berikut."
     },
     ru: {
         aboutMe: "ОБО МНЕ",
@@ -46,14 +46,34 @@ const translations = {
 
 let currentLanguage = 'en';
 
+// POINT 1: Update language selector with flags
 function changeLanguage(lang) {
     currentLanguage = lang;
+    
+    // Update active flag button
+    document.querySelectorAll('.flag-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick').includes(`'${lang}'`)) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update all translatable elements
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
-        if (translations[lang][key]) {
+        if (translations[lang] && translations[lang][key]) {
             el.textContent = translations[lang][key];
         }
     });
+    
+    // Save language preference
+    localStorage.setItem('preferredLanguage', lang);
+}
+
+// Load saved language preference
+function loadLanguagePreference() {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    changeLanguage(savedLanguage);
 }
 
 // Typing animation
@@ -70,11 +90,23 @@ function typeWriter() {
 
 typeWriter();
 
-// Theme toggle
+// Theme toggle with persistence
 function toggleTheme() {
-    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.toggle('light-theme');
     const icon = document.getElementById('themeIcon');
-    icon.textContent = document.body.classList.contains('light-theme') ? '🌙' : '☀️';
+    icon.textContent = isLight ? '🌙' : '☀️';
+    
+    // Save theme preference
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+
+// Load saved theme
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        document.getElementById('themeIcon').textContent = '🌙';
+    }
 }
 
 // Awards data
@@ -250,37 +282,103 @@ education.forEach(edu => {
     educationContainer.appendChild(item);
 });
 
-// Tools data
+// POINT 3: Updated tools data for circular layout
 const tools = [
-    { name: "Python", icon: "🐍" },
-    { name: "C++", icon: "⚙️" },
-    { name: "JavaScript", icon: "🟨" },
-    { name: "ROS", icon: "🤖" },
-    { name: "Arduino", icon: "🔌" },
-    { name: "SolidWorks", icon: "📐" },
-    { name: "Fusion 360", icon: "🔧" },
-    { name: "MATLAB", icon: "📊" },
-    { name: "TensorFlow", icon: "🧠" },
-    { name: "Docker", icon: "🐳" },
-    { name: "Git", icon: "📦" },
-    { name: "AWS", icon: "☁️" },
-    { name: "Firebase", icon: "🔥" },
-    { name: "InfluxDB", icon: "📈" },
-    { name: "Grafana", icon: "📉" },
-    { name: "Node.js", icon: "🟩" }
+    { 
+        name: "Python", 
+        icon: "🐍",
+        color: "#3776AB",
+        // Future: logo: "assets/tools/python.svg"
+    },
+    { 
+        name: "C++", 
+        icon: "⚙️",
+        color: "#00599C"
+    },
+    { 
+        name: "JavaScript", 
+        icon: "🟨",
+        color: "#F7DF1E"
+    },
+    { 
+        name: "ROS", 
+        icon: "🤖",
+        color: "#22314E"
+    },
+    { 
+        name: "Arduino", 
+        icon: "🔌",
+        color: "#00979D"
+    },
+    { 
+        name: "SolidWorks", 
+        icon: "📐",
+        color: "#D64228"
+    },
+    { 
+        name: "Fusion 360", 
+        icon: "🔧",
+        color: "#0696D7"
+    },
+    { 
+        name: "MATLAB", 
+        icon: "📊",
+        color: "#0076A8"
+    },
+    { 
+        name: "TensorFlow", 
+        icon: "🧠",
+        color: "#FF6F00"
+    },
+    { 
+        name: "Docker", 
+        icon: "🐳",
+        color: "#2496ED"
+    },
+    { 
+        name: "Git", 
+        icon: "📦",
+        color: "#F05032"
+    },
+    { 
+        name: "AWS", 
+        icon: "☁️",
+        color: "#FF9900"
+    },
+    { 
+        name: "Firebase", 
+        icon: "🔥",
+        color: "#FFCA28"
+    },
+    { 
+        name: "InfluxDB", 
+        icon: "📈",
+        color: "#22ADF6"
+    },
+    { 
+        name: "Grafana", 
+        icon: "📉",
+        color: "#F46800"
+    },
+    { 
+        name: "Node.js", 
+        icon: "🟩",
+        color: "#339933"
+    }
 ];
 
-// Render tools
+// POINT 3: Render tools with circular layout
 const toolsGrid = document.getElementById('toolsGrid');
 tools.forEach((tool, idx) => {
-    const card = document.createElement('div');
-    card.className = 'tool-card';
-    card.innerHTML = `
+    const circle = document.createElement('div');
+    circle.className = 'tool-circle';
+    circle.style.setProperty('--tool-color', tool.color || '#87CEEB'); // Light blue default
+    circle.style.transitionDelay = `${idx * 60}ms`;
+    circle.innerHTML = `
         <div class="tool-icon">${tool.icon}</div>
         <div class="tool-name">${tool.name}</div>
     `;
-    card.style.transitionDelay = `${idx * 80}ms`;
-    toolsGrid.appendChild(card);
+    toolsGrid.appendChild(circle);
 });
 
 // Projects data
@@ -379,8 +477,8 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe sections
-document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card, .experience-item, .tool-card').forEach(el => {
+// Observe sections - POINT 3: Update untuk observe tool-circle
+document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card, .experience-item, .tool-circle').forEach(el => {
     observer.observe(el);
 });
 
@@ -394,3 +492,56 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// POINT 4: Add smooth animations to contact cards
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click handlers for contact cards
+    const contactCards = document.querySelectorAll('.contact-card');
+    contactCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                width: ${size}px;
+                height: ${size}px;
+                top: ${y}px;
+                left: ${x}px;
+            `;
+            
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+    
+    // Initialize with saved preferences
+    loadTheme();
+    loadLanguagePreference();
+    
+    // Set active flag on page load
+    const activeFlag = document.querySelector(`.flag-btn[onclick*="'${currentLanguage}'"]`);
+    if (activeFlag) {
+        activeFlag.classList.add('active');
+    }
+});
+
+// Add ripple animation CSS dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
