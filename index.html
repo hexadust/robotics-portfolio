@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazuardi Azka Rangkuti - Robotics Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #0b0d13;
+            color: #fff;
+            overflow-x: hidden;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        body.light-theme {
+            background: #f7f7fa;
+            color: #181b23;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3vw 1.2rem 2vw;
+            border-bottom: 1px solid #ffe066;
+            background: rgba(0,0,0,0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            transition: background 0.5s, border-color 0.5s;
+        }
+
+        body.light-theme nav {
+            background: rgba(255,255,255,0.95);
+            border-bottom-color: #21d4fd;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        body.light-theme .nav-logo {
+            color: #181b23;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2vw;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        body.light-theme .nav-links a {
+            color: #181b23;
+        }
+
+        .nav-links a:hover {
+            color: #ffe066;
+        }
+
+        body.light-theme .nav-links a:hover {
+            color: #21d4fd;
+        }
+
+        .language-selector {
+            margin-left: 24px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffe066;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        body.light-theme .language-selector {
+            color: #21d4fd;
+        }
+
+        .language-selector span {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .language-selector span:hover {
+            opacity: 0.7;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 8rem;
+            text-align: center;
+        }
+
+        .tagline {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.2rem;
+        }
+
+        .subtitle {
+            color: #b0b3c6;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .quote {
+            color: #b0b3c6;
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .typed-name {
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #21d4fd, #b721ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-height: 4rem;
+        }
+
+        .role {
+            color: #b0b3c6;
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* About Me Section */
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            margin-top: 2rem;
+            padding: 2rem;
+            transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s;
+            transform: scale(0.95);
+            opacity: 0.5;
+        }
+
+        .about-section.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .about-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text {
+            text-align: left;
+            flex: 1;
+            max-width: 520px;
+        }
+
+        .about-text h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Awards Section */
+        .awards-section {
+            width: 100%;
+            max-width: 860px;
+            margin: 80px auto;
+            padding: 0 2rem;
+            transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s;
+            transform: scale(0.95);
+            opacity: 0.5;
+        }
+
+        .awards-section.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .awards-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            justify-items: center;
+        }
+
+        .award-card {
+            background: #181b23;
+            border: 2px solid #ffe066;
+            border-radius: 16px;
+            width: 260px;
+            height: 180px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 1rem;
+            transition: transform 0.35s cubic-bezier(.4,2,.6,1), opacity 0.7s, box-shadow 0.35s;
+            transform: scale(0.85) translateY(40px);
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        body.light-theme .award-card {
+            background: #fff;
+            border-color: #21d4fd;
+            box-shadow: 0 4px 24px rgba(33,212,253,0.18);
+        }
+
+        .award-card.visible {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .award-card:hover {
+            transform: scale(1.07) translateY(-4px);
+            box-shadow: 0 0 32px 0 #ffe066cc, 0 8px 32px rgba(0,0,0,0.22);
+        }
+
+        body.light-theme .award-card:hover {
+            box-shadow: 0 0 32px 0 #21d4fdcc, 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .award-badge {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #ffe066;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        body.light-theme .award-badge {
+            color: #21d4fd;
+        }
+
+        .award-icon {
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+
+        .award-title {
+            font-weight: 700;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .award-org {
+            color: #b0b3c6;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            width: 100%;
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0;
+        }
+
+        .projects-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+        }
+
+        .project-card {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            min-height: 420px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            transition: transform 1.3s cubic-bezier(.22,1,.36,1), opacity 1.3s;
+            transform: translateY(60px) scale(0.97);
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .project-card.visible {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .project-accent {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 10px;
+            background: #b721ff;
+            border-radius: 0 8px 8px 0;
+            z-index: 3;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #0b0d13cc 0%, #23263acc 100%);
+            z-index: 1;
+        }
+
+        body.light-theme .project-overlay {
+            background: linear-gradient(90deg, rgba(255,255,255,0.72) 0%, rgba(227,232,240,0.72) 100%);
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+            padding: 3.5rem 2.5rem 3.5rem 4.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .project-title {
+            font-weight: 900;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: #ffe066;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 12px #000a;
+            text-transform: uppercase;
+        }
+
+        body.light-theme .project-title {
+            color: #181b23;
+            text-shadow: 0 2px 12px #fff, 0 2px 24px #fff;
+        }
+
+        .project-description {
+            font-size: 1.25rem;
+            color: #fff;
+            font-weight: 500;
+            max-width: 700px;
+            text-shadow: 0 2px 8px #0008;
+        }
+
+        body.light-theme .project-description {
+            color: #181b23;
+            text-shadow: 0 2px 8px #fff, 0 2px 16px #fff;
+        }
+
+        .project-btn {
+            margin-top: 32px;
+            padding: 0.9rem 2.2rem;
+            font-weight: 700;
+            font-size: 1.08rem;
+            letter-spacing: 1px;
+            border: 2px solid #ffe066;
+            border-radius: 0;
+            background: #181b23;
+            color: #ffe066;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(.4,2,.6,1);
+        }
+
+        body.light-theme .project-btn {
+            background: #fff;
+            border-color: #21d4fd;
+            color: #21d4fd;
+        }
+
+        .project-btn:hover {
+            background: #ffe066;
+            color: #181b23;
+            border-color: #b721ff;
+        }
+
+        body.light-theme .project-btn:hover {
+            background: #21d4fd;
+            color: #fff;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            right: 28px;
+            bottom: 28px;
+            z-index: 200;
+            background: #181b23;
+            color: #ffe066;
+            border: 3px solid #ffe066;
+            border-radius: 50%;
+            width: 54px;
+            height: 54px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            font-size: 26px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        body.light-theme .theme-toggle {
+            background: #fff;
+            color: #21d4fd;
+            border-color: #21d4fd;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .about-text {
+                text-align: center;
+                margin-left: 0;
+            }
+
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .typed-name {
+                font-size: 2rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo" data-translate="portfolio">ROBOTICS PORTFOLIO</div>
+        <div class="nav-links">
+            <a href="#about-me" data-translate="aboutMe">ABOUT ME</a>
+            <a href="#projects" data-translate="projects">PROJECTS</a>
+            <a href="#awards" data-translate="awards">AWARDS</a>
+            <a href="#contact" data-translate="contact">CONTACT</a>
+            <div class="language-selector">
+                <span onclick="changeLanguage('en')">EN</span>
+                <span>|</span>
+                <span onclick="changeLanguage('de')">DE</span>
+                <span>|</span>
+                <span onclick="changeLanguage('ru')">RU</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <div style="max-width: 900px; padding: 0 2rem;">
+            <div class="tagline">
+                <span>INNOVATE.</span> <span>AUTOMATE.</span> <span>INSPIRE.</span>
+            </div>
+            <div class="subtitle">
+                The future of robotics is in my hand to create a better world.
+            </div>
+            <div class="quote">
+                "The best way to predict the future is to invent it."
+            </div>
+            <div class="typed-name" id="typedName"></div>
+            <div class="role">
+                A hybrid of scientist, engineer, and technician in one person
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about-section" id="about-me">
+        <div class="about-container">
+            <div class="about-photo">
+                <!-- Replace with your actual photo -->
+                <img src="assets/photo.jpg" alt="Lazuardi Azka Rangkuti" onerror="this.src='https://via.placeholder.com/140'">
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    Hi! I'm <span style="font-weight: 700; color: #21d4fd;">Lazuardi Azka Rangkuti</span>, a robotics and AI enthusiast with a background in mechatronics and robotics system. I love building intelligent systems that solve real-world problems, from IoT devices to manipulator robots. Curious, creative, and driven by impact, I am going to make the best robots ever!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="awards-section" id="awards">
+        <h2 data-translate="certificationsAwards">CERTIFICATIONS & AWARDS</h2>
+        <div class="awards-grid" id="awardsGrid"></div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <h2 data-translate="projects">PROJECTS</h2>
+        <div id="projectsContainer"></div>
+    </section>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <span id="themeIcon">☀️</span>
+    </button>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                aboutMe: "ABOUT ME",
+                projects: "PROJECTS",
+                awards: "AWARDS",
+                contact: "CONTACT",
+                portfolio: "ROBOTICS PORTFOLIO",
+                certificationsAwards: "CERTIFICATIONS & AWARDS"
+            },
+            de: {
+                aboutMe: "ÜBER MICH",
+                projects: "PROJEKTE",
+                awards: "AUSZEICHNUNGEN",
+                contact: "KONTAKT",
+                portfolio: "ROBOTIK-PORTFOLIO",
+                certificationsAwards: "ZERTIFIKATE & AUSZEICHNUNGEN"
+            },
+            ru: {
+                aboutMe: "ОБО МНЕ",
+                projects: "ПРОЕКТЫ",
+                awards: "НАГРАДЫ",
+                contact: "КОНТАКТЫ",
+                portfolio: "РОБОТОТЕХНИКА ПОРТФОЛИО",
+                certificationsAwards: "СЕРТИФИКАТЫ И НАГРАДЫ"
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Typing animation
+        const NAME = "LAZUARDI AZKA RANGKUTI";
+        let typedIndex = 0;
+
+        function typeWriter() {
+            if (typedIndex <= NAME.length) {
+                document.getElementById('typedName').textContent = NAME.slice(0, typedIndex);
+                typedIndex++;
+                setTimeout(typeWriter, 80);
+            }
+        }
+
+        typeWriter();
+
+        // Theme toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const icon = document.getElementById('themeIcon');
+            icon.textContent = document.body.classList.contains('light-theme') ? '🌙' : '☀️';
+        }
+
+        // Awards data
+        const awards = [
+            { title: "4th Winner and Favorite Project of Hardathon 2025", org: "Youth Robotics Center of BMSTU" },
+            { title: "4th Winner of Indonesian Robotic Olympiad", org: "IRO & Mikrobot" },
+            { title: "1st Winner of Jakarta Junior Robotic Competition", org: "Robotics Education Centre" },
+            { title: "Favorite Winner Robotics", org: "Santa Ursula Senior High School" },
+            { title: "Certificate of Participation", org: "Robotics Education Centre" },
+            { title: "Participation on Maze Solving Competition", org: "Robotics Education Centre" },
+            { title: "Certified Internet of Things Professional – Excellence", org: "Edspert.id" },
+            { title: "Certification in IoT and Digital Transformation", org: "Cisco Networking Academy" },
+            { title: "Securely Connecting AWS IoT Devices to the Cloud", org: "Amazon Web Services" }
+        ];
+
+        // Render awards
+        const awardsGrid = document.getElementById('awardsGrid');
+        awards.forEach((award, idx) => {
+            const card = document.createElement('div');
+            card.className = 'award-card';
+            card.innerHTML = `
+                <div class="award-badge">AWARD</div>
+                <div class="award-icon">🏅</div>
+                <div class="award-title">${award.title}</div>
+                <div class="award-org">${award.org}</div>
+            `;
+            card.style.transitionDelay = `${idx * 120}ms`;
+            awardsGrid.appendChild(card);
+        });
+
+        // Projects data
+        const projects = [
+            {
+                title: "Washeye: Laundry Queue Notifier",
+                description: "An intelligent IoT system that monitors laundry machine availability and notifies users in real-time.",
+                image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Collaborative Robot (COBOT)",
+                description: "A collaborative robotic system designed for safe human-robot interaction in manufacturing environments.",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Preventive Maintenance Robot",
+                description: "An IoT-based environmental monitoring system for production equipment.",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        // Render projects
+        const projectsContainer = document.getElementById('projectsContainer');
+        projects.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.style.backgroundImage = `url(${project.image})`;
+            card.innerHTML = `
+                <div class="project-accent"></div>
+                <div class="project-overlay"></div>
+                <div class="project-content">
+                    <div class="project-title">${project.title}</div>
+                    <div class="project-description">${project.description}</div>
+                    <button class="project-btn">READ MORE</button>
+                </div>
+            `;
+            projectsContainer.appendChild(card);
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
