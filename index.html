@@ -240,6 +240,187 @@
             opacity: 1;
         }
 
+        /* Work Experiences Section */
+        .experiences-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 2rem;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .experiences-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: calc(100% - 80px);
+            background: linear-gradient(to bottom, #ffe066 0%, #b721ff 100%);
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        body.light-theme .timeline-line {
+            background: linear-gradient(to bottom, #21d4fd 0%, #b721ff 100%);
+        }
+
+        .experiences-container {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            min-height: 120px;
+        }
+
+        .experience-item.left {
+            flex-direction: row;
+        }
+
+        .experience-item.right {
+            flex-direction: row-reverse;
+        }
+
+        .experience-content {
+            flex: 1;
+            display: flex;
+        }
+
+        .experience-item.left .experience-content {
+            justify-content: flex-end;
+        }
+
+        .experience-item.right .experience-content {
+            justify-content: flex-start;
+        }
+
+        .experience-box {
+            background: #181b23;
+            border: 2px solid #ffe066;
+            border-radius: 16px;
+            min-width: 260px;
+            max-width: 340px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            padding: 1.5rem 1.2rem;
+            text-align: left;
+            opacity: 0;
+            transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+        }
+
+        body.light-theme .experience-box {
+            background: #fff;
+            border-color: #21d4fd;
+            box-shadow: 0 4px 24px rgba(33,212,253,0.18);
+        }
+
+        .experience-item.left .experience-box {
+            transform: translateX(-60px) scale(0.95);
+        }
+
+        .experience-item.right .experience-box {
+            transform: translateX(60px) scale(0.95);
+        }
+
+        .experience-box.visible {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        .experience-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            border: 4px solid #0b0d13;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            box-shadow: 0 0 0 4px #ffe06644;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(.4,2,.6,1), transform 0.5s cubic-bezier(.4,2,.6,1);
+            scale: 0.7;
+        }
+
+        body.light-theme .experience-logo {
+            border-color: #f7f7fa;
+            box-shadow: 0 0 0 4px #21d4fd44;
+        }
+
+        .experience-logo.visible {
+            opacity: 1;
+            scale: 1;
+        }
+
+        .experience-logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .experience-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffe066;
+            margin-bottom: 6px;
+        }
+
+        body.light-theme .experience-title {
+            color: #21d4fd;
+        }
+
+        .experience-company {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #b721ff;
+            margin-bottom: 4px;
+        }
+
+        .experience-date {
+            color: #b0b3c6;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .experience-description {
+            font-size: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .experience-description ul {
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.7;
+        }
+
+        .experience-description li {
+            margin-bottom: 10px;
+        }
+
         .awards-section h2 {
             text-align: center;
             font-size: 2.2rem;
@@ -409,11 +590,28 @@
             margin-bottom: 8px;
             text-shadow: 0 2px 12px #000a;
             text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 8px #0008;
+            font-style: italic;
+            opacity: 0.9;
         }
 
         body.light-theme .project-title {
             color: #181b23;
             text-shadow: 0 2px 12px #fff, 0 2px 24px #fff;
+        }
+
+        body.light-theme .project-subtitle {
+            color: #181b23;
+            text-shadow: 0 2px 8px #fff, 0 2px 16px #fff;
         }
 
         .project-description {
@@ -536,8 +734,9 @@
         <div class="nav-logo" data-translate="portfolio">ROBOTICS PORTFOLIO</div>
         <div class="nav-links">
             <a href="#about-me" data-translate="aboutMe">ABOUT ME</a>
-            <a href="#projects" data-translate="projects">PROJECTS</a>
             <a href="#awards" data-translate="awards">AWARDS</a>
+            <a href="#experiences" data-translate="experiences">EXPERIENCES</a>
+            <a href="#projects" data-translate="projects">PROJECTS</a>
             <a href="#contact" data-translate="contact">CONTACT</a>
             <div class="language-selector">
                 <span onclick="changeLanguage('en')">EN</span>
@@ -590,6 +789,13 @@
         <div class="awards-grid" id="awardsGrid"></div>
     </section>
 
+    <!-- Work Experiences Section -->
+    <section class="experiences-section" id="experiences">
+        <h2 data-translate="workExperiences">WORK EXPERIENCES</h2>
+        <div class="timeline-line"></div>
+        <div class="experiences-container" id="experiencesContainer"></div>
+    </section>
+
     <!-- Projects Section -->
     <section class="projects-section" id="projects">
         <h2 data-translate="projects">PROJECTS</h2>
@@ -608,25 +814,31 @@
                 aboutMe: "ABOUT ME",
                 projects: "PROJECTS",
                 awards: "AWARDS",
+                experiences: "EXPERIENCES",
                 contact: "CONTACT",
                 portfolio: "ROBOTICS PORTFOLIO",
-                certificationsAwards: "CERTIFICATIONS & AWARDS"
+                certificationsAwards: "CERTIFICATIONS & AWARDS",
+                workExperiences: "WORK EXPERIENCES"
             },
             de: {
                 aboutMe: "ÜBER MICH",
                 projects: "PROJEKTE",
                 awards: "AUSZEICHNUNGEN",
+                experiences: "ERFAHRUNGEN",
                 contact: "KONTAKT",
                 portfolio: "ROBOTIK-PORTFOLIO",
-                certificationsAwards: "ZERTIFIKATE & AUSZEICHNUNGEN"
+                certificationsAwards: "ZERTIFIKATE & AUSZEICHNUNGEN",
+                workExperiences: "BERUFSERFAHRUNG"
             },
             ru: {
                 aboutMe: "ОБО МНЕ",
                 projects: "ПРОЕКТЫ",
                 awards: "НАГРАДЫ",
+                experiences: "ОПЫТ",
                 contact: "КОНТАКТЫ",
                 portfolio: "РОБОТОТЕХНИКА ПОРТФОЛИО",
-                certificationsAwards: "СЕРТИФИКАТЫ И НАГРАДЫ"
+                certificationsAwards: "СЕРТИФИКАТЫ И НАГРАДЫ",
+                workExperiences: "ОПЫТ РАБОТЫ"
             }
         };
 
@@ -691,22 +903,158 @@
             awardsGrid.appendChild(card);
         });
 
+        // Work experiences data
+        const experiences = [
+            {
+                title: "Mechatronics Engineering Intern",
+                company: "Oppo Manufacturing Indonesia",
+                date: "Jun 2025 – Sep 2025",
+                description: `<ul>
+                    <li>Created and deployed a Preventive Maintenance Robot equipped with IoT sensors to monitor dust, temperature, humidity and WiFi connectivity.</li>
+                    <li>Automated maintenance alerts through relay controlled alarms and visual indicators, reducing unexpected downtime.</li>
+                    <li>Created a Collaborative Robot (COBOT) in gantry model with belt driven rails, PLC, and 3D printed pneumatic system.</li>
+                    <li>Collaborated with engineers to test and troubleshoot projects directly on production lines.</li>
+                </ul>`,
+                logo: "assets/oppo2.png"
+            },
+            {
+                title: "Generative AI Engineer Intern",
+                company: "Chickin Indonesia",
+                date: "Dec 2024 – Jun 2025",
+                description: `<ul>
+                    <li>Developed "Chibot" (Chickin Chatbot) using n8n and LangChain for knowledge management and IoT device control.</li>
+                    <li>Researched and integrated Generative AI tools (Vertex AI, RAG, Flowise) to enhance chatbot efficiency.</li>
+                    <li>Built a real-time sales dashboard with Firebase Studio and Firestore.</li>
+                </ul>`,
+                logo: "assets/chickin.jpeg"
+            },
+            {
+                title: "Site Reliability Engineer Intern",
+                company: "Sekolah.mu, Indonesia",
+                date: "Aug 2024 - Sep 2024",
+                description: `<ul>
+                    <li>Automated deployments using GitLab CI/CD.</li>
+                    <li>Built and maintained Docker containers and Python applications.</li>
+                    <li>Implemented infrastructure solutions on AWS.</li>
+                </ul>`,
+                logo: "assets/sekolahmu.png"
+            },
+            {
+                title: "IT Tech Support Intern",
+                company: "Sekolah.mu, Indonesia",
+                date: "Jul 2024 - Sep 2024",
+                description: `<ul>
+                    <li>Performed remote and onsite installation of monitoring and surveillance software.</li>
+                    <li>Handled troubleshooting and system configuration tasks.</li>
+                    <li>Participated in weekly IT team meetings to report progress.</li>
+                </ul>`,
+                logo: "assets/sekolahmu.png"
+            },
+            {
+                title: "Product Sourcing Intern",
+                company: "GAOTek Inc., United States",
+                date: "May 2024 – Aug 2024",
+                description: `<ul>
+                    <li>Collaborated with the sourcing team to identify and evaluate electronic testing products.</li>
+                    <li>Prepared detailed task reports including product comparisons and cost analysis.</li>
+                    <li>Participated in weekly team meetings via Microsoft Teams.</li>
+                </ul>`,
+                logo: "assets/gaotek.jpg"
+            },
+            {
+                title: "Russian Language Tutor",
+                company: "Lister Education Pte. Ltd., Indonesia",
+                date: "Feb 2023 – Feb 2025",
+                description: `<ul>
+                    <li>Taught beginner to intermediate Indonesian students Russian language over 10 students through online sessions.</li>
+                    <li>Delivered engaging lessons tailored to student goals.</li>
+                    <li>Supported additional learning programs including Scholarship Mentoring and Speaking Class.</li>
+                </ul>`,
+                logo: "assets/lister.png"
+            },
+            {
+                title: "Data Entry Specialist",
+                company: "West Java Provincial Health Office",
+                date: "Jun 2021 - Dec 2021",
+                description: `<ul>
+                    <li>Recorded and organized COVID-19 vaccination data for hundreds of patients.</li>
+                    <li>Entered and submitted data through government health platforms in a timely manner.</li>
+                    <li>Coordinated with local health services to verify patient records.</li>
+                </ul>`,
+                logo: "assets/dinkes.png"
+            }
+        ];
+
+        // Render work experiences
+        const experiencesContainer = document.getElementById('experiencesContainer');
+        experiences.forEach((exp, idx) => {
+            const item = document.createElement('div');
+            item.className = `experience-item ${idx % 2 === 0 ? 'left' : 'right'}`;
+            
+            item.innerHTML = `
+                <div class="experience-content">
+                    <div class="experience-box">
+                        <div class="experience-title">${exp.title}</div>
+                        <div class="experience-company">${exp.company}</div>
+                        <div class="experience-date">${exp.date}</div>
+                        <div class="experience-description">${exp.description}</div>
+                    </div>
+                </div>
+                <div class="experience-logo">
+                    <img src="${exp.logo}" alt="${exp.company}" onerror="this.parentElement.innerHTML='<span style=\\"font-weight:700;color:#b721ff;font-size:14px\\">${exp.company.split(' ').map(w => w[0]).join('')}</span>'">
+                </div>
+            `;
+            
+            experiencesContainer.appendChild(item);
+        });
+
         // Projects data
         const projects = [
             {
-                title: "Washeye: Laundry Queue Notifier",
-                description: "An intelligent IoT system that monitors laundry machine availability and notifies users in real-time.",
-                image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=800&q=80"
+                title: "Stackster: Intelligent Factory Mobile Robot with IoT",
+                description: "An advanced factory automation robot integrated with IoT sensors for intelligent inventory management, stacking optimization, and real-time production monitoring.",
+                image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Collaborative Robot (COBOT)",
-                description: "A collaborative robotic system designed for safe human-robot interaction in manufacturing environments.",
-                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+                description: "A collaborative robotic system designed for safe human-robot interaction in manufacturing environments, featuring advanced safety protocols and intuitive programming.",
+                image: "https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Preventive Maintenance Robot",
-                description: "An IoT-based environmental monitoring system for production equipment.",
+                description: "An IoT-based environmental monitoring system developed at Oppo Indonesia Manufacturing, designed to monitor critical parameters in screen guard production machines and prevent equipment failures through real-time data analysis.",
                 image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Automated Coat Handling Robot",
+                description: "An innovative robotic solution designed to automate jacket storage for students at Bauman Moscow State Technical University, created during Hardathon 2025 competition to improve campus life.",
+                image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Construction and Mechanical Analysis of Turntable in a 5-DOF Robotic Manipulator",
+                description: "A comprehensive study and mechanical analysis of the turntable component in a five-degree-of-freedom robotic manipulator, focusing on structural design, load distribution, and optimization for precision automation tasks.",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "C.L.A.R.A: Climate Learning and Response Assistant",
+                description: "An intelligent climate monitoring and educational system that combines IoT sensors, machine learning, and automated responses to help users understand and adapt to environmental changes while promoting sustainable practices.",
+                image: "https://images.unsplash.com/photo-1569163139394-de4798aa62b6?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "WashEye: Laundry Queue Notifier",
+                description: "An intelligent IoT system that monitors laundry machine availability and notifies users in real-time, eliminating waiting times and optimizing laundry room usage.",
+                image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "РТК для производства смартфонов",
+                subtitle: "Robotic Technological Complex for Smartphone Manufacturing",
+                description: "A robotic technological complex designed specifically for smartphone manufacturing, featuring precision automation, quality control systems, and seamless integration into production lines.",
+                image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Adaptive Gripper for Smartphone Manufacture",
+                description: "An advanced robotic gripper system integrated with computer vision technology, designed to handle various smartphone components with adaptive force control and visual recognition for precise assembly and quality inspection.",
+                image: "https://images.unsplash.com/photo-1578663248512-2ee6f49c45a8?auto=format&fit=crop&w=800&q=80"
             }
         ];
 
@@ -721,6 +1069,7 @@
                 <div class="project-overlay"></div>
                 <div class="project-content">
                     <div class="project-title">${project.title}</div>
+                    ${project.subtitle ? `<div class="project-subtitle">${project.subtitle}</div>` : ''}
                     <div class="project-description">${project.description}</div>
                     <button class="project-btn">READ MORE</button>
                 </div>
@@ -738,12 +1087,25 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    
+                    // Special handling for experience items
+                    if (entry.target.classList.contains('experience-item')) {
+                        const logo = entry.target.querySelector('.experience-logo');
+                        const box = entry.target.querySelector('.experience-box');
+                        
+                        if (logo) {
+                            setTimeout(() => logo.classList.add('visible'), 100);
+                        }
+                        if (box) {
+                            setTimeout(() => box.classList.add('visible'), 220);
+                        }
+                    }
                 }
             });
         }, observerOptions);
 
         // Observe sections
-        document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card').forEach(el => {
+        document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card, .experience-item').forEach(el => {
             observer.observe(el);
         });
 
