@@ -20,11 +20,17 @@
             <a href="#tools" data-translate="tools">TOOLS</a>
             <a href="#contact" data-translate="contact">CONTACT</a>
             <div class="language-selector">
-                <span onclick="changeLanguage('en')">EN</span>
-                <span>|</span>
-                <span onclick="changeLanguage('de')">DE</span>
-                <span>|</span>
-                <span onclick="changeLanguage('ru')">RU</span>
+                <button class="flag-btn" onclick="changeLanguage('id')" aria-label="Bahasa Indonesia" title="Bahasa Indonesia">
+                    🇮🇩
+                </button>
+                <span class="flag-separator">|</span>
+                <button class="flag-btn" onclick="changeLanguage('en')" aria-label="English" title="English">
+                    🇬🇧
+                </button>
+                <span class="flag-separator">|</span>
+                <button class="flag-btn" onclick="changeLanguage('ru')" aria-label="Русский" title="Русский">
+                    🇷🇺
+                </button>
             </div>
         </div>
     </nav>
@@ -55,7 +61,7 @@
                 <img src="assets/photo.jpg" alt="Lazuardi Azka Rangkuti" onerror="this.src='https://via.placeholder.com/140'">
             </div>
             <div class="about-text">
-                <h2>About Me</h2>
+                <h2 data-translate="aboutMe">About Me</h2>
                 <p>
                     Hi! I'm <span style="font-weight: 700; color: #21d4fd;">Lazuardi Azka Rangkuti</span>, a robotics and AI enthusiast with a background in mechatronics and robotics system. I love building intelligent systems that solve real-world problems, from IoT devices to manipulator robots. Curious, creative, and driven by impact, I am going to make the best robots ever!
                 </p>
@@ -91,35 +97,69 @@
     <!-- Tools Section -->
     <section class="tools-section" id="tools">
         <h2 data-translate="tools">TOOLS & TECHNOLOGIES</h2>
-        <div class="tools-grid" id="toolsGrid"></div>
+        <div class="tools-container">
+            <div class="tools-description">
+                <p>Here are the technologies and tools I'm proficient with. Click on any tool to see examples of how I've used it in my projects.</p>
+            </div>
+            <div class="tools-grid" id="toolsGrid">
+                <!-- Tools will be dynamically loaded here -->
+                <!-- Structure prepared for circular logos -->
+            </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <h2 data-translate="getInTouch">GET IN TOUCH</h2>
-        <p data-translate="contactDescription">Let's connect! Feel free to reach out through any of these platforms.</p>
-        <div class="contact-links">
-            <a href="mailto:your.email@example.com" class="contact-link">
-                <span class="contact-icon">📧</span>
-                <span>Email</span>
-            </a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
-                <span class="contact-icon">💼</span>
-                <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/hexadust" target="_blank" class="contact-link">
-                <span class="contact-icon">💻</span>
-                <span>GitHub</span>
-            </a>
-            <a href="https://wa.me/yourphonenumber" target="_blank" class="contact-link">
-                <span class="contact-icon">💬</span>
-                <span>WhatsApp</span>
-            </a>
+        <div class="contact-content">
+            <h2 data-translate="getInTouch">GET IN TOUCH</h2>
+            <p class="contact-subtitle" data-translate="contactDescription">Let's connect! Feel free to reach out through any of these platforms.</p>
+            
+            <div class="contact-grid">
+                <a href="mailto:your.email@example.com" class="contact-card email-card">
+                    <div class="contact-card-icon">📧</div>
+                    <div class="contact-card-content">
+                        <h3>Email</h3>
+                        <p>Send me a message directly</p>
+                        <span class="contact-card-hint">Click to compose email</span>
+                    </div>
+                </a>
+                
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-card linkedin-card">
+                    <div class="contact-card-icon">💼</div>
+                    <div class="contact-card-content">
+                        <h3>LinkedIn</h3>
+                        <p>Connect professionally</p>
+                        <span class="contact-card-hint">View my experience</span>
+                    </div>
+                </a>
+                
+                <a href="https://github.com/hexadust" target="_blank" class="contact-card github-card">
+                    <div class="contact-card-icon">💻</div>
+                    <div class="contact-card-content">
+                        <h3>GitHub</h3>
+                        <p>Explore my projects</p>
+                        <span class="contact-card-hint">See my code</span>
+                    </div>
+                </a>
+                
+                <a href="https://wa.me/yourphonenumber" target="_blank" class="contact-card whatsapp-card">
+                    <div class="contact-card-icon">💬</div>
+                    <div class="contact-card-content">
+                        <h3>WhatsApp</h3>
+                        <p>Quick chat</p>
+                        <span class="contact-card-hint">Instant messaging</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="contact-note">
+                <p>I typically respond within 24 hours. Looking forward to connecting with you!</p>
+            </div>
         </div>
     </section>
 
     <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle dark/light mode">
         <span id="themeIcon">☀️</span>
     </button>
 
