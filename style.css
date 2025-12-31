@@ -18,14 +18,14 @@ body.light-theme {
 }
 
 /* ============================================
-   NAVIGATION - Revisi: Kurangi gap ke tengah
+   NAVIGATION - REVISI: Fix alignment agar tidak terlalu ke kanan
    ============================================ */
 nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 4vw 1.2rem 3vw;
+    padding: 1.2rem 2vw; /* REVISI: Dikurangi padding kanan dari 4vw */
     border-bottom: 1px solid #ffe066;
     background: rgba(0,0,0,0.95);
     position: fixed;
@@ -56,7 +56,7 @@ body.light-theme .nav-logo {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 1.8vw; /* Dikurangi dari 2.5vw untuk lebih rapat */
+    gap: 1.2vw; /* REVISI: Dikurangi dari 1.8vw */
 }
 
 .nav-links a {
@@ -67,7 +67,7 @@ body.light-theme .nav-logo {
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: color 0.3s, transform 0.3s;
-    padding: 0.5rem 0.8rem;
+    padding: 0.5rem 0.6rem; /* REVISI: Dikurangi padding */
     white-space: nowrap;
 }
 
@@ -84,9 +84,8 @@ body.light-theme .nav-links a:hover {
     color: #21d4fd;
 }
 
-/* Language selector */
 .language-selector {
-    margin-left: 1.5vw; /* Dikurangi dari 24px */
+    margin-left: 1vw; /* REVISI: Dikurangi dari 1.5vw */
     display: flex;
     gap: 6px;
     align-items: center;
@@ -189,7 +188,7 @@ body.light-theme .flag-separator {
 }
 
 /* ============================================
-   ABOUT ME SECTION - Revisi lengkap
+   ABOUT ME SECTION - REVISI: Fix foto positioning
    ============================================ */
 .about-section {
     display: flex;
@@ -213,16 +212,15 @@ body.light-theme .flag-separator {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4rem; /* Diperbesar dari 3.5rem */
+    gap: 4rem;
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
 }
 
-/* Foto profil - diperbesar dengan animasi border */
 .about-photo {
     flex-shrink: 0;
-    width: 300px; /* Diperbesar dari 240px */
+    width: 300px;
     height: 300px;
     border-radius: 50%;
     overflow: hidden;
@@ -235,7 +233,6 @@ body.light-theme .flag-separator {
     transform: scale(1.05);
 }
 
-/* Animasi border gradient berubah-ubah */
 .photo-border-animation {
     position: absolute;
     top: -4px;
@@ -268,7 +265,7 @@ body.light-theme .flag-separator {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 30%; /* REVISI: Posisi 30% dari atas untuk foto yang lebih bagus */
     position: relative;
     z-index: 2;
     border-radius: 50%;
@@ -279,7 +276,6 @@ body.light-theme .flag-separator {
     transform: scale(1.05);
 }
 
-/* Text intro - rata kanan kiri */
 .about-text {
     flex: 1;
     max-width: 600px;
@@ -307,7 +303,7 @@ body.light-theme .about-text h2 {
 .about-description {
     font-size: 1.15rem;
     line-height: 1.7;
-    text-align: justify; /* Rata kanan-kiri */
+    text-align: justify;
     color: #b0b3c6;
     margin-bottom: 1.5rem;
     text-align-last: left;
@@ -326,359 +322,8 @@ body.light-theme .about-description {
     background-clip: text;
 }
 
-body.light-theme .highlight-name {
-    background: linear-gradient(90deg, #21d4fd, #b721ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 /* ============================================
-   AWARDS SECTION
-   ============================================ */
-.awards-section {
-    width: 100%;
-    max-width: 860px;
-    margin: 80px auto;
-    padding: 0 2rem;
-    transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s;
-    transform: scale(0.95);
-    opacity: 0.5;
-}
-
-.awards-section.visible {
-    transform: scale(1);
-    opacity: 1;
-}
-
-.awards-section h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 48px;
-    text-transform: uppercase;
-}
-
-.awards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    justify-items: center;
-}
-
-.award-card {
-    background: #181b23;
-    border: 2px solid #ffe066;
-    border-radius: 16px;
-    width: 260px;
-    height: 180px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.2rem 1rem;
-    transition: transform 0.35s cubic-bezier(.4,2,.6,1), opacity 0.7s, box-shadow 0.35s;
-    transform: scale(0.85) translateY(40px);
-    opacity: 0;
-    cursor: pointer;
-}
-
-body.light-theme .award-card {
-    background: #fff;
-    border-color: #21d4fd;
-    box-shadow: 0 4px 24px rgba(33,212,253,0.18);
-}
-
-.award-card.visible {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-}
-
-.award-card:hover {
-    transform: scale(1.07) translateY(-4px);
-    box-shadow: 0 0 32px 0 #ffe066cc, 0 8px 32px rgba(0,0,0,0.22);
-}
-
-body.light-theme .award-card:hover {
-    box-shadow: 0 0 32px 0 #21d4fdcc, 0 8px 32px rgba(0,0,0,0.12);
-}
-
-.award-badge {
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #ffe066;
-    margin-bottom: 6px;
-    letter-spacing: 1px;
-}
-
-body.light-theme .award-badge {
-    color: #21d4fd;
-}
-
-.award-icon {
-    font-size: 32px;
-    margin-bottom: 6px;
-}
-
-.award-title {
-    font-weight: 700;
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 4px;
-}
-
-.award-org {
-    color: #b0b3c6;
-    font-size: 0.95rem;
-    text-align: center;
-}
-
-/* ============================================
-   WORK EXPERIENCES SECTION - Smooth Fade In/Out
-   ============================================ */
-.experiences-section {
-    width: 100%;
-    max-width: 1000px;
-    margin: 80px auto;
-    padding: 0 2rem;
-    position: relative;
-    min-height: 400px;
-}
-
-.experiences-section h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 48px;
-    text-transform: uppercase;
-}
-
-.timeline-line {
-    position: absolute;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: calc(100% - 80px);
-    background: linear-gradient(to bottom, #ffe066 0%, #b721ff 100%);
-    border-radius: 2px;
-    z-index: 0;
-}
-
-body.light-theme .timeline-line {
-    background: linear-gradient(to bottom, #21d4fd 0%, #b721ff 100%);
-}
-
-.experiences-container {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    position: relative;
-    z-index: 1;
-}
-
-.experience-item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    min-height: 140px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
-                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Animation for fade in/out - IMPROVED */
-.experience-item.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.experience-item.fade-out {
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-/* Staggered animation delays */
-.experience-item:nth-child(odd).fade-in {
-    transition-delay: 0.1s;
-}
-
-.experience-item:nth-child(even).fade-in {
-    transition-delay: 0.2s;
-}
-
-.experience-item.left {
-    flex-direction: row;
-}
-
-.experience-item.right {
-    flex-direction: row-reverse;
-}
-
-.experience-content {
-    flex: 1;
-    display: flex;
-}
-
-.experience-item.left .experience-content {
-    justify-content: flex-end;
-}
-
-.experience-item.right .experience-content {
-    justify-content: flex-start;
-}
-
-.experience-box {
-    background: #181b23;
-    border: 2px solid #ffe066;
-    border-radius: 16px;
-    min-width: 280px;
-    max-width: 380px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    padding: 1.8rem 1.5rem;
-    text-align: left;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s cubic-bezier(.22,1,.36,1), 
-                transform 0.5s cubic-bezier(.22,1,.36,1);
-}
-
-body.light-theme .experience-box {
-    background: #fff;
-    border-color: #21d4fd;
-    box-shadow: 0 4px 24px rgba(33,212,253,0.18);
-}
-
-.experience-item.left .experience-box {
-    transform: translateX(-40px) translateY(20px);
-}
-
-.experience-item.right .experience-box {
-    transform: translateX(40px) translateY(20px);
-}
-
-.experience-item.fade-in .experience-box {
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-    transition-delay: 0.3s;
-}
-
-/* Logo perusahaan - lingkaran di timeline */
-.experience-logo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: #fff;
-    border: 4px solid #0b0d13;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    box-shadow: 
-        0 0 0 4px #ffe06644,
-        0 8px 24px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    opacity: 0;
-    scale: 0.7;
-    transition: opacity 0.5s cubic-bezier(.4,2,.6,1), 
-                scale 0.5s cubic-bezier(.4,2,.6,1),
-                box-shadow 0.3s;
-}
-
-body.light-theme .experience-logo {
-    border-color: #f7f7fa;
-    box-shadow: 
-        0 0 0 4px #21d4fd44,
-        0 8px 24px rgba(33, 212, 253, 0.2);
-}
-
-.experience-logo:hover {
-    box-shadow: 
-        0 0 0 4px #ffe066,
-        0 12px 32px rgba(255, 224, 102, 0.4);
-    transform: translate(-50%, -50%) scale(1.05);
-}
-
-body.light-theme .experience-logo:hover {
-    box-shadow: 
-        0 0 0 4px #21d4fd,
-        0 12px 32px rgba(33, 212, 253, 0.4);
-}
-
-.experience-item.fade-in .experience-logo {
-    opacity: 1;
-    scale: 1;
-    transition-delay: 0.4s;
-}
-
-.experience-logo img {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-    border-radius: 50%;
-    transition: transform 0.3s;
-}
-
-.experience-logo:hover img {
-    transform: scale(1.1);
-}
-
-.experience-title {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #ffe066;
-    margin-bottom: 8px;
-}
-
-body.light-theme .experience-title {
-    color: #21d4fd;
-}
-
-.experience-company {
-    font-weight: 600;
-    font-size: 1.05rem;
-    color: #b721ff;
-    margin-bottom: 6px;
-}
-
-.experience-date {
-    color: #b0b3c6;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    font-style: italic;
-}
-
-.experience-description {
-    font-size: 1rem;
-    text-align: justify;
-    line-height: 1.7;
-    color: #b0b3c6;
-}
-
-body.light-theme .experience-description {
-    color: #555;
-}
-
-.experience-description ul {
-    margin: 0;
-    padding-left: 20px;
-    line-height: 1.7;
-}
-
-.experience-description li {
-    margin-bottom: 10px;
-}
-
-/* ============================================
-   EDUCATION SECTION
+   EDUCATION SECTION - REVISI: Fix logo positioning
    ============================================ */
 .education-section {
     width: 100%;
@@ -739,6 +384,7 @@ body.light-theme .education-section h2 {
     overflow: hidden;
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+    padding: 15px; /* REVISI: Tambah padding agar logo tidak kepotong */
 }
 
 body.light-theme .education-logo {
@@ -756,9 +402,10 @@ body.light-theme .education-logo:hover {
 }
 
 .education-logo img {
-    width: 90%;
-    height: 90%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* REVISI: Contain agar tidak kepotong */
+    object-position: center center;
     transition: transform 0.4s;
 }
 
@@ -824,7 +471,572 @@ body.light-theme .education-content p {
 }
 
 /* ============================================
-   TOOLS SECTION - Revisi lengkap
+   AWARDS SECTION - REVISI: Fix brightness & gradient title
+   ============================================ */
+.awards-section {
+    width: 100%;
+    max-width: 860px;
+    margin: 80px auto;
+    padding: 0 2rem;
+    transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s;
+    transform: scale(0.95);
+    opacity: 0.5;
+}
+
+.awards-section.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.awards-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ffe066, #b721ff); /* REVISI: Gradient sama */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .awards-section h2 {
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+}
+
+.award-card {
+    background: #1a1d26; /* REVISI: Background lebih terang */
+    border: 2px solid #ffe066;
+    border-radius: 16px;
+    width: 260px;
+    height: 180px;
+    box-shadow: 0 4px 24px rgba(255, 224, 102, 0.15); /* REVISI: Shadow lebih terang */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 1rem;
+    transition: transform 0.35s cubic-bezier(.4,2,.6,1), opacity 0.7s, box-shadow 0.35s;
+    transform: scale(0.85) translateY(40px);
+    opacity: 0;
+    cursor: pointer;
+}
+
+body.light-theme .award-card {
+    background: #fff;
+    border-color: #21d4fd;
+    box-shadow: 0 4px 24px rgba(33,212,253,0.18);
+}
+
+.award-card.visible {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.award-card:hover {
+    transform: scale(1.07) translateY(-4px);
+    box-shadow: 0 0 32px 0 #ffe066cc, 0 8px 32px rgba(255, 224, 102, 0.3);
+}
+
+body.light-theme .award-card:hover {
+    box-shadow: 0 0 32px 0 #21d4fdcc, 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.award-badge {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #ffe066;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+body.light-theme .award-badge {
+    color: #21d4fd;
+}
+
+.award-icon {
+    font-size: 32px;
+    margin-bottom: 6px;
+    filter: brightness(1.2); /* REVISI: Brightness ditingkatkan */
+}
+
+.award-title {
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 4px;
+    color: #fff; /* REVISI: Warna lebih terang */
+}
+
+body.light-theme .award-title {
+    color: #181b23;
+}
+
+.award-org {
+    color: #c5c8d8; /* REVISI: Warna lebih terang */
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+body.light-theme .award-org {
+    color: #666;
+}
+
+.experiences-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 2rem;
+    position: relative;
+    min-height: 400px;
+}
+
+.experiences-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ffe066, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .experiences-section h2 {
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: calc(100% - 80px);
+    background: linear-gradient(to bottom, #ffe066 0%, #b721ff 100%);
+    border-radius: 2px;
+    z-index: 0;
+}
+
+body.light-theme .timeline-line {
+    background: linear-gradient(to bottom, #21d4fd 0%, #b721ff 100%);
+}
+
+.experiences-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.experience-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    min-height: 140px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.experience-item.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.experience-item.fade-out {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.experience-item:nth-child(odd).fade-in {
+    transition-delay: 0.1s;
+}
+
+.experience-item:nth-child(even).fade-in {
+    transition-delay: 0.2s;
+}
+
+.experience-item.left {
+    flex-direction: row;
+}
+
+.experience-item.right {
+    flex-direction: row-reverse;
+}
+
+.experience-content {
+    flex: 1;
+    display: flex;
+}
+
+.experience-item.left .experience-content {
+    justify-content: flex-end;
+}
+
+.experience-item.right .experience-content {
+    justify-content: flex-start;
+}
+
+.experience-box {
+    background: #181b23;
+    border: 2px solid #ffe066;
+    border-radius: 16px;
+    min-width: 280px;
+    max-width: 380px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 1.8rem 1.5rem;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(.22,1,.36,1), 
+                transform 0.5s cubic-bezier(.22,1,.36,1);
+}
+
+body.light-theme .experience-box {
+    background: #fff;
+    border-color: #21d4fd;
+    box-shadow: 0 4px 24px rgba(33,212,253,0.18);
+}
+
+.experience-item.left .experience-box {
+    transform: translateX(-40px) translateY(20px);
+}
+
+.experience-item.right .experience-box {
+    transform: translateX(40px) translateY(20px);
+}
+
+.experience-item.fade-in .experience-box {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+    transition-delay: 0.3s;
+}
+
+/* Logo perusahaan - REVISI: Fix centering & positioning */
+.experience-logo {
+    width: 80px; /* Sedikit diperbesar */
+    height: 80px;
+    border-radius: 50%;
+    background: #fff;
+    border: 4px solid #0b0d13;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 
+        0 0 0 4px #ffe06644,
+        0 8px 24px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    scale: 0.7;
+    transition: opacity 0.5s cubic-bezier(.4,2,.6,1), 
+                scale 0.5s cubic-bezier(.4,2,.6,1),
+                box-shadow 0.3s;
+}
+
+body.light-theme .experience-logo {
+    border-color: #f7f7fa;
+    box-shadow: 
+        0 0 0 4px #21d4fd44,
+        0 8px 24px rgba(33, 212, 253, 0.2);
+}
+
+.experience-logo:hover {
+    box-shadow: 
+        0 0 0 4px #ffe066,
+        0 12px 32px rgba(255, 224, 102, 0.4);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+body.light-theme .experience-logo:hover {
+    box-shadow: 
+        0 0 0 4px #21d4fd,
+        0 12px 32px rgba(33, 212, 253, 0.4);
+}
+
+.experience-item.fade-in .experience-logo {
+    opacity: 1;
+    scale: 1;
+    transition-delay: 0.4s;
+}
+
+.experience-logo img {
+    width: 50px; /* REVISI: Ukuran lebih besar */
+    height: 50px;
+    object-fit: contain; /* REVISI: Contain agar tidak kepotong */
+    object-position: center center;
+    padding: 5px; /* REVISI: Padding agar tidak mentok */
+    transition: transform 0.3s;
+}
+
+.experience-logo:hover img {
+    transform: scale(1.1);
+}
+
+.experience-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #ffe066;
+    margin-bottom: 8px;
+}
+
+body.light-theme .experience-title {
+    color: #21d4fd;
+}
+
+.experience-company {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #b721ff;
+    margin-bottom: 6px;
+}
+
+.experience-date {
+    color: #b0b3c6;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.experience-description {
+    font-size: 1rem;
+    text-align: justify;
+    line-height: 1.7;
+    color: #b0b3c6;
+}
+
+body.light-theme .experience-description {
+    color: #555;
+}
+
+.experience-description ul {
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.7;
+}
+
+.experience-description li {
+    margin-bottom: 10px;
+}
+
+/* ============================================
+   PROJECTS SECTION - REVISI: Gradient title & fade in only (no fade out)
+   ============================================ */
+.projects-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0;
+}
+
+.projects-section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ffe066, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .projects-section h2 {
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.project-card {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    min-height: 420px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(60px) scale(0.97);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+}
+
+/* REVISI: Hanya fade in, tidak fade out saat scroll away */
+.project-card.fade-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.project-card:nth-child(odd).fade-in {
+    transition-delay: 0.1s;
+}
+
+.project-card:nth-child(even).fade-in {
+    transition-delay: 0.2s;
+}
+
+.project-accent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 10px;
+    background: #b721ff;
+    border-radius: 0 8px 8px 0;
+    z-index: 3;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #0b0d13cc 0%, #23263acc 100%);
+    z-index: 1;
+}
+
+body.light-theme .project-overlay {
+    background: linear-gradient(90deg, rgba(255,255,255,0.72) 0%, rgba(227,232,240,0.72) 100%);
+}
+
+.project-content {
+    position: relative;
+    z-index: 2;
+    padding: 3.5rem 2.5rem 3.5rem 4.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, 
+                transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.project-card.fade-in .project-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.project-title {
+    font-weight: 900;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: #ffe066;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 12px #000a;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.project-subtitle {
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 18px;
+    text-shadow: 0 2px 8px #0008;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+body.light-theme .project-title {
+    color: #181b23;
+    text-shadow: 0 2px 12px #fff, 0 2px 24px #fff;
+}
+
+body.light-theme .project-subtitle {
+    color: #181b23;
+    text-shadow: 0 2px 8px #fff, 0 2px 16px #fff;
+}
+
+.project-description {
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 500;
+    max-width: 700px;
+    text-shadow: 0 2px 8px #0008;
+}
+
+body.light-theme .project-description {
+    color: #181b23;
+    text-shadow: 0 2px 8px #fff, 0 2px 16px #fff;
+}
+
+.project-btn {
+    margin-top: 32px;
+    padding: 0.9rem 2.2rem;
+    font-weight: 700;
+    font-size: 1.08rem;
+    letter-spacing: 1px;
+    border: 2px solid #ffe066;
+    border-radius: 0;
+    background: #181b23;
+    color: #ffe066;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(.4,2,.6,1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s, 
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s, 
+                all 0.35s cubic-bezier(.4,2,.6,1);
+}
+
+.project-card.fade-in .project-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.light-theme .project-btn {
+    background: #fff;
+    border-color: #21d4fd;
+    color: #21d4fd;
+}
+
+.project-btn:hover {
+    background: #ffe066;
+    color: #181b23;
+    border-color: #b721ff;
+}
+
+body.light-theme .project-btn:hover {
+    background: #21d4fd;
+    color: #fff;
+}
+
+/* ============================================
+   TOOLS SECTION - REVISI LENGKAP: Logo asli, lingkaran, color transition
    ============================================ */
 .tools-section {
     width: 100%;
@@ -872,7 +1084,6 @@ body.light-theme .tools-subtitle {
     margin-bottom: 3rem;
 }
 
-/* Tools grid dengan logo asli */
 .tools-grid {
     display: flex;
     flex-wrap: wrap;
@@ -881,9 +1092,10 @@ body.light-theme .tools-subtitle {
     margin-top: 2rem;
 }
 
+/* Tool circle dengan logo asli - REVISI LENGKAP */
 .tool-circle {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     background: #181b23;
     display: flex;
@@ -898,7 +1110,6 @@ body.light-theme .tools-subtitle {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     transition: all 0.5s cubic-bezier(0.4, 2, 0.6, 1);
     border: 3px solid;
-    border-image: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0) 1;
     animation: border-color-cycle 8s infinite linear;
 }
 
@@ -919,6 +1130,8 @@ body.light-theme .tools-subtitle {
     transform: scale(1.15) translateY(-10px);
     box-shadow: 0 15px 40px rgba(255, 224, 102, 0.3);
     z-index: 10;
+    animation-play-state: paused; /* Pause animation on hover */
+    border-color: #ffe066 !important; /* Override animation color on hover */
 }
 
 body.light-theme .tool-circle {
@@ -928,9 +1141,10 @@ body.light-theme .tool-circle {
 
 body.light-theme .tool-circle:hover {
     box-shadow: 0 15px 40px rgba(33, 212, 253, 0.2);
+    border-color: #21d4fd !important;
 }
 
-/* Logo di dalam tool circle */
+/* Logo container */
 .tool-logo-container {
     width: 70px;
     height: 70px;
@@ -938,12 +1152,27 @@ body.light-theme .tool-circle:hover {
     align-items: center;
     justify-content: center;
     margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    padding: 10px;
+    transition: all 0.3s ease;
 }
 
+.tool-circle:hover .tool-logo-container {
+    background: rgba(255, 224, 102, 0.1);
+    transform: scale(1.1);
+}
+
+body.light-theme .tool-circle:hover .tool-logo-container {
+    background: rgba(33, 212, 253, 0.1);
+}
+
+/* Logo image */
 .tool-logo {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: center center;
     transition: transform 0.4s;
     filter: brightness(0.9) saturate(1.2);
 }
@@ -963,14 +1192,23 @@ body.light-theme .tool-logo {
     color: #fff;
     text-align: center;
     margin-top: 5px;
+    transition: color 0.3s;
 }
 
 body.light-theme .tool-name {
     color: #181b23;
 }
 
+.tool-circle:hover .tool-name {
+    color: #ffe066;
+}
+
+body.light-theme .tool-circle:hover .tool-name {
+    color: #21d4fd;
+}
+
 /* ============================================
-   CONTACT SECTION - 3 cards sejajar
+   CONTACT SECTION - REVISI: Style image icons
    ============================================ */
 .contact-section {
     width: 100%;
@@ -1042,7 +1280,6 @@ body.light-theme .contact-subtitle {
     color: #666;
 }
 
-/* Grid untuk 3 cards sejajar */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1103,14 +1340,60 @@ body.light-theme .contact-card:hover {
     box-shadow: 0 25px 50px rgba(33, 212, 253, 0.15);
 }
 
+/* REVISI: Contact icon image styling */
 .contact-card-icon {
-    font-size: 3.5rem;
+    width: 70px;
+    height: 70px;
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.3s;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
 }
 
 .contact-card:hover .contact-card-icon {
     transform: scale(1.2) rotate(5deg);
+}
+
+.contact-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    filter: brightness(0.9);
+    transition: filter 0.3s;
+}
+
+.contact-card:hover .contact-icon-img {
+    filter: brightness(1.1);
+}
+
+/* Platform-specific background colors */
+.email-card .contact-card-icon {
+    background: rgba(234, 67, 53, 0.1);
+}
+
+.linkedin-card .contact-card-icon {
+    background: rgba(10, 102, 194, 0.1);
+}
+
+.whatsapp-card .contact-card-icon {
+    background: rgba(37, 211, 102, 0.1);
+}
+
+body.light-theme .email-card .contact-card-icon {
+    background: rgba(234, 67, 53, 0.15);
+}
+
+body.light-theme .linkedin-card .contact-card-icon {
+    background: rgba(10, 102, 194, 0.15);
+}
+
+body.light-theme .whatsapp-card .contact-card-icon {
+    background: rgba(37, 211, 102, 0.15);
 }
 
 .contact-card-content {
@@ -1157,26 +1440,6 @@ body.light-theme .contact-card-content p {
 .contact-card:hover .contact-card-hint {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Platform-specific colors */
-.email-card .contact-card-icon { color: #ea4335; }
-.linkedin-card .contact-card-icon { color: #0a66c2; }
-.whatsapp-card .contact-card-icon { color: #25d366; }
-
-body.light-theme .email-card .contact-card-icon { color: #ea4335; }
-body.light-theme .linkedin-card .contact-card-icon { color: #0a66c2; }
-body.light-theme .whatsapp-card .contact-card-icon { color: #25d366; }
-
-/* Closing quote styling */
-.contact-note {
-    margin-top: 4rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-body.light-theme .contact-note {
-    border-top-color: rgba(24, 27, 35, 0.1);
 }
 
 .closing-quote {
@@ -1242,185 +1505,6 @@ body.light-theme .closing-quote cite {
 }
 
 /* ============================================
-   PROJECTS SECTION
-   ============================================ */
-.projects-section {
-    width: 100%;
-    max-width: 1100px;
-    margin: 80px auto;
-    padding: 0;
-}
-
-.projects-section h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 48px;
-    text-transform: uppercase;
-}
-
-.project-card {
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    min-height: 420px;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(60px) scale(0.97);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    cursor: pointer;
-}
-
-.project-card.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-.project-card:nth-child(odd).visible {
-    transition-delay: 0.1s;
-}
-
-.project-card:nth-child(even).visible {
-    transition-delay: 0.2s;
-}
-
-.project-accent {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 10px;
-    background: #b721ff;
-    border-radius: 0 8px 8px 0;
-    z-index: 3;
-}
-
-.project-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #0b0d13cc 0%, #23263acc 100%);
-    z-index: 1;
-}
-
-body.light-theme .project-overlay {
-    background: linear-gradient(90deg, rgba(255,255,255,0.72) 0%, rgba(227,232,240,0.72) 100%);
-}
-
-.project-content {
-    position: relative;
-    z-index: 2;
-    padding: 3.5rem 2.5rem 3.5rem 4.5rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    opacity: 0;
-    transform: translateX(-30px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-}
-
-.project-card.visible .project-content {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.project-title {
-    font-weight: 900;
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-    color: #ffe066;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 12px #000a;
-    text-transform: uppercase;
-    line-height: 1.2;
-}
-
-.project-subtitle {
-    font-weight: 600;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    color: #fff;
-    margin-bottom: 18px;
-    text-shadow: 0 2px 8px #0008;
-    font-style: italic;
-    opacity: 0.9;
-}
-
-body.light-theme .project-title {
-    color: #181b23;
-    text-shadow: 0 2px 12px #fff, 0 2px 24px #fff;
-}
-
-body.light-theme .project-subtitle {
-    color: #181b23;
-    text-shadow: 0 2px 8px #fff, 0 2px 16px #fff;
-}
-
-.project-description {
-    font-size: 1.25rem;
-    color: #fff;
-    font-weight: 500;
-    max-width: 700px;
-    text-shadow: 0 2px 8px #0008;
-}
-
-body.light-theme .project-description {
-    color: #181b23;
-    text-shadow: 0 2px 8px #fff, 0 2px 16px #fff;
-}
-
-.project-btn {
-    margin-top: 32px;
-    padding: 0.9rem 2.2rem;
-    font-weight: 700;
-    font-size: 1.08rem;
-    letter-spacing: 1px;
-    border: 2px solid #ffe066;
-    border-radius: 0;
-    background: #181b23;
-    color: #ffe066;
-    cursor: pointer;
-    transition: all 0.35s cubic-bezier(.4,2,.6,1);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s, all 0.35s cubic-bezier(.4,2,.6,1);
-}
-
-.project-card.visible .project-btn {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-body.light-theme .project-btn {
-    background: #fff;
-    border-color: #21d4fd;
-    color: #21d4fd;
-}
-
-.project-btn:hover {
-    background: #ffe066;
-    color: #181b23;
-    border-color: #b721ff;
-}
-
-body.light-theme .project-btn:hover {
-    background: #21d4fd;
-    color: #fff;
-}
-
-/* ============================================
    THEME TOGGLE BUTTON
    ============================================ */
 .theme-toggle {
@@ -1459,7 +1543,7 @@ body.light-theme .theme-toggle {
    ============================================ */
 @media (max-width: 1024px) {
     .nav-links {
-        gap: 1.5vw;
+        gap: 1.2vw;
     }
     
     .about-container {
@@ -1480,30 +1564,44 @@ body.light-theme .theme-toggle {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
     }
+    
+    .tools-grid {
+        gap: 2rem;
+    }
+    
+    .tool-circle {
+        width: 115px;
+        height: 115px;
+    }
+    
+    .tool-logo-container {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 @media (max-width: 768px) {
-    /* Navigation Responsive */
+    /* Navigation */
     nav {
-        padding: 1rem 3vw 1rem 2vw;
+        padding: 1rem 2vw;
     }
     
     .nav-links {
-        gap: 1rem;
+        gap: 0.8rem;
         flex-wrap: wrap;
         justify-content: flex-end;
     }
     
     .nav-links a {
         font-size: 0.75rem;
-        padding: 0.4rem 0.6rem;
+        padding: 0.4rem 0.5rem;
     }
     
     .language-selector {
         margin-left: 0.8rem;
     }
     
-    /* About Me Responsive */
+    /* About Me */
     .about-section {
         padding: 3rem 1.5rem;
         min-height: auto;
@@ -1529,7 +1627,7 @@ body.light-theme .theme-toggle {
         text-align-last: center;
     }
     
-    /* Education Responsive */
+    /* Education */
     .education-item {
         flex-direction: column;
         text-align: center;
@@ -1539,13 +1637,14 @@ body.light-theme .theme-toggle {
     .education-logo {
         width: 120px;
         height: 120px;
+        padding: 12px;
     }
     
     .education-content p {
         text-align: center;
     }
     
-    /* Experiences Responsive */
+    /* Experiences */
     .experiences-section {
         padding: 0 1rem;
     }
@@ -1574,20 +1673,27 @@ body.light-theme .theme-toggle {
         top: auto;
         transform: none;
         margin: 0 auto 1rem auto;
+        width: 70px;
+        height: 70px;
+    }
+    
+    .experience-logo img {
+        width: 45px;
+        height: 45px;
     }
     
     .timeline-line {
         display: none;
     }
     
-    /* Awards Responsive */
+    /* Awards */
     .awards-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    /* Tools Responsive */
+    /* Tools */
     .tools-grid {
-        gap: 2rem;
+        gap: 1.5rem;
     }
     
     .tool-circle {
@@ -1596,11 +1702,16 @@ body.light-theme .theme-toggle {
     }
     
     .tool-logo-container {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
     }
     
-    /* Contact Responsive */
+    .tool-name {
+        font-size: 0.8rem;
+    }
+    
+    /* Contact */
     .contact-grid {
         grid-template-columns: 1fr;
         max-width: 400px;
@@ -1610,7 +1721,13 @@ body.light-theme .theme-toggle {
         padding: 2rem 1.5rem;
     }
     
-    /* Typography Responsive */
+    .contact-card-icon {
+        width: 60px;
+        height: 60px;
+        padding: 12px;
+    }
+    
+    /* Typography */
     .typed-name {
         font-size: 2rem;
     }
@@ -1623,7 +1740,7 @@ body.light-theme .theme-toggle {
         font-size: 1rem;
     }
     
-    /* Projects Responsive */
+    /* Projects */
     .project-card {
         min-height: 350px;
     }
@@ -1640,7 +1757,7 @@ body.light-theme .theme-toggle {
         font-size: 1.1rem;
     }
     
-    /* Closing Quote Responsive */
+    /* Closing Quote */
     .closing-quote {
         font-size: 1.1rem;
         padding: 1rem;
@@ -1660,7 +1777,7 @@ body.light-theme .theme-toggle {
     
     .nav-links a {
         font-size: 0.7rem;
-        padding: 0.3rem 0.5rem;
+        padding: 0.3rem 0.4rem;
     }
     
     .flag-btn {
@@ -1697,6 +1814,7 @@ body.light-theme .theme-toggle {
     .education-logo {
         width: 100px;
         height: 100px;
+        padding: 10px;
     }
     
     .education-content h3 {
@@ -1705,7 +1823,7 @@ body.light-theme .theme-toggle {
     
     /* Tools */
     .tools-grid {
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
     
     .tool-circle {
@@ -1714,9 +1832,10 @@ body.light-theme .theme-toggle {
     }
     
     .tool-logo-container {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         margin-bottom: 8px;
+        padding: 8px;
     }
     
     .tool-name {
@@ -1738,6 +1857,17 @@ body.light-theme .theme-toggle {
     
     .project-description {
         font-size: 1rem;
+    }
+    
+    /* Contact */
+    .contact-card-icon {
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+    }
+    
+    .contact-card-content h3 {
+        font-size: 1.2rem;
     }
     
     /* Closing Quote */
