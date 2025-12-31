@@ -56,7 +56,6 @@ body.light-theme .nav-logo {
     align-items: center;
 }
 
-/* POINT 2: Navigation text smaller */
 .nav-links a {
     color: #fff;
     text-decoration: none;
@@ -81,7 +80,7 @@ body.light-theme .nav-links a:hover {
     color: #21d4fd;
 }
 
-/* POINT 1: Language selector with flags */
+/* Language selector */
 .language-selector {
     margin-left: 24px;
     display: flex;
@@ -182,15 +181,17 @@ body.light-theme .flag-separator {
     margin-bottom: 2.5rem;
 }
 
-/* About Me Section */
+/* ============================================
+   ABOUT ME SECTION - Revisi Layout
+   ============================================ */
 .about-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh;
-    margin-top: 2rem;
-    padding: 2rem;
+    min-height: 70vh;
+    margin-top: 4rem;
+    padding: 4rem 2rem;
     transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s;
     transform: scale(0.95);
     opacity: 0.5;
@@ -205,43 +206,103 @@ body.light-theme .flag-separator {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2.5rem;
-    max-width: 900px;
+    gap: 3.5rem;
+    max-width: 1000px;
     width: 100%;
     margin: 0 auto;
 }
 
+/* Foto profil - bulat dengan efek */
 .about-photo {
-    width: 140px;
-    height: 140px;
+    flex-shrink: 0;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
     overflow: hidden;
-    flex-shrink: 0;
+    border: 4px solid #ffe066;
+    box-shadow: 
+        0 0 30px rgba(255, 224, 102, 0.3),
+        0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+}
+
+body.light-theme .about-photo {
+    border-color: #21d4fd;
+    box-shadow: 
+        0 0 30px rgba(33, 212, 253, 0.3),
+        0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.about-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 50px rgba(255, 224, 102, 0.5),
+        0 15px 50px rgba(0, 0, 0, 0.4);
 }
 
 .about-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top; /* Pastikan wajah terlihat */
+    transition: transform 0.5s;
 }
 
+.about-photo:hover img {
+    transform: scale(1.05);
+}
+
+/* Text intro - rata kanan kiri */
 .about-text {
-    text-align: left;
     flex: 1;
-    max-width: 520px;
+    max-width: 580px;
+    text-align: left;
 }
 
 .about-text h2 {
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 2.2rem;
     letter-spacing: 1px;
-    margin-bottom: 8px;
+    margin-bottom: 1.2rem;
     text-transform: uppercase;
+    background: linear-gradient(90deg, #ffe066, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.about-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+body.light-theme .about-text h2 {
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    text-align: justify; /* Rata kanan-kiri */
+    color: #b0b3c6;
+    margin-bottom: 1.5rem;
+}
+
+body.light-theme .about-description {
+    color: #444;
+}
+
+.highlight-name {
+    font-weight: 700;
+    color: #21d4fd;
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-theme .highlight-name {
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Awards Section */
@@ -344,10 +405,12 @@ body.light-theme .award-badge {
     text-align: center;
 }
 
-/* Work Experiences Section */
+/* ============================================
+   WORK EXPERIENCES SECTION - Smooth Animation
+   ============================================ */
 .experiences-section {
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 80px auto;
     padding: 0 2rem;
     position: relative;
@@ -382,7 +445,7 @@ body.light-theme .timeline-line {
 .experiences-container {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 60px;
     position: relative;
     z-index: 1;
 }
@@ -392,23 +455,31 @@ body.light-theme .timeline-line {
     align-items: center;
     justify-content: flex-start;
     position: relative;
-    min-height: 120px;
+    min-height: 140px;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.experience-item.visible {
+/* Animation for fade in/out */
+.experience-item.fade-in {
     opacity: 1;
     transform: translateY(0);
 }
 
-.experience-item:nth-child(even).visible {
-    transition-delay: 0.2s;
+.experience-item.fade-out {
+    opacity: 0;
+    transform: translateY(30px);
 }
 
-.experience-item:nth-child(odd).visible {
+/* Staggered animation delays */
+.experience-item:nth-child(odd).fade-in {
     transition-delay: 0.1s;
+}
+
+.experience-item:nth-child(even).fade-in {
+    transition-delay: 0.2s;
 }
 
 .experience-item.left {
@@ -436,13 +507,15 @@ body.light-theme .timeline-line {
     background: #181b23;
     border: 2px solid #ffe066;
     border-radius: 16px;
-    min-width: 260px;
-    max-width: 340px;
+    min-width: 280px;
+    max-width: 380px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    padding: 1.5rem 1.2rem;
+    padding: 1.8rem 1.5rem;
     text-align: left;
     opacity: 0;
-    transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(.22,1,.36,1), 
+                transform 0.7s cubic-bezier(.22,1,.36,1);
 }
 
 body.light-theme .experience-box {
@@ -452,22 +525,23 @@ body.light-theme .experience-box {
 }
 
 .experience-item.left .experience-box {
-    transform: translateX(-60px) scale(0.95);
+    transform: translateX(-40px) translateY(20px);
 }
 
 .experience-item.right .experience-box {
-    transform: translateX(60px) scale(0.95);
+    transform: translateX(40px) translateY(20px);
 }
 
-.experience-item.visible .experience-box {
+.experience-item.fade-in .experience-box {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translateX(0) translateY(0);
     transition-delay: 0.3s;
 }
 
+/* Logo perusahaan - lingkaran */
 .experience-logo {
-    width: 36px;
-    height: 36px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background: #fff;
     border: 4px solid #0b0d13;
@@ -476,38 +550,63 @@ body.light-theme .experience-box {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    box-shadow: 0 0 0 4px #ffe06644;
+    box-shadow: 
+        0 0 0 4px #ffe06644,
+        0 8px 24px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 0.5s cubic-bezier(.4,2,.6,1), transform 0.5s cubic-bezier(.4,2,.6,1);
     scale: 0.7;
+    transition: opacity 0.5s cubic-bezier(.4,2,.6,1), 
+                scale 0.5s cubic-bezier(.4,2,.6,1),
+                box-shadow 0.3s;
 }
 
 body.light-theme .experience-logo {
     border-color: #f7f7fa;
-    box-shadow: 0 0 0 4px #21d4fd44;
+    box-shadow: 
+        0 0 0 4px #21d4fd44,
+        0 8px 24px rgba(33, 212, 253, 0.2);
 }
 
-.experience-item.visible .experience-logo {
+.experience-logo:hover {
+    box-shadow: 
+        0 0 0 4px #ffe066,
+        0 12px 32px rgba(255, 224, 102, 0.4);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+body.light-theme .experience-logo:hover {
+    box-shadow: 
+        0 0 0 4px #21d4fd,
+        0 12px 32px rgba(33, 212, 253, 0.4);
+}
+
+.experience-item.fade-in .experience-logo {
     opacity: 1;
     scale: 1;
     transition-delay: 0.4s;
 }
 
 .experience-logo img {
-    width: 24px;
-    height: 24px;
+    width: 42px;
+    height: 42px;
     object-fit: contain;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.experience-logo:hover img {
+    transform: scale(1.1);
 }
 
 .experience-title {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #ffe066;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 body.light-theme .experience-title {
@@ -516,21 +615,27 @@ body.light-theme .experience-title {
 
 .experience-company {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: #b721ff;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .experience-date {
     color: #b0b3c6;
     font-size: 0.95rem;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-style: italic;
 }
 
 .experience-description {
     font-size: 1rem;
     text-align: justify;
     line-height: 1.7;
+    color: #b0b3c6;
+}
+
+body.light-theme .experience-description {
+    color: #555;
 }
 
 .experience-description ul {
@@ -543,7 +648,9 @@ body.light-theme .experience-title {
     margin-bottom: 10px;
 }
 
-/* Education Section */
+/* ============================================
+   EDUCATION SECTION - Tambah Logo
+   ============================================ */
 .education-section {
     width: 100%;
     max-width: 1000px;
@@ -581,8 +688,8 @@ body.light-theme .experience-title {
 }
 
 .education-logo {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     background: #fff;
     border: 3px solid #ffe066;
@@ -592,6 +699,7 @@ body.light-theme .experience-title {
     box-shadow: 0 12px 40px rgba(255, 224, 102, 0.25);
     overflow: hidden;
     position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 2, 0.6, 1);
 }
 
 body.light-theme .education-logo {
@@ -599,10 +707,24 @@ body.light-theme .education-logo {
     box-shadow: 0 12px 40px rgba(33, 212, 253, 0.25);
 }
 
+.education-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 224, 102, 0.4);
+}
+
+body.light-theme .education-logo:hover {
+    box-shadow: 0 20px 50px rgba(33, 212, 253, 0.4);
+}
+
 .education-logo img {
-    width: 85%;
-    height: 85%;
+    width: 90%;
+    height: 90%;
     object-fit: contain;
+    transition: transform 0.4s;
+}
+
+.education-logo:hover img {
+    transform: scale(1.08);
 }
 
 .education-glow {
@@ -655,6 +777,11 @@ body.light-theme .education-content h4 {
     line-height: 1.6;
     margin: 0;
     text-align: justify;
+    color: #b0b3c6;
+}
+
+body.light-theme .education-content p {
+    color: #555;
 }
 
 /* Tools Section */
@@ -695,7 +822,7 @@ body.light-theme .tools-description p {
     color: #666;
 }
 
-/* POINT 3: Tools circular layout preparation */
+/* Tools circular layout */
 .tools-grid {
     display: flex;
     flex-wrap: wrap;
@@ -761,7 +888,6 @@ body.light-theme .tools-description p {
     bottom: -40px;
 }
 
-/* For future logo implementation */
 .tool-logo {
     width: 50px;
     height: 50px;
@@ -951,7 +1077,7 @@ body.light-theme .contact-card-content p {
     transform: translateY(0);
 }
 
-/* POINT 1: Closing quote styling */
+/* Closing quote styling */
 .contact-note {
     margin-top: 3rem;
     padding-top: 2rem;
@@ -1076,7 +1202,6 @@ body.light-theme .whatsapp-card .contact-card-icon { color: #25d366; }
     transform: translateY(0) scale(1);
 }
 
-/* Staggered animations for projects */
 .project-card:nth-child(odd).visible {
     transition-delay: 0.1s;
 }
@@ -1245,59 +1370,147 @@ body.light-theme .theme-toggle {
     transform: scale(1.1);
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
+    .about-container {
+        gap: 2.5rem;
+        max-width: 90%;
+    }
+    
+    .about-photo {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .experience-box {
+        max-width: 320px;
+    }
+}
+
 @media (max-width: 768px) {
+    /* About Me Responsive */
+    .about-section {
+        padding: 3rem 1.5rem;
+        min-height: auto;
+    }
+    
     .about-container {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 2rem;
+        text-align: center;
     }
-
+    
+    .about-photo {
+        width: 180px;
+        height: 180px;
+    }
+    
     .about-text {
         text-align: center;
-        margin-left: 0;
     }
-
-    .awards-grid {
-        grid-template-columns: 1fr;
+    
+    .about-description {
+        text-align: center; /* Di mobile, center lebih baik */
     }
-
+    
+    /* Education Responsive */
     .education-item {
         flex-direction: column;
         text-align: center;
+        gap: 1.5rem;
     }
-
+    
+    .education-logo {
+        width: 120px;
+        height: 120px;
+    }
+    
     .education-content p {
         text-align: center;
     }
-
+    
+    /* Experiences Responsive */
+    .experiences-section {
+        padding: 0 1rem;
+    }
+    
+    .experience-item {
+        flex-direction: column !important;
+        min-height: auto;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .experience-content {
+        width: 100%;
+        justify-content: center !important;
+    }
+    
+    .experience-box {
+        min-width: 100%;
+        max-width: 100%;
+        transform: none !important;
+    }
+    
+    .experience-logo {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin: 0 auto 1rem auto;
+    }
+    
+    .timeline-line {
+        display: none; /* Sembunyikan timeline di mobile */
+    }
+    
+    /* Awards Responsive */
+    .awards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Contact Responsive */
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-
+    
     .contact-card {
         padding: 1.5rem 1rem;
     }
-
+    
+    /* Navigation Responsive */
     .nav-links {
         flex-wrap: wrap;
         gap: 1rem;
     }
-
+    
     .language-selector {
         margin-left: 12px;
     }
-
+    
     .flag-btn {
         width: 32px;
         height: 32px;
         font-size: 1.3rem;
     }
-
+    
+    /* Typography Responsive */
     .typed-name {
         font-size: 2rem;
     }
     
+    .tagline {
+        font-size: 1.3rem;
+    }
+    
+    .subtitle, .quote, .role {
+        font-size: 1rem;
+    }
+    
+    /* Tools Responsive */
     .tools-grid {
         gap: 1.5rem;
     }
@@ -1311,6 +1524,7 @@ body.light-theme .theme-toggle {
         font-size: 36px;
     }
     
+    /* Projects Responsive */
     .project-card {
         min-height: 350px;
     }
@@ -1327,6 +1541,7 @@ body.light-theme .theme-toggle {
         font-size: 1.1rem;
     }
     
+    /* Closing Quote Responsive */
     .closing-quote {
         font-size: 1.1rem;
         padding: 1rem;
@@ -1339,6 +1554,7 @@ body.light-theme .theme-toggle {
 }
 
 @media (max-width: 480px) {
+    /* Navigation */
     .nav-links a {
         font-size: 0.75rem;
         padding: 0.4rem 0.6rem;
@@ -1348,6 +1564,41 @@ body.light-theme .theme-toggle {
         font-size: 1rem;
     }
     
+    /* About Me */
+    .about-photo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .about-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .about-description {
+        font-size: 1rem;
+    }
+    
+    /* Awards */
+    .awards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .award-card {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    /* Education */
+    .education-logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .education-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Tools */
     .tools-grid {
         gap: 1rem;
     }
@@ -1361,6 +1612,7 @@ body.light-theme .theme-toggle {
         font-size: 32px;
     }
     
+    /* Projects */
     .project-card {
         min-height: 300px;
     }
@@ -1377,11 +1629,18 @@ body.light-theme .theme-toggle {
         font-size: 1rem;
     }
     
+    /* Closing Quote */
     .closing-quote {
         font-size: 1rem;
     }
+    
+    .closing-quote::before,
+    .closing-quote::after {
+        display: none; /* Sembunyikan quote marks di mobile kecil */
+    }
 }
 
+/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
