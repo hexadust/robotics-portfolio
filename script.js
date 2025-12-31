@@ -8,7 +8,7 @@ const translations = {
         projects: "PROJECTS",
         awards: "AWARDS",
         experiences: "EXPERIENCES",
-        tools: "TOOLS",
+        tools: "TOOLS & TECHNOLOGIES",
         contact: "CONTACT",
         portfolio: "ROBOTICS PORTFOLIO",
         certificationsAwards: "CERTIFICATIONS & AWARDS",
@@ -22,7 +22,7 @@ const translations = {
         projects: "PROYEK",
         awards: "PENGHARGAAN",
         experiences: "PENGALAMAN",
-        tools: "ALAT",
+        tools: "ALAT & TEKNOLOGI",
         contact: "KONTAK",
         portfolio: "PORTOFOLIO ROBOTIKA",
         certificationsAwards: "SERTIFIKASI & PENGHARGAAN",
@@ -92,14 +92,28 @@ function typeWriter() {
         setTimeout(typeWriter, 80);
     } else {
         isTyping = false;
-        // Optional: Add blinking cursor after typing completes
+        // Add blinking cursor after typing completes
         setTimeout(() => {
-            document.getElementById('typedName').style.borderRight = '2px solid #ffe066';
+            const typedElement = document.getElementById('typedName');
+            typedElement.style.borderRight = '2px solid #ffe066';
+            typedElement.style.paddingRight = '5px';
+            typedElement.style.animation = 'blink-caret 0.75s step-end infinite';
+            
+            // Add blink animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes blink-caret {
+                    from, to { border-color: transparent; }
+                    50% { border-color: #ffe066; }
+                }
+            `;
+            document.head.appendChild(style);
         }, 300);
     }
 }
 
-typeWriter();
+// Start typing animation
+setTimeout(typeWriter, 500);
 
 // ============================================
 // THEME TOGGLE
@@ -140,7 +154,7 @@ const awards = [
 // Render awards
 function renderAwards() {
     const awardsGrid = document.getElementById('awardsGrid');
-    awardsGrid.innerHTML = ''; // Clear existing
+    awardsGrid.innerHTML = '';
     
     awards.forEach((award, idx) => {
         const card = document.createElement('div');
@@ -247,14 +261,15 @@ const experiences = [
     }
 ];
 
-// Render work experiences with smooth animations
+// Render work experiences with logos
 function renderExperiences() {
     const experiencesContainer = document.getElementById('experiencesContainer');
-    experiencesContainer.innerHTML = ''; // Clear existing
+    experiencesContainer.innerHTML = '';
     
     experiences.forEach((exp, idx) => {
         const item = document.createElement('div');
         item.className = `experience-item ${idx % 2 === 0 ? 'left' : 'right'}`;
+        item.id = `exp-${idx}`;
         
         item.innerHTML = `
             <div class="experience-content">
@@ -268,7 +283,7 @@ function renderExperiences() {
             <div class="experience-logo">
                 <img src="${exp.logo}" alt="${exp.company}" 
                      onerror="this.onerror=null; this.style.display='none'; 
-                              this.parentElement.innerHTML='<span style=\"font-weight:700;color:#b721ff;font-size:16px\">${exp.fallbackText}</span>'">
+                              this.parentElement.innerHTML='<span style=\"font-weight:700;color:#b721ff;font-size:16px;display:flex;align-items:center;justify-content:center;width:100%;height:100%\">${exp.fallbackText}</span>'">
             </div>
         `;
         
@@ -301,7 +316,7 @@ const education = [
 // Render education with logos
 function renderEducation() {
     const educationContainer = document.getElementById('educationContainer');
-    educationContainer.innerHTML = ''; // Clear existing
+    educationContainer.innerHTML = '';
     
     education.forEach(edu => {
         const item = document.createElement('div');
@@ -311,7 +326,7 @@ function renderEducation() {
                 <div class="education-logo">
                     <img src="${edu.logo}" alt="${edu.school}" 
                          onerror="this.onerror=null; this.style.display='none'; 
-                                  this.parentElement.innerHTML='<span style=\"font-weight:700;color:#ffe066;font-size:20px\">${edu.fallbackText}</span>'">
+                                  this.parentElement.innerHTML='<span style=\"font-weight:700;color:#ffe066;font-size:20px;display:flex;align-items:center;justify-content:center;width:100%;height:100%\">${edu.fallbackText}</span>'">
                     <div class="education-glow"></div>
                 </div>
             </div>
@@ -327,105 +342,80 @@ function renderEducation() {
 }
 
 // ============================================
-// TOOLS DATA & RENDER
+// TOOLS DATA & RENDER - Revisi: Logo Asli
 // ============================================
 const tools = [
     { 
         name: "Python", 
-        icon: "🐍",
-        color: "#3776AB",
+        logo: "assets/python.jpg",
+        fallbackName: "Python"
     },
     { 
         name: "C++", 
-        icon: "⚙️",
-        color: "#00599C"
-    },
-    { 
-        name: "JavaScript", 
-        icon: "🟨",
-        color: "#F7DF1E"
-    },
-    { 
-        name: "ROS", 
-        icon: "🤖",
-        color: "#22314E"
+        logo: "assets/c++.png",
+        fallbackName: "C++"
     },
     { 
         name: "Arduino", 
-        icon: "🔌",
-        color: "#00979D"
-    },
-    { 
-        name: "SolidWorks", 
-        icon: "📐",
-        color: "#D64228"
+        logo: "assets/Arduino.jpg",
+        fallbackName: "Arduino"
     },
     { 
         name: "Fusion 360", 
-        icon: "🔧",
-        color: "#0696D7"
+        logo: "assets/fusion360.png",
+        fallbackName: "Fusion 360"
     },
     { 
-        name: "MATLAB", 
-        icon: "📊",
-        color: "#0076A8"
+        name: "ESP32", 
+        logo: "assets/esp32.png",
+        fallbackName: "ESP32"
     },
     { 
-        name: "TensorFlow", 
-        icon: "🧠",
-        color: "#FF6F00"
-    },
-    { 
-        name: "Docker", 
-        icon: "🐳",
-        color: "#2496ED"
-    },
-    { 
-        name: "Git", 
-        icon: "📦",
-        color: "#F05032"
-    },
-    { 
-        name: "AWS", 
-        icon: "☁️",
-        color: "#FF9900"
-    },
-    { 
-        name: "Firebase", 
-        icon: "🔥",
-        color: "#FFCA28"
+        name: "Kompas 3D", 
+        logo: "assets/Kompas3D.jpg",
+        fallbackName: "Kompas 3D"
     },
     { 
         name: "InfluxDB", 
-        icon: "📈",
-        color: "#22ADF6"
+        logo: "assets/influxdb.png",
+        fallbackName: "InfluxDB"
     },
     { 
         name: "Grafana", 
-        icon: "📉",
-        color: "#F46800"
+        logo: "assets/grafana.jpg",
+        fallbackName: "Grafana"
     },
     { 
-        name: "Node.js", 
-        icon: "🟩",
-        color: "#339933"
+        name: "CoppeliaSim", 
+        logo: "assets/coppeliasim.jpg",
+        fallbackName: "CoppeliaSim"
+    },
+    { 
+        name: "EasyEDA", 
+        logo: "assets/easyeda.png",
+        fallbackName: "EasyEDA"
     }
 ];
 
-// Render tools with circular layout
+// Render tools dengan logo asli
 function renderTools() {
     const toolsGrid = document.getElementById('toolsGrid');
-    toolsGrid.innerHTML = ''; // Clear existing
+    toolsGrid.innerHTML = '';
     
     tools.forEach((tool, idx) => {
         const circle = document.createElement('div');
         circle.className = 'tool-circle';
-        circle.style.setProperty('--tool-color', tool.color || '#87CEEB');
-        circle.style.transitionDelay = `${idx * 60}ms`;
+        circle.style.transitionDelay = `${idx * 80}ms`;
+        
         circle.innerHTML = `
-            <div class="tool-icon">${tool.icon}</div>
+            <div class="tool-logo-container">
+                <img src="${tool.logo}" alt="${tool.name}" class="tool-logo"
+                     onerror="this.onerror=null; this.style.display='none'; 
+                              this.parentElement.innerHTML='<span style=\"font-weight:700;color:#ffe066;font-size:24px\">${tool.fallbackName.charAt(0)}</span>'">
+            </div>
             <div class="tool-name">${tool.name}</div>
         `;
+        
         toolsGrid.appendChild(circle);
     });
 }
@@ -485,7 +475,7 @@ const projects = [
 // Render projects
 function renderProjects() {
     const projectsContainer = document.getElementById('projectsContainer');
-    projectsContainer.innerHTML = ''; // Clear existing
+    projectsContainer.innerHTML = '';
     
     projects.forEach(project => {
         const card = document.createElement('div');
@@ -501,12 +491,19 @@ function renderProjects() {
                 <button class="project-btn">READ MORE</button>
             </div>
         `;
+        
+        // Add click handler for project button
+        card.querySelector('.project-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            alert(`More details about "${project.title}" coming soon!`);
+        });
+        
         projectsContainer.appendChild(card);
     });
 }
 
 // ============================================
-// SMOOTH SCROLL ANIMATIONS - IMPROVED
+// SMOOTH SCROLL ANIMATIONS - IMPROVED FADE IN/OUT
 // ============================================
 let experienceObservers = [];
 
@@ -516,12 +513,9 @@ function setupIntersectionObservers() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-            } else {
-                // Optional: Remove class when out of view
-                // entry.target.classList.remove('visible');
             }
         });
-    }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
+    }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' });
     
     aboutObserver.observe(document.querySelector('.about-section'));
     
@@ -547,7 +541,7 @@ function setupIntersectionObservers() {
                 entry.target.classList.remove('visible');
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
     
     document.querySelectorAll('.project-card').forEach(card => {
         projectsObserver.observe(card);
@@ -567,23 +561,22 @@ function setupIntersectionObservers() {
     });
     
     // 5. EXPERIENCES OBSERVER - IMPROVED SMOOTH FADE IN/OUT
-    const experiencesSection = document.getElementById('experiences');
     const experienceItems = document.querySelectorAll('.experience-item');
     
     // Clear existing observers
     experienceObservers.forEach(obs => obs.disconnect());
     experienceObservers = [];
     
-    // Create observer for each experience item
+    // Create observer for each experience item with better settings
     experienceItems.forEach((item, index) => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Fade in with delay based on position
+                    // Fade in when entering viewport
                     setTimeout(() => {
                         entry.target.classList.remove('fade-out');
                         entry.target.classList.add('fade-in');
-                    }, index * 100); // Staggered delay
+                    }, index * 150); // Staggered delay
                 } else {
                     // Fade out when leaving viewport
                     entry.target.classList.remove('fade-in');
@@ -591,25 +584,13 @@ function setupIntersectionObservers() {
                 }
             });
         }, { 
-            threshold: 0.3, // Trigger when 30% visible
-            rootMargin: '-50px 0px -100px 0px' // Adjust trigger zone
+            threshold: 0.2, // Trigger when 20% visible
+            rootMargin: '-100px 0px -150px 0px' // Adjust trigger zone
         });
         
         observer.observe(item);
         experienceObservers.push(observer);
     });
-    
-    // Also observe the entire experiences section
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Optional: Add any section-wide effects
-                entry.target.style.opacity = '1';
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    sectionObserver.observe(experiencesSection);
 }
 
 // ============================================
@@ -619,7 +600,10 @@ function setupSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
             if (target) {
                 // Calculate offset for fixed navbar
                 const navbarHeight = document.querySelector('nav').offsetHeight;
@@ -631,11 +615,8 @@ function setupSmoothScrolling() {
                     behavior: 'smooth'
                 });
                 
-                // Update active nav link (optional)
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
+                // Update URL hash without scrolling
+                history.pushState(null, null, targetId);
             }
         });
     });
@@ -665,11 +646,50 @@ function setupContactAnimations() {
                 height: ${size}px;
                 top: ${y}px;
                 left: ${x}px;
+                z-index: 1;
             `;
             
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
             this.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 600);
+            
+            setTimeout(() => {
+                if (ripple.parentElement === this) {
+                    this.removeChild(ripple);
+                }
+            }, 600);
         });
+        
+        // Add hover effect for contact cards
+        card.addEventListener('mouseenter', function() {
+            this.style.zIndex = '10';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.zIndex = '';
+        });
+    });
+}
+
+// ============================================
+// AUTO-COLOR CHANGE FOR TOOL BORDERS
+// ============================================
+function setupToolBorderAnimation() {
+    const toolCircles = document.querySelectorAll('.tool-circle');
+    const colors = ['#ff0080', '#ff8c00', '#40e0d0', '#9d4edd', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffbe0b'];
+    
+    toolCircles.forEach((circle, index) => {
+        // Set initial color
+        const colorIndex = index % colors.length;
+        circle.style.borderColor = colors[colorIndex];
+        
+        // Animate color change
+        let currentColorIndex = colorIndex;
+        setInterval(() => {
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            circle.style.borderColor = colors[currentColorIndex];
+            circle.style.transition = 'border-color 1.5s ease';
+        }, 3000 + (index * 300)); // Staggered animation
     });
 }
 
@@ -677,6 +697,8 @@ function setupContactAnimations() {
 // INITIALIZE EVERYTHING ON PAGE LOAD
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Portfolio Initializing...');
+    
     // Render all dynamic content
     renderAwards();
     renderExperiences();
@@ -688,6 +710,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupIntersectionObservers();
     setupSmoothScrolling();
     setupContactAnimations();
+    setupToolBorderAnimation();
     
     // Load saved preferences
     loadTheme();
@@ -699,6 +722,26 @@ document.addEventListener('DOMContentLoaded', function() {
         activeFlag.classList.add('active');
     }
     
+    // Add active class to nav links on scroll
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY + 100;
+        
+        document.querySelectorAll('section[id]').forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    });
+    
     // Add ripple animation CSS dynamically
     const style = document.createElement('style');
     style.textContent = `
@@ -709,71 +752,36 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        /* Optional: Add scroll animation for whole page */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .nav-links a.active {
+            color: #ffe066 !important;
+            border-bottom: 2px solid #ffe066;
         }
         
-        .section-enter {
-            animation: fadeInUp 0.8s ease-out forwards;
+        body.light-theme .nav-links a.active {
+            color: #21d4fd !important;
+            border-bottom: 2px solid #21d4fd;
+        }
+        
+        /* Photo border animation for light theme */
+        body.light-theme .photo-border-animation {
+            background: linear-gradient(45deg, #21d4fd, #b721ff, #ff0080, #21d4fd);
+            background-size: 400% 400%;
         }
     `;
     document.head.appendChild(style);
     
-    // Optional: Add scroll indicator
-    setTimeout(() => {
-        const scrollIndicator = document.createElement('div');
-        scrollIndicator.className = 'scroll-indicator';
-        scrollIndicator.innerHTML = '↓';
-        scrollIndicator.style.cssText = `
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            color: #ffe066;
-            animation: bounce 2s infinite;
-            opacity: 0.7;
-            cursor: pointer;
-            z-index: 100;
-        `;
-        
-        const bounceStyle = document.createElement('style');
-        bounceStyle.textContent = `
-            @keyframes bounce {
-                0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
-                40% {transform: translateY(-20px) translateX(-50%);}
-                60% {transform: translateY(-10px) translateX(-50%);}
-            }
-        `;
-        document.head.appendChild(bounceStyle);
-        
-        scrollIndicator.addEventListener('click', () => {
-            window.scrollTo({
-                top: window.innerHeight,
-                behavior: 'smooth'
-            });
+    // Initialize first nav link as active
+    document.querySelector('.nav-links a').classList.add('active');
+    
+    // Add loading animation for images
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('load', function() {
+            this.style.opacity = '1';
+            this.style.transition = 'opacity 0.5s';
         });
-        
-        // Remove indicator after first scroll
-        let hasScrolled = false;
-        window.addEventListener('scroll', () => {
-            if (!hasScrolled && window.scrollY > 100) {
-                scrollIndicator.style.opacity = '0';
-                setTimeout(() => scrollIndicator.remove(), 500);
-                hasScrolled = true;
-            }
-        });
-        
-        document.body.appendChild(scrollIndicator);
-    }, 2000);
+        img.style.opacity = '0';
+    });
 });
 
 // ============================================
@@ -797,10 +805,49 @@ document.addEventListener('keydown', function(e) {
         toggleTheme();
     }
     
-    // Language shortcuts
+    // Language shortcuts (Alt + Number)
     if (e.altKey) {
         if (e.key === '1') changeLanguage('id');
         if (e.key === '2') changeLanguage('en');
         if (e.key === '3') changeLanguage('ru');
     }
+    
+    // Scroll to sections with number keys (Ctrl + Number)
+    if (e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        const sections = ['about-me', 'education', 'awards', 'experiences', 'projects', 'tools', 'contact'];
+        const index = parseInt(e.key) - 1;
+        if (index >= 0 && index < sections.length) {
+            const target = document.getElementById(sections[index]);
+            if (target) {
+                const navbarHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - navbarHeight - 20;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }
 });
+
+// ============================================
+// ENHANCE SCROLL EXPERIENCE
+// ============================================
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Add parallax effect to intro section
+    const introSection = document.querySelector('.intro-section');
+    if (introSection && st < window.innerHeight) {
+        const scrolled = st / window.innerHeight;
+        introSection.style.transform = `translateY(${scrolled * 50}px)`;
+        introSection.style.opacity = `${1 - scrolled}`;
+    }
+    
+    // Update last scroll position
+    lastScrollTop = st <= 0 ? 0 : st;
+}, false);
