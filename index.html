@@ -13,7 +13,7 @@
         <div class="nav-logo" data-translate="portfolio">ROBOTICS PORTFOLIO</div>
         <div class="nav-links">
             <a href="#about-me" data-translate="aboutMe">ABOUT ME</a>
-            <a href="#education" data-translate="education">EDUCATION</a>
+            <a href="#education" data-translate="education">EDUCATION BACKGROUND</a>
             <a href="#awards" data-translate="awards">AWARDS</a>
             <a href="#experiences" data-translate="experiences">EXPERIENCES</a>
             <a href="#projects" data-translate="projects">PROJECTS</a>
@@ -49,7 +49,7 @@
             </div>
             <div class="typed-name" id="typedName"></div>
             <div class="role">
-                A hybrid of scientist, engineer, and technician in one person
+                A robotics engineer with a scientist mindset and work with ethics.
             </div>
         </div>
     </section>
@@ -57,9 +57,10 @@
     <!-- About Me Section -->
     <section class="about-section" id="about-me">
         <div class="about-container">
-            <!-- Foto profil di kiri -->
+            <!-- Foto profil di kiri dengan animasi border -->
             <div class="about-photo">
-                <img src="assets/photo.jpeg" alt="Lazuardi Azka Rangkuti" onerror="this.src='https://via.placeholder.com/300x300?text=LA'">
+                <div class="photo-border-animation"></div>
+                <img src="assets/photo.jpg" alt="Lazuardi Azka Rangkuti" onerror="this.src='https://via.placeholder.com/300x300?text=LA'">
             </div>
             <!-- Teks intro di kanan -->
             <div class="about-text">
@@ -103,12 +104,10 @@
     <!-- Tools Section -->
     <section class="tools-section" id="tools">
         <h2 data-translate="tools">TOOLS & TECHNOLOGIES</h2>
+        <p class="tools-subtitle">Here are the tools & technologies that I am most skilled at</p>
         <div class="tools-container">
-            <div class="tools-description">
-                <p>Here are the technologies and tools I'm proficient with.</p>
-            </div>
             <div class="tools-grid" id="toolsGrid">
-                <!-- Tools akan di-load oleh JS -->
+                <!-- Tools akan di-load oleh JS dengan logo asli -->
             </div>
         </div>
     </section>
@@ -120,6 +119,7 @@
             <p class="contact-subtitle" data-translate="contactDescription">Let's connect! Feel free to reach out through any of these platforms.</p>
             
             <div class="contact-grid">
+                <!-- Email Card -->
                 <a href="mailto:your.email@example.com" class="contact-card email-card">
                     <div class="contact-card-icon">📧</div>
                     <div class="contact-card-content">
@@ -129,6 +129,7 @@
                     </div>
                 </a>
                 
+                <!-- LinkedIn Card -->
                 <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-card linkedin-card">
                     <div class="contact-card-icon">💼</div>
                     <div class="contact-card-content">
@@ -138,15 +139,7 @@
                     </div>
                 </a>
                 
-                <a href="https://github.com/hexadust" target="_blank" class="contact-card github-card">
-                    <div class="contact-card-icon">💻</div>
-                    <div class="contact-card-content">
-                        <h3>GitHub</h3>
-                        <p>Explore my projects</p>
-                        <span class="contact-card-hint">See my code</span>
-                    </div>
-                </a>
-                
+                <!-- WhatsApp Card (mengganti GitHub) -->
                 <a href="https://wa.me/yourphonenumber" target="_blank" class="contact-card whatsapp-card">
                     <div class="contact-card-icon">💬</div>
                     <div class="contact-card-content">
@@ -174,4 +167,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
