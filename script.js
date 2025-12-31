@@ -1,8 +1,10 @@
-// Language translations - POINT 1: Ganti Jerman dengan Indonesia
+// ============================================
+// LANGUAGE TRANSLATIONS
+// ============================================
 const translations = {
     en: {
         aboutMe: "ABOUT ME",
-        education: "EDUCATION",
+        education: "EDUCATION BACKGROUND",
         projects: "PROJECTS",
         awards: "AWARDS",
         experiences: "EXPERIENCES",
@@ -14,7 +16,7 @@ const translations = {
         getInTouch: "GET IN TOUCH",
         contactDescription: "Let's connect! Feel free to reach out through any of these platforms."
     },
-    id: { // POINT 1: Ganti 'de' dengan 'id' (Bahasa Indonesia)
+    id: {
         aboutMe: "TENTANG SAYA",
         education: "PENDIDIKAN",
         projects: "PROYEK",
@@ -46,7 +48,7 @@ const translations = {
 
 let currentLanguage = 'en';
 
-// POINT 1: Update language selector with flags
+// Update language selector with flags
 function changeLanguage(lang) {
     currentLanguage = lang;
     
@@ -76,21 +78,32 @@ function loadLanguagePreference() {
     changeLanguage(savedLanguage);
 }
 
-// Typing animation
+// ============================================
+// TYPING ANIMATION
+// ============================================
 const NAME = "LAZUARDI AZKA RANGKUTI";
 let typedIndex = 0;
+let isTyping = true;
 
 function typeWriter() {
     if (typedIndex <= NAME.length) {
         document.getElementById('typedName').textContent = NAME.slice(0, typedIndex);
         typedIndex++;
         setTimeout(typeWriter, 80);
+    } else {
+        isTyping = false;
+        // Optional: Add blinking cursor after typing completes
+        setTimeout(() => {
+            document.getElementById('typedName').style.borderRight = '2px solid #ffe066';
+        }, 300);
     }
 }
 
 typeWriter();
 
-// Theme toggle with persistence
+// ============================================
+// THEME TOGGLE
+// ============================================
 function toggleTheme() {
     const isLight = document.body.classList.toggle('light-theme');
     const icon = document.getElementById('themeIcon');
@@ -109,7 +122,9 @@ function loadTheme() {
     }
 }
 
-// Awards data
+// ============================================
+// AWARDS DATA & RENDER
+// ============================================
 const awards = [
     { title: "4th Winner and Favorite Project of Hardathon 2025", org: "Youth Robotics Center of BMSTU" },
     { title: "4th Winner of Indonesian Robotic Olympiad", org: "IRO & Mikrobot" },
@@ -123,21 +138,27 @@ const awards = [
 ];
 
 // Render awards
-const awardsGrid = document.getElementById('awardsGrid');
-awards.forEach((award, idx) => {
-    const card = document.createElement('div');
-    card.className = 'award-card';
-    card.innerHTML = `
-        <div class="award-badge">AWARD</div>
-        <div class="award-icon">🏅</div>
-        <div class="award-title">${award.title}</div>
-        <div class="award-org">${award.org}</div>
-    `;
-    card.style.transitionDelay = `${idx * 120}ms`;
-    awardsGrid.appendChild(card);
-});
+function renderAwards() {
+    const awardsGrid = document.getElementById('awardsGrid');
+    awardsGrid.innerHTML = ''; // Clear existing
+    
+    awards.forEach((award, idx) => {
+        const card = document.createElement('div');
+        card.className = 'award-card';
+        card.innerHTML = `
+            <div class="award-badge">AWARD</div>
+            <div class="award-icon">🏅</div>
+            <div class="award-title">${award.title}</div>
+            <div class="award-org">${award.org}</div>
+        `;
+        card.style.transitionDelay = `${idx * 120}ms`;
+        awardsGrid.appendChild(card);
+    });
+}
 
-// Work experiences data
+// ============================================
+// WORK EXPERIENCES DATA & RENDER
+// ============================================
 const experiences = [
     {
         title: "Mechatronics Engineering Intern",
@@ -149,7 +170,8 @@ const experiences = [
             <li>Created a Collaborative Robot (COBOT) in gantry model with belt driven rails, PLC, and 3D printed pneumatic system.</li>
             <li>Collaborated with engineers to test and troubleshoot projects directly on production lines.</li>
         </ul>`,
-        logo: "assets/oppo2.png"
+        logo: "assets/oppo2.png",
+        fallbackText: "OMI"
     },
     {
         title: "Generative AI Engineer Intern",
@@ -160,7 +182,8 @@ const experiences = [
             <li>Researched and integrated Generative AI tools (Vertex AI, RAG, Flowise) to enhance chatbot efficiency.</li>
             <li>Built a real-time sales dashboard with Firebase Studio and Firestore.</li>
         </ul>`,
-        logo: "assets/chickin.jpeg"
+        logo: "assets/chickin.jpeg",
+        fallbackText: "CH"
     },
     {
         title: "Site Reliability Engineer Intern",
@@ -171,7 +194,8 @@ const experiences = [
             <li>Built and maintained Docker containers and Python applications.</li>
             <li>Implemented infrastructure solutions on AWS.</li>
         </ul>`,
-        logo: "assets/sekolahmu.png"
+        logo: "assets/sekolahmu.png",
+        fallbackText: "SM"
     },
     {
         title: "IT Tech Support Intern",
@@ -182,7 +206,8 @@ const experiences = [
             <li>Handled troubleshooting and system configuration tasks.</li>
             <li>Participated in weekly IT team meetings to report progress.</li>
         </ul>`,
-        logo: "assets/sekolahmu.png"
+        logo: "assets/sekolahmu.png",
+        fallbackText: "SM"
     },
     {
         title: "Product Sourcing Intern",
@@ -193,7 +218,8 @@ const experiences = [
             <li>Prepared detailed task reports including product comparisons and cost analysis.</li>
             <li>Participated in weekly team meetings via Microsoft Teams.</li>
         </ul>`,
-        logo: "assets/gaotek.jpg"
+        logo: "assets/gaotek.jpg",
+        fallbackText: "GT"
     },
     {
         title: "Russian Language Tutor",
@@ -204,7 +230,8 @@ const experiences = [
             <li>Delivered engaging lessons tailored to student goals.</li>
             <li>Supported additional learning programs including Scholarship Mentoring and Speaking Class.</li>
         </ul>`,
-        logo: "assets/lister.png"
+        logo: "assets/lister.png",
+        fallbackText: "LT"
     },
     {
         title: "Data Entry Specialist",
@@ -215,80 +242,98 @@ const experiences = [
             <li>Entered and submitted data through government health platforms in a timely manner.</li>
             <li>Coordinated with local health services to verify patient records.</li>
         </ul>`,
-        logo: "assets/dinkes.png"
+        logo: "assets/dinkes.png",
+        fallbackText: "DJ"
     }
 ];
 
-// Render work experiences
-const experiencesContainer = document.getElementById('experiencesContainer');
-experiences.forEach((exp, idx) => {
-    const item = document.createElement('div');
-    item.className = `experience-item ${idx % 2 === 0 ? 'left' : 'right'}`;
+// Render work experiences with smooth animations
+function renderExperiences() {
+    const experiencesContainer = document.getElementById('experiencesContainer');
+    experiencesContainer.innerHTML = ''; // Clear existing
     
-    item.innerHTML = `
-        <div class="experience-content">
-            <div class="experience-box">
-                <div class="experience-title">${exp.title}</div>
-                <div class="experience-company">${exp.company}</div>
-                <div class="experience-date">${exp.date}</div>
-                <div class="experience-description">${exp.description}</div>
+    experiences.forEach((exp, idx) => {
+        const item = document.createElement('div');
+        item.className = `experience-item ${idx % 2 === 0 ? 'left' : 'right'}`;
+        
+        item.innerHTML = `
+            <div class="experience-content">
+                <div class="experience-box">
+                    <div class="experience-title">${exp.title}</div>
+                    <div class="experience-company">${exp.company}</div>
+                    <div class="experience-date">${exp.date}</div>
+                    <div class="experience-description">${exp.description}</div>
+                </div>
             </div>
-        </div>
-        <div class="experience-logo">
-            <img src="${exp.logo}" alt="${exp.company}" onerror="this.parentElement.innerHTML='<span style=\\"font-weight:700;color:#b721ff;font-size:14px\\">${exp.company.split(' ').map(w => w[0]).join('')}</span>'">
-        </div>
-    `;
-    
-    experiencesContainer.appendChild(item);
-});
+            <div class="experience-logo">
+                <img src="${exp.logo}" alt="${exp.company}" 
+                     onerror="this.onerror=null; this.style.display='none'; 
+                              this.parentElement.innerHTML='<span style=\"font-weight:700;color:#b721ff;font-size:16px\">${exp.fallbackText}</span>'">
+            </div>
+        `;
+        
+        experiencesContainer.appendChild(item);
+    });
+}
 
-// Education data
+// ============================================
+// EDUCATION DATA & RENDER
+// ============================================
 const education = [
     {
         school: "Bauman Moscow State Technical University",
         degree: "Robotics System and Mechatronics",
         year: "2020 • Moscow, Russia",
         description: "Studying robotics at one of Russia's most prestigious technical universities. My studies focus on developing intelligent robotic systems that combine mechanical engineering with artificial intelligence, preparing me to contribute to the next generation of robotic innovations.",
-        logo: "assets/baumanlogo.jpeg"
+        logo: "assets/baumanlogo.jpeg",
+        fallbackText: "BMSTU"
     },
     {
         school: "14 Senior High School Jakarta",
         degree: "Science Major",
         year: "2017 - 2020 • Jakarta, Indonesia",
         description: "My academic foundation was built here through a rigorous science curriculum focusing on mathematics, physics, and chemistry. This period was essential in developing my analytical thinking and problem-solving skills, which prepared me for the challenges of studying abroad.",
-        logo: "assets/sma14logo.jpeg"
+        logo: "assets/sma14logo.jpeg",
+        fallbackText: "SMA 14"
     }
 ];
 
-// Render education
-const educationContainer = document.getElementById('educationContainer');
-education.forEach(edu => {
-    const item = document.createElement('div');
-    item.className = 'education-item';
-    item.innerHTML = `
-        <div class="education-logo-wrapper">
-            <div class="education-logo">
-                <img src="${edu.logo}" alt="${edu.school}" onerror="this.src='https://via.placeholder.com/120'">
-                <div class="education-glow"></div>
+// Render education with logos
+function renderEducation() {
+    const educationContainer = document.getElementById('educationContainer');
+    educationContainer.innerHTML = ''; // Clear existing
+    
+    education.forEach(edu => {
+        const item = document.createElement('div');
+        item.className = 'education-item';
+        item.innerHTML = `
+            <div class="education-logo-wrapper">
+                <div class="education-logo">
+                    <img src="${edu.logo}" alt="${edu.school}" 
+                         onerror="this.onerror=null; this.style.display='none'; 
+                                  this.parentElement.innerHTML='<span style=\"font-weight:700;color:#ffe066;font-size:20px\">${edu.fallbackText}</span>'">
+                    <div class="education-glow"></div>
+                </div>
             </div>
-        </div>
-        <div class="education-content">
-            <h3>${edu.school}</h3>
-            <h4>${edu.degree}</h4>
-            <p class="education-year">${edu.year}</p>
-            <p>${edu.description}</p>
-        </div>
-    `;
-    educationContainer.appendChild(item);
-});
+            <div class="education-content">
+                <h3>${edu.school}</h3>
+                <h4>${edu.degree}</h4>
+                <p class="education-year">${edu.year}</p>
+                <p>${edu.description}</p>
+            </div>
+        `;
+        educationContainer.appendChild(item);
+    });
+}
 
-// POINT 3: Updated tools data for circular layout
+// ============================================
+// TOOLS DATA & RENDER
+// ============================================
 const tools = [
     { 
         name: "Python", 
         icon: "🐍",
         color: "#3776AB",
-        // Future: logo: "assets/tools/python.svg"
     },
     { 
         name: "C++", 
@@ -367,21 +412,27 @@ const tools = [
     }
 ];
 
-// POINT 3: Render tools with circular layout
-const toolsGrid = document.getElementById('toolsGrid');
-tools.forEach((tool, idx) => {
-    const circle = document.createElement('div');
-    circle.className = 'tool-circle';
-    circle.style.setProperty('--tool-color', tool.color || '#87CEEB'); // Light blue default
-    circle.style.transitionDelay = `${idx * 60}ms`;
-    circle.innerHTML = `
-        <div class="tool-icon">${tool.icon}</div>
-        <div class="tool-name">${tool.name}</div>
-    `;
-    toolsGrid.appendChild(circle);
-});
+// Render tools with circular layout
+function renderTools() {
+    const toolsGrid = document.getElementById('toolsGrid');
+    toolsGrid.innerHTML = ''; // Clear existing
+    
+    tools.forEach((tool, idx) => {
+        const circle = document.createElement('div');
+        circle.className = 'tool-circle';
+        circle.style.setProperty('--tool-color', tool.color || '#87CEEB');
+        circle.style.transitionDelay = `${idx * 60}ms`;
+        circle.innerHTML = `
+            <div class="tool-icon">${tool.icon}</div>
+            <div class="tool-name">${tool.name}</div>
+        `;
+        toolsGrid.appendChild(circle);
+    });
+}
 
-// Projects data
+// ============================================
+// PROJECTS DATA & RENDER
+// ============================================
 const projects = [
     {
         title: "Stackster: Intelligent Factory Mobile Robot with IoT",
@@ -432,70 +483,168 @@ const projects = [
 ];
 
 // Render projects
-const projectsContainer = document.getElementById('projectsContainer');
-projects.forEach(project => {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.style.backgroundImage = `url(${project.image})`;
-    card.innerHTML = `
-        <div class="project-accent"></div>
-        <div class="project-overlay"></div>
-        <div class="project-content">
-            <div class="project-title">${project.title}</div>
-            ${project.subtitle ? `<div class="project-subtitle">${project.subtitle}</div>` : ''}
-            <div class="project-description">${project.description}</div>
-            <button class="project-btn">READ MORE</button>
-        </div>
-    `;
-    projectsContainer.appendChild(card);
-});
+function renderProjects() {
+    const projectsContainer = document.getElementById('projectsContainer');
+    projectsContainer.innerHTML = ''; // Clear existing
+    
+    projects.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.style.backgroundImage = `url(${project.image})`;
+        card.innerHTML = `
+            <div class="project-accent"></div>
+            <div class="project-overlay"></div>
+            <div class="project-content">
+                <div class="project-title">${project.title}</div>
+                ${project.subtitle ? `<div class="project-subtitle">${project.subtitle}</div>` : ''}
+                <div class="project-description">${project.description}</div>
+                <button class="project-btn">READ MORE</button>
+            </div>
+        `;
+        projectsContainer.appendChild(card);
+    });
+}
 
-// Intersection Observer for scroll animations
-const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px'
-};
+// ============================================
+// SMOOTH SCROLL ANIMATIONS - IMPROVED
+// ============================================
+let experienceObservers = [];
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            
-            // Special handling for experience items
-            if (entry.target.classList.contains('experience-item')) {
-                const logo = entry.target.querySelector('.experience-logo');
-                const box = entry.target.querySelector('.experience-box');
-                
-                if (logo) {
-                    setTimeout(() => logo.classList.add('visible'), 100);
-                }
-                if (box) {
-                    setTimeout(() => box.classList.add('visible'), 220);
-                }
+function setupIntersectionObservers() {
+    // 1. About Section Observer
+    const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                // Optional: Remove class when out of view
+                // entry.target.classList.remove('visible');
             }
-        }
+        });
+    }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
+    
+    aboutObserver.observe(document.querySelector('.about-section'));
+    
+    // 2. Awards Observer
+    const awardsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    document.querySelectorAll('.award-card').forEach(card => {
+        awardsObserver.observe(card);
     });
-}, observerOptions);
-
-// Observe sections - POINT 3: Update untuk observe tool-circle
-document.querySelectorAll('.about-section, .awards-section, .award-card, .project-card, .experience-item, .tool-circle').forEach(el => {
-    observer.observe(el);
-});
-
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
+    
+    // 3. Projects Observer
+    const projectsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.project-card').forEach(card => {
+        projectsObserver.observe(card);
     });
-});
+    
+    // 4. Tools Observer
+    const toolsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    document.querySelectorAll('.tool-circle').forEach(circle => {
+        toolsObserver.observe(circle);
+    });
+    
+    // 5. EXPERIENCES OBSERVER - IMPROVED SMOOTH FADE IN/OUT
+    const experiencesSection = document.getElementById('experiences');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    // Clear existing observers
+    experienceObservers.forEach(obs => obs.disconnect());
+    experienceObservers = [];
+    
+    // Create observer for each experience item
+    experienceItems.forEach((item, index) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Fade in with delay based on position
+                    setTimeout(() => {
+                        entry.target.classList.remove('fade-out');
+                        entry.target.classList.add('fade-in');
+                    }, index * 100); // Staggered delay
+                } else {
+                    // Fade out when leaving viewport
+                    entry.target.classList.remove('fade-in');
+                    entry.target.classList.add('fade-out');
+                }
+            });
+        }, { 
+            threshold: 0.3, // Trigger when 30% visible
+            rootMargin: '-50px 0px -100px 0px' // Adjust trigger zone
+        });
+        
+        observer.observe(item);
+        experienceObservers.push(observer);
+    });
+    
+    // Also observe the entire experiences section
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Optional: Add any section-wide effects
+                entry.target.style.opacity = '1';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    sectionObserver.observe(experiencesSection);
+}
 
-// POINT 4: Add smooth animations to contact cards
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click handlers for contact cards
+// ============================================
+// SMOOTH SCROLLING FOR NAV LINKS
+// ============================================
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                // Calculate offset for fixed navbar
+                const navbarHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - navbarHeight - 20;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Update active nav link (optional)
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            }
+        });
+    });
+}
+
+// ============================================
+// CONTACT CARDS ANIMATIONS
+// ============================================
+function setupContactAnimations() {
     const contactCards = document.querySelectorAll('.contact-card');
     contactCards.forEach(card => {
         card.addEventListener('click', function(e) {
@@ -522,8 +671,25 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => ripple.remove(), 600);
         });
     });
+}
+
+// ============================================
+// INITIALIZE EVERYTHING ON PAGE LOAD
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Render all dynamic content
+    renderAwards();
+    renderExperiences();
+    renderEducation();
+    renderTools();
+    renderProjects();
     
-    // Initialize with saved preferences
+    // Set up interactions and observers
+    setupIntersectionObservers();
+    setupSmoothScrolling();
+    setupContactAnimations();
+    
+    // Load saved preferences
     loadTheme();
     loadLanguagePreference();
     
@@ -532,16 +698,109 @@ document.addEventListener('DOMContentLoaded', function() {
     if (activeFlag) {
         activeFlag.classList.add('active');
     }
+    
+    // Add ripple animation CSS dynamically
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* Optional: Add scroll animation for whole page */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-enter {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Optional: Add scroll indicator
+    setTimeout(() => {
+        const scrollIndicator = document.createElement('div');
+        scrollIndicator.className = 'scroll-indicator';
+        scrollIndicator.innerHTML = '↓';
+        scrollIndicator.style.cssText = `
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #ffe066;
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+            cursor: pointer;
+            z-index: 100;
+        `;
+        
+        const bounceStyle = document.createElement('style');
+        bounceStyle.textContent = `
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+                40% {transform: translateY(-20px) translateX(-50%);}
+                60% {transform: translateY(-10px) translateX(-50%);}
+            }
+        `;
+        document.head.appendChild(bounceStyle);
+        
+        scrollIndicator.addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Remove indicator after first scroll
+        let hasScrolled = false;
+        window.addEventListener('scroll', () => {
+            if (!hasScrolled && window.scrollY > 100) {
+                scrollIndicator.style.opacity = '0';
+                setTimeout(() => scrollIndicator.remove(), 500);
+                hasScrolled = true;
+            }
+        });
+        
+        document.body.appendChild(scrollIndicator);
+    }, 2000);
 });
 
-// Add ripple animation CSS dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes ripple {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
+// ============================================
+// WINDOW RESIZE HANDLER
+// ============================================
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Re-setup observers on resize
+        setupIntersectionObservers();
+    }, 250);
+});
+
+// ============================================
+// KEYBOARD NAVIGATION SUPPORT
+// ============================================
+document.addEventListener('keydown', function(e) {
+    // Theme toggle with 'T' key
+    if (e.key === 't' || e.key === 'T') {
+        toggleTheme();
     }
-`;
-document.head.appendChild(style);
+    
+    // Language shortcuts
+    if (e.altKey) {
+        if (e.key === '1') changeLanguage('id');
+        if (e.key === '2') changeLanguage('en');
+        if (e.key === '3') changeLanguage('ru');
+    }
+});
