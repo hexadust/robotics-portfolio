@@ -205,7 +205,7 @@ const experiences = [
             <li>Built and maintained Docker containers and Python applications.</li>
             <li>Implemented infrastructure solutions on AWS.</li>
         </ul>`,
-        logo: "assets/sekolahmu.png",
+        logo: "assets/sekolah.mu.png",
         fallbackText: "SM"
     },
     {
@@ -217,7 +217,7 @@ const experiences = [
             <li>Handled troubleshooting and system configuration tasks.</li>
             <li>Participated in weekly IT team meetings to report progress.</li>
         </ul>`,
-        logo: "assets/sekolahmu.png",
+        logo: "assets/sekolah.mu.png",
         fallbackText: "SM"
     },
     {
