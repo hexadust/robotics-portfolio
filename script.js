@@ -1,14 +1,11 @@
-// ============================================
-// LANGUAGE TRANSLATIONS
-// ============================================
 const translations = {
     en: {
         aboutMe: "ABOUT ME",
-        education: "EDUCATION BACKGROUND",
+        education: "EDUCATION", // REVISI: Hanya "EDUCATION" di header
         projects: "PROJECTS",
         awards: "AWARDS",
         experiences: "EXPERIENCES",
-        tools: "TOOLS & TECHNOLOGIES",
+        tools: "TOOLS",
         contact: "CONTACT",
         portfolio: "ROBOTICS PORTFOLIO",
         certificationsAwards: "CERTIFICATIONS & AWARDS",
@@ -18,11 +15,11 @@ const translations = {
     },
     id: {
         aboutMe: "TENTANG SAYA",
-        education: "PENDIDIKAN",
+        education: "PENDIDIKAN", // REVISI: Hanya "PENDIDIKAN" di header
         projects: "PROYEK",
         awards: "PENGHARGAAN",
         experiences: "PENGALAMAN",
-        tools: "ALAT & TEKNOLOGI",
+        tools: "ALAT",
         contact: "KONTAK",
         portfolio: "PORTOFOLIO ROBOTIKA",
         certificationsAwards: "SERTIFIKASI & PENGHARGAAN",
@@ -32,7 +29,7 @@ const translations = {
     },
     ru: {
         aboutMe: "ОБО МНЕ",
-        education: "ОБРАЗОВАНИЕ",
+        education: "ОБРАЗОВАНИЕ", // REVISI: Hanya "ОБРАЗОВАНИЕ" di header
         projects: "ПРОЕКТЫ",
         awards: "НАГРАДЫ",
         experiences: "ОПЫТ",
@@ -171,7 +168,7 @@ function renderAwards() {
 }
 
 // ============================================
-// WORK EXPERIENCES DATA & RENDER
+// WORK EXPERIENCES DATA & RENDER - REVISI: Logo positioning fix
 // ============================================
 const experiences = [
     {
@@ -261,7 +258,7 @@ const experiences = [
     }
 ];
 
-// Render work experiences with logos
+// Render work experiences with logos - REVISI: Better error handling
 function renderExperiences() {
     const experiencesContainer = document.getElementById('experiencesContainer');
     experiencesContainer.innerHTML = '';
@@ -282,8 +279,7 @@ function renderExperiences() {
             </div>
             <div class="experience-logo">
                 <img src="${exp.logo}" alt="${exp.company}" 
-                     onerror="this.onerror=null; this.style.display='none'; 
-                              this.parentElement.innerHTML='<span style=\"font-weight:700;color:#b721ff;font-size:16px;display:flex;align-items:center;justify-content:center;width:100%;height:100%\">${exp.fallbackText}</span>'">
+                     onerror="handleLogoError(this, '${exp.fallbackText}')">
             </div>
         `;
         
@@ -291,8 +287,26 @@ function renderExperiences() {
     });
 }
 
+// Helper function for logo error handling
+function handleLogoError(imgElement, fallbackText) {
+    imgElement.style.display = 'none';
+    imgElement.parentElement.innerHTML = `
+        <span style="
+            font-weight: 700;
+            color: #b721ff;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-transform: uppercase;
+        ">${fallbackText}</span>
+    `;
+}
+
 // ============================================
-// EDUCATION DATA & RENDER
+// EDUCATION DATA & RENDER - REVISI: Logo fix
 // ============================================
 const education = [
     {
@@ -325,8 +339,7 @@ function renderEducation() {
             <div class="education-logo-wrapper">
                 <div class="education-logo">
                     <img src="${edu.logo}" alt="${edu.school}" 
-                         onerror="this.onerror=null; this.style.display='none'; 
-                                  this.parentElement.innerHTML='<span style=\"font-weight:700;color:#ffe066;font-size:20px;display:flex;align-items:center;justify-content:center;width:100%;height:100%\">${edu.fallbackText}</span>'">
+                         onerror="handleEducationLogoError(this, '${edu.fallbackText}')">
                     <div class="education-glow"></div>
                 </div>
             </div>
@@ -341,63 +354,81 @@ function renderEducation() {
     });
 }
 
+// Helper function for education logo error handling
+function handleEducationLogoError(imgElement, fallbackText) {
+    imgElement.style.display = 'none';
+    imgElement.parentElement.innerHTML = `
+        <span style="
+            font-weight: 700;
+            color: #ffe066;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-transform: uppercase;
+        ">${fallbackText}</span>
+    `;
+}
+
 // ============================================
-// TOOLS DATA & RENDER - Revisi: Logo Asli
+// TOOLS DATA & RENDER - REVISI LENGKAP: Logo asli dari assets
 // ============================================
 const tools = [
     { 
         name: "Python", 
         logo: "assets/python.jpg",
-        fallbackName: "Python"
+        fallbackText: "PY"
     },
     { 
         name: "C++", 
         logo: "assets/c++.png",
-        fallbackName: "C++"
+        fallbackText: "C++"
     },
     { 
         name: "Arduino", 
         logo: "assets/Arduino.jpg",
-        fallbackName: "Arduino"
+        fallbackText: "AR"
     },
     { 
         name: "Fusion 360", 
         logo: "assets/fusion360.png",
-        fallbackName: "Fusion 360"
+        fallbackText: "F360"
     },
     { 
         name: "ESP32", 
         logo: "assets/esp32.png",
-        fallbackName: "ESP32"
+        fallbackText: "ESP"
     },
     { 
         name: "Kompas 3D", 
         logo: "assets/Kompas3D.jpg",
-        fallbackName: "Kompas 3D"
+        fallbackText: "K3D"
     },
     { 
         name: "InfluxDB", 
         logo: "assets/influxdb.png",
-        fallbackName: "InfluxDB"
+        fallbackText: "INFLUX"
     },
     { 
         name: "Grafana", 
         logo: "assets/grafana.jpg",
-        fallbackName: "Grafana"
+        fallbackText: "GRAF"
     },
     { 
         name: "CoppeliaSim", 
         logo: "assets/coppeliasim.jpg",
-        fallbackName: "CoppeliaSim"
+        fallbackText: "COP"
     },
     { 
         name: "EasyEDA", 
         logo: "assets/easyeda.png",
-        fallbackName: "EasyEDA"
+        fallbackText: "EDA"
     }
 ];
 
-// Render tools dengan logo asli
+// Render tools dengan logo asli - REVISI LENGKAP
 function renderTools() {
     const toolsGrid = document.getElementById('toolsGrid');
     toolsGrid.innerHTML = '';
@@ -410,18 +441,41 @@ function renderTools() {
         circle.innerHTML = `
             <div class="tool-logo-container">
                 <img src="${tool.logo}" alt="${tool.name}" class="tool-logo"
-                     onerror="this.onerror=null; this.style.display='none'; 
-                              this.parentElement.innerHTML='<span style=\"font-weight:700;color:#ffe066;font-size:24px\">${tool.fallbackName.charAt(0)}</span>'">
+                     onerror="handleToolLogoError(this, '${tool.fallbackText}')">
             </div>
             <div class="tool-name">${tool.name}</div>
         `;
+        
+        // Add tool color cycle animation
+        setTimeout(() => {
+            if (circle.parentElement) {
+                circle.style.animationDelay = `${idx * 0.3}s`;
+            }
+        }, 100);
         
         toolsGrid.appendChild(circle);
     });
 }
 
+// Helper function for tool logo error handling
+function handleToolLogoError(imgElement, fallbackText) {
+    imgElement.style.display = 'none';
+    imgElement.parentElement.innerHTML = `
+        <span style="
+            font-weight: 700;
+            color: #ffe066;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        ">${fallbackText}</span>
+    `;
+}
+
 // ============================================
-// PROJECTS DATA & RENDER
+// PROJECTS DATA & RENDER - REVISI: Fade in only (no fade out)
 // ============================================
 const projects = [
     {
@@ -472,7 +526,7 @@ const projects = [
     }
 ];
 
-// Render projects
+// Render projects - REVISI: Fade in only
 function renderProjects() {
     const projectsContainer = document.getElementById('projectsContainer');
     projectsContainer.innerHTML = '';
@@ -495,7 +549,13 @@ function renderProjects() {
         // Add click handler for project button
         card.querySelector('.project-btn').addEventListener('click', function(e) {
             e.stopPropagation();
-            alert(`More details about "${project.title}" coming soon!`);
+            alert(`More details about "${project.title}" coming soon!\n\n${project.description}`);
+        });
+        
+        // Add click handler for entire card
+        card.addEventListener('click', function(e) {
+            if (e.target.classList.contains('project-btn')) return;
+            alert(`Project: ${project.title}\n\n${project.description}`);
         });
         
         projectsContainer.appendChild(card);
@@ -503,7 +563,7 @@ function renderProjects() {
 }
 
 // ============================================
-// SMOOTH SCROLL ANIMATIONS - IMPROVED FADE IN/OUT
+// INTERSECTION OBSERVERS - REVISI: Projects fade in only
 // ============================================
 let experienceObservers = [];
 
@@ -532,22 +592,7 @@ function setupIntersectionObservers() {
         awardsObserver.observe(card);
     });
     
-    // 3. Projects Observer
-    const projectsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            } else {
-                entry.target.classList.remove('visible');
-            }
-        });
-    }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
-    
-    document.querySelectorAll('.project-card').forEach(card => {
-        projectsObserver.observe(card);
-    });
-    
-    // 4. Tools Observer
+    // 3. TOOLS Observer
     const toolsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -560,14 +605,32 @@ function setupIntersectionObservers() {
         toolsObserver.observe(circle);
     });
     
-    // 5. EXPERIENCES OBSERVER - IMPROVED SMOOTH FADE IN/OUT
+    // 4. PROJECTS OBSERVER - REVISI: Fade in only (no fade out)
+    const projectsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // REVISI: Hanya tambah class fade-in, jangan hapus
+                entry.target.classList.add('fade-in');
+            }
+            // REVISI: Tidak ada else block untuk remove class (no fade out)
+        });
+    }, { 
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    document.querySelectorAll('.project-card').forEach(card => {
+        projectsObserver.observe(card);
+    });
+    
+    // 5. EXPERIENCES OBSERVER - Smooth fade in/out
     const experienceItems = document.querySelectorAll('.experience-item');
     
     // Clear existing observers
     experienceObservers.forEach(obs => obs.disconnect());
     experienceObservers = [];
     
-    // Create observer for each experience item with better settings
+    // Create observer for each experience item
     experienceItems.forEach((item, index) => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -576,7 +639,7 @@ function setupIntersectionObservers() {
                     setTimeout(() => {
                         entry.target.classList.remove('fade-out');
                         entry.target.classList.add('fade-in');
-                    }, index * 150); // Staggered delay
+                    }, index * 150);
                 } else {
                     // Fade out when leaving viewport
                     entry.target.classList.remove('fade-in');
@@ -584,8 +647,8 @@ function setupIntersectionObservers() {
                 }
             });
         }, { 
-            threshold: 0.2, // Trigger when 20% visible
-            rootMargin: '-100px 0px -150px 0px' // Adjust trigger zone
+            threshold: 0.2,
+            rootMargin: '-100px 0px -150px 0px'
         });
         
         observer.observe(item);
@@ -617,8 +680,21 @@ function setupSmoothScrolling() {
                 
                 // Update URL hash without scrolling
                 history.pushState(null, null, targetId);
+                
+                // Update active nav link
+                updateActiveNavLink(targetId);
             }
         });
+    });
+}
+
+// Update active nav link
+function updateActiveNavLink(targetId) {
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === targetId) {
+            link.classList.add('active');
+        }
     });
 }
 
@@ -659,15 +735,6 @@ function setupContactAnimations() {
                 }
             }, 600);
         });
-        
-        // Add hover effect for contact cards
-        card.addEventListener('mouseenter', function() {
-            this.style.zIndex = '10';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.zIndex = '';
-        });
     });
 }
 
@@ -679,17 +746,27 @@ function setupToolBorderAnimation() {
     const colors = ['#ff0080', '#ff8c00', '#40e0d0', '#9d4edd', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffbe0b'];
     
     toolCircles.forEach((circle, index) => {
-        // Set initial color
-        const colorIndex = index % colors.length;
-        circle.style.borderColor = colors[colorIndex];
-        
-        // Animate color change
-        let currentColorIndex = colorIndex;
-        setInterval(() => {
-            currentColorIndex = (currentColorIndex + 1) % colors.length;
-            circle.style.borderColor = colors[currentColorIndex];
-            circle.style.transition = 'border-color 1.5s ease';
-        }, 3000 + (index * 300)); // Staggered animation
+        // Set initial color dengan delay staggered
+        setTimeout(() => {
+            const colorIndex = index % colors.length;
+            circle.style.borderColor = colors[colorIndex];
+            
+            // Animate color change
+            let currentColorIndex = colorIndex;
+            const intervalId = setInterval(() => {
+                if (!circle.parentElement) {
+                    clearInterval(intervalId);
+                    return;
+                }
+                
+                currentColorIndex = (currentColorIndex + 1) % colors.length;
+                circle.style.borderColor = colors[currentColorIndex];
+                circle.style.transition = 'border-color 1.5s ease';
+            }, 3000 + (index * 300));
+            
+            // Store interval ID untuk cleanup
+            circle.dataset.intervalId = intervalId;
+        }, index * 100);
     });
 }
 
@@ -697,7 +774,7 @@ function setupToolBorderAnimation() {
 // INITIALIZE EVERYTHING ON PAGE LOAD
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Portfolio Initializing...');
+    console.log('Robotics Portfolio Initializing...');
     
     // Render all dynamic content
     renderAwards();
@@ -725,6 +802,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add active class to nav links on scroll
     window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY + 100;
+        let currentSection = '';
         
         document.querySelectorAll('section[id]').forEach(section => {
             const sectionTop = section.offsetTop;
@@ -732,17 +810,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionId = section.getAttribute('id');
             
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
+                currentSection = sectionId;
             }
         });
+        
+        if (currentSection) {
+            updateActiveNavLink(`#${currentSection}`);
+        }
     });
     
-    // Add ripple animation CSS dynamically
+    // Add CSS styles dynamically
     const style = document.createElement('style');
     style.textContent = `
         @keyframes ripple {
@@ -762,10 +839,39 @@ document.addEventListener('DOMContentLoaded', function() {
             border-bottom: 2px solid #21d4fd;
         }
         
+        /* Smooth image loading */
+        img:not([src=""]) {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        img.loaded {
+            opacity: 1;
+        }
+        
         /* Photo border animation for light theme */
         body.light-theme .photo-border-animation {
             background: linear-gradient(45deg, #21d4fd, #b721ff, #ff0080, #21d4fd);
             background-size: 400% 400%;
+        }
+        
+        /* Education section title - tetap "EDUCATION BACKGROUND" */
+        #education > h2::after {
+            content: " BACKGROUND";
+        }
+        
+        @media (max-width: 768px) {
+            #education > h2::after {
+                content: "";
+                display: block;
+                font-size: 1.5rem;
+                margin-top: 0.5rem;
+                color: #b0b3c6;
+            }
+            
+            #education > h2::after {
+                content: "BACKGROUND";
+            }
         }
     `;
     document.head.appendChild(style);
@@ -773,16 +879,86 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize first nav link as active
     document.querySelector('.nav-links a').classList.add('active');
     
-    // Add loading animation for images
+    // Add image loading handler
     const images = document.querySelectorAll('img');
     images.forEach(img => {
-        img.addEventListener('load', function() {
-            this.style.opacity = '1';
-            this.style.transition = 'opacity 0.5s';
-        });
-        img.style.opacity = '0';
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+            img.addEventListener('error', function() {
+                console.warn('Failed to load image:', this.src);
+                this.classList.add('loaded');
+            });
+        }
+    });
+    
+    // Add scroll to top button on scroll
+    window.addEventListener('scroll', function() {
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        if (!scrollTopBtn && window.scrollY > 500) {
+            createScrollTopButton();
+        } else if (scrollTopBtn) {
+            scrollTopBtn.style.opacity = window.scrollY > 500 ? '1' : '0';
+            scrollTopBtn.style.pointerEvents = window.scrollY > 500 ? 'auto' : 'none';
+        }
     });
 });
+
+// Create scroll to top button
+function createScrollTopButton() {
+    const btn = document.createElement('button');
+    btn.id = 'scrollTopBtn';
+    btn.innerHTML = '↑';
+    btn.title = 'Scroll to top';
+    btn.ariaLabel = 'Scroll to top';
+    
+    btn.style.cssText = `
+        position: fixed;
+        bottom: 90px;
+        right: 28px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #181b23;
+        border: 2px solid #ffe066;
+        color: #ffe066;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 199;
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    `;
+    
+    btn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    btn.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1)';
+    });
+    
+    btn.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+    });
+    
+    document.body.appendChild(btn);
+    
+    // Trigger opacity transition
+    setTimeout(() => {
+        btn.style.opacity = '1';
+    }, 10);
+}
 
 // ============================================
 // WINDOW RESIZE HANDLER
@@ -801,19 +977,19 @@ window.addEventListener('resize', function() {
 // ============================================
 document.addEventListener('keydown', function(e) {
     // Theme toggle with 'T' key
-    if (e.key === 't' || e.key === 'T') {
+    if ((e.key === 't' || e.key === 'T') && !e.ctrlKey && !e.altKey) {
         toggleTheme();
     }
     
     // Language shortcuts (Alt + Number)
-    if (e.altKey) {
+    if (e.altKey && !e.ctrlKey) {
         if (e.key === '1') changeLanguage('id');
         if (e.key === '2') changeLanguage('en');
         if (e.key === '3') changeLanguage('ru');
     }
     
     // Scroll to sections with number keys (Ctrl + Number)
-    if (e.ctrlKey && !e.altKey) {
+    if (e.ctrlKey && !e.altKey && e.key >= '1' && e.key <= '7') {
         e.preventDefault();
         const sections = ['about-me', 'education', 'awards', 'experiences', 'projects', 'tools', 'contact'];
         const index = parseInt(e.key) - 1;
@@ -828,6 +1004,8 @@ document.addEventListener('keydown', function(e) {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+                
+                updateActiveNavLink(`#${sections[index]}`);
             }
         }
     }
@@ -840,14 +1018,31 @@ let lastScrollTop = 0;
 window.addEventListener('scroll', function() {
     const st = window.pageYOffset || document.documentElement.scrollTop;
     
-    // Add parallax effect to intro section
+    // Add subtle parallax effect to intro section
     const introSection = document.querySelector('.intro-section');
     if (introSection && st < window.innerHeight) {
         const scrolled = st / window.innerHeight;
-        introSection.style.transform = `translateY(${scrolled * 50}px)`;
-        introSection.style.opacity = `${1 - scrolled}`;
+        introSection.style.transform = `translateY(${scrolled * 30}px)`;
+        introSection.style.opacity = `${1 - scrolled * 0.5}`;
     }
     
     // Update last scroll position
     lastScrollTop = st <= 0 ? 0 : st;
 }, false);
+
+// ============================================
+// CLEANUP ON PAGE UNLOAD
+// ============================================
+window.addEventListener('beforeunload', function() {
+    // Clear tool border animation intervals
+    document.querySelectorAll('.tool-circle').forEach(circle => {
+        if (circle.dataset.intervalId) {
+            clearInterval(parseInt(circle.dataset.intervalId));
+        }
+    });
+    
+    // Clear experience observers
+    experienceObservers.forEach(observer => {
+        observer.disconnect();
+    });
+});
