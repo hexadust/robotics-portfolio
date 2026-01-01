@@ -388,7 +388,7 @@ const tools = [
     },
     { 
         name: "Arduino", 
-        logo: "assets/Arduino.jpg",
+        logo: "assets/arduino.jpg",
         fallbackText: "AR"
     },
     { 
