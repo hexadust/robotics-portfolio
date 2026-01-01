@@ -378,7 +378,7 @@ function handleEducationLogoError(imgElement, fallbackText) {
 const tools = [
     { 
         name: "Python", 
-        logo: "assets/python.jpg",
+        logo: "assets/python.png",
         fallbackText: "PY"
     },
     { 
@@ -388,7 +388,7 @@ const tools = [
     },
     { 
         name: "Arduino", 
-        logo: "assets/arduino.jpg",
+        logo: "assets/arduino.png",
         fallbackText: "AR"
     },
     { 
@@ -403,7 +403,7 @@ const tools = [
     },
     { 
         name: "Kompas 3D", 
-        logo: "assets/Kompas3D.jpg",
+        logo: "assets/kompas3d.png",
         fallbackText: "K3D"
     },
     { 
@@ -418,7 +418,7 @@ const tools = [
     },
     { 
         name: "CoppeliaSim", 
-        logo: "assets/coppeliasim.jpg",
+        logo: "assets/coppeliasim.png",
         fallbackText: "COP"
     },
     { 
