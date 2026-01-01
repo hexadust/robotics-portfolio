@@ -18,14 +18,14 @@ body.light-theme {
 }
 
 /* ============================================
-   NAVIGATION - REVISI: Fix alignment agar tidak terlalu ke kanan
+   NAVIGATION - REVISI: Fix alignment & Logo baru
    ============================================ */
 nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 2vw; /* REVISI: Dikurangi padding kanan dari 4vw */
+    padding: 1.2rem 2vw;
     border-bottom: 1px solid #ffe066;
     background: rgba(0,0,0,0.95);
     position: fixed;
@@ -40,23 +40,41 @@ body.light-theme nav {
     border-bottom-color: #21d4fd;
 }
 
-.nav-logo {
-    font-weight: 700;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #fff;
-    flex-shrink: 0;
+/* Logo baru: ROBOTICS di atas PORTFOLIO */
+.nav-logo .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
 }
 
-body.light-theme .nav-logo {
+.nav-logo .logo-line-1 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+}
+
+.nav-logo .logo-line-2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+body.light-theme .nav-logo .logo-line-2 {
     color: #181b23;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 1.2vw; /* REVISI: Dikurangi dari 1.8vw */
+    gap: 1.2vw;
 }
 
 .nav-links a {
@@ -67,7 +85,7 @@ body.light-theme .nav-logo {
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: color 0.3s, transform 0.3s;
-    padding: 0.5rem 0.6rem; /* REVISI: Dikurangi padding */
+    padding: 0.5rem 0.6rem;
     white-space: nowrap;
 }
 
@@ -85,7 +103,7 @@ body.light-theme .nav-links a:hover {
 }
 
 .language-selector {
-    margin-left: 1vw; /* REVISI: Dikurangi dari 1.5vw */
+    margin-left: 1vw;
     display: flex;
     gap: 6px;
     align-items: center;
@@ -188,7 +206,7 @@ body.light-theme .flag-separator {
 }
 
 /* ============================================
-   ABOUT ME SECTION - REVISI: Fix foto positioning
+   ABOUT ME SECTION
    ============================================ */
 .about-section {
     display: flex;
@@ -265,7 +283,7 @@ body.light-theme .flag-separator {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%; /* REVISI: Posisi 30% dari atas untuk foto yang lebih bagus */
+    object-position: center 30%;
     position: relative;
     z-index: 2;
     border-radius: 50%;
@@ -323,7 +341,7 @@ body.light-theme .about-description {
 }
 
 /* ============================================
-   EDUCATION SECTION - REVISI: Fix logo positioning
+   EDUCATION SECTION
    ============================================ */
 .education-section {
     width: 100%;
@@ -384,7 +402,7 @@ body.light-theme .education-section h2 {
     overflow: hidden;
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 2, 0.6, 1);
-    padding: 15px; /* REVISI: Tambah padding agar logo tidak kepotong */
+    padding: 15px;
 }
 
 body.light-theme .education-logo {
@@ -404,7 +422,7 @@ body.light-theme .education-logo:hover {
 .education-logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* REVISI: Contain agar tidak kepotong */
+    object-fit: contain;
     object-position: center center;
     transition: transform 0.4s;
 }
@@ -471,7 +489,7 @@ body.light-theme .education-content p {
 }
 
 /* ============================================
-   AWARDS SECTION - REVISI: Fix brightness & gradient title
+   AWARDS SECTION
    ============================================ */
 .awards-section {
     width: 100%;
@@ -495,7 +513,7 @@ body.light-theme .education-content p {
     letter-spacing: 2px;
     margin-bottom: 48px;
     text-transform: uppercase;
-    background: linear-gradient(90deg, #ffe066, #b721ff); /* REVISI: Gradient sama */
+    background: linear-gradient(90deg, #ffe066, #b721ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -515,12 +533,12 @@ body.light-theme .awards-section h2 {
 }
 
 .award-card {
-    background: #1a1d26; /* REVISI: Background lebih terang */
+    background: #1a1d26;
     border: 2px solid #ffe066;
     border-radius: 16px;
     width: 260px;
     height: 180px;
-    box-shadow: 0 4px 24px rgba(255, 224, 102, 0.15); /* REVISI: Shadow lebih terang */
+    box-shadow: 0 4px 24px rgba(255, 224, 102, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -567,7 +585,7 @@ body.light-theme .award-badge {
 .award-icon {
     font-size: 32px;
     margin-bottom: 6px;
-    filter: brightness(1.2); /* REVISI: Brightness ditingkatkan */
+    filter: brightness(1.2);
 }
 
 .award-title {
@@ -575,7 +593,7 @@ body.light-theme .award-badge {
     font-size: 1rem;
     text-align: center;
     margin-bottom: 4px;
-    color: #fff; /* REVISI: Warna lebih terang */
+    color: #fff;
 }
 
 body.light-theme .award-title {
@@ -583,7 +601,7 @@ body.light-theme .award-title {
 }
 
 .award-org {
-    color: #c5c8d8; /* REVISI: Warna lebih terang */
+    color: #c5c8d8;
     font-size: 0.95rem;
     text-align: center;
 }
@@ -592,6 +610,9 @@ body.light-theme .award-org {
     color: #666;
 }
 
+/* ============================================
+   EXPERIENCES SECTION
+   ============================================ */
 .experiences-section {
     width: 100%;
     max-width: 1000px;
@@ -730,9 +751,8 @@ body.light-theme .experience-box {
     transition-delay: 0.3s;
 }
 
-/* Logo perusahaan - REVISI: Fix centering & positioning */
 .experience-logo {
-    width: 80px; /* Sedikit diperbesar */
+    width: 80px;
     height: 80px;
     border-radius: 50%;
     background: #fff;
@@ -783,11 +803,11 @@ body.light-theme .experience-logo:hover {
 }
 
 .experience-logo img {
-    width: 50px; /* REVISI: Ukuran lebih besar */
+    width: 50px;
     height: 50px;
-    object-fit: contain; /* REVISI: Contain agar tidak kepotong */
+    object-fit: contain;
     object-position: center center;
-    padding: 5px; /* REVISI: Padding agar tidak mentok */
+    padding: 5px;
     transition: transform 0.3s;
 }
 
@@ -842,7 +862,7 @@ body.light-theme .experience-description {
 }
 
 /* ============================================
-   PROJECTS SECTION - REVISI: Gradient title & fade in only (no fade out)
+   PROJECTS SECTION
    ============================================ */
 .projects-section {
     width: 100%;
@@ -890,7 +910,6 @@ body.light-theme .projects-section h2 {
     cursor: pointer;
 }
 
-/* REVISI: Hanya fade in, tidak fade out saat scroll away */
 .project-card.fade-in {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -1036,7 +1055,7 @@ body.light-theme .project-btn:hover {
 }
 
 /* ============================================
-   TOOLS SECTION - REVISI LENGKAP: Logo asli, lingkaran, color transition
+   TOOLS SECTION - REVISI: Logo asli, lingkaran, dengan border animasi
    ============================================ */
 .tools-section {
     width: 100%;
@@ -1093,6 +1112,14 @@ body.light-theme .tools-subtitle {
 }
 
 /* Tool circle dengan logo asli - REVISI LENGKAP */
+.tool-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+    position: relative;
+}
+
 .tool-circle {
     width: 130px;
     height: 130px;
@@ -1185,13 +1212,13 @@ body.light-theme .tool-logo {
     transform: scale(1.15);
 }
 
-/* Nama tool di bawah */
+/* Nama tool di bawah lingkaran */
 .tool-name {
     font-size: 0.85rem;
     font-weight: 600;
     color: #fff;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 15px;
     transition: color 0.3s;
 }
 
@@ -1208,7 +1235,7 @@ body.light-theme .tool-circle:hover .tool-name {
 }
 
 /* ============================================
-   CONTACT SECTION - REVISI: Style image icons
+   CONTACT SECTION
    ============================================ */
 .contact-section {
     width: 100%;
@@ -1340,7 +1367,6 @@ body.light-theme .contact-card:hover {
     box-shadow: 0 25px 50px rgba(33, 212, 253, 0.15);
 }
 
-/* REVISI: Contact icon image styling */
 .contact-card-icon {
     width: 70px;
     height: 70px;
@@ -1771,7 +1797,11 @@ body.light-theme .theme-toggle {
 
 @media (max-width: 480px) {
     /* Navigation */
-    .nav-logo {
+    .nav-logo .logo-line-1 {
+        font-size: 1.3rem;
+    }
+    
+    .nav-logo .logo-line-2 {
         font-size: 1rem;
     }
     
