@@ -399,7 +399,7 @@ const tools = [
     },
     { 
         name: "Grafana", 
-        logo: "assets/grafana.jpg",
+        logo: "assets/grafana.png",
         fallbackText: "GRAF"
     },
     { 
