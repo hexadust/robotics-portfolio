@@ -1,7 +1,7 @@
 const translations = {
     en: {
         aboutMe: "ABOUT ME",
-        education: "EDUCATION", // REVISI: Hanya "EDUCATION" di header
+        education: "EDUCATION",
         projects: "PROJECTS",
         awards: "AWARDS",
         experiences: "EXPERIENCES",
@@ -15,7 +15,7 @@ const translations = {
     },
     id: {
         aboutMe: "TENTANG SAYA",
-        education: "PENDIDIKAN", // REVISI: Hanya "PENDIDIKAN" di header
+        education: "PENDIDIKAN",
         projects: "PROYEK",
         awards: "PENGHARGAAN",
         experiences: "PENGALAMAN",
@@ -359,7 +359,7 @@ function handleEducationLogoError(imgElement, fallbackText) {
 }
 
 // ============================================
-// TOOLS DATA & RENDER - REVISI: Logo asli dari assets
+// TOOLS DATA & RENDER - REVISI: Gambar langsung jadi lingkaran
 // ============================================
 const tools = [
     { 
@@ -414,7 +414,7 @@ const tools = [
     }
 ];
 
-// Render tools dengan logo asli
+// Render tools dengan gambar langsung jadi lingkaran - REVISI LENGKAP
 function renderTools() {
     const toolsGrid = document.getElementById('toolsGrid');
     toolsGrid.innerHTML = '';
@@ -424,16 +424,15 @@ function renderTools() {
         const toolItem = document.createElement('div');
         toolItem.className = 'tool-item';
         
-        // Create tool-circle
+        // Create tool-circle dengan gambar langsung
         const circle = document.createElement('div');
         circle.className = 'tool-circle';
         circle.style.transitionDelay = `${idx * 80}ms`;
         
+        // REVISI: Gambar langsung di dalam circle, tanpa container tambahan
         circle.innerHTML = `
-            <div class="tool-logo-container">
-                <img src="${tool.logo}" alt="${tool.name}" class="tool-logo"
-                     onerror="handleToolLogoError(this, '${tool.fallbackText}')">
-            </div>
+            <img src="${tool.logo}" alt="${tool.name}" 
+                 onerror="handleToolLogoError(this, '${tool.fallbackText}')">
         `;
         
         // Create tool-name element (di luar lingkaran)
@@ -467,7 +466,7 @@ function handleToolLogoError(imgElement, fallbackText) {
 }
 
 // ============================================
-// PROJECTS DATA & RENDER - REVISI: Fade in only (no fade out)
+// PROJECTS DATA & RENDER
 // ============================================
 const projects = [
     {
@@ -518,7 +517,7 @@ const projects = [
     }
 ];
 
-// Render projects - REVISI: Fade in only
+// Render projects
 function renderProjects() {
     const projectsContainer = document.getElementById('projectsContainer');
     projectsContainer.innerHTML = '';
@@ -555,7 +554,7 @@ function renderProjects() {
 }
 
 // ============================================
-// INTERSECTION OBSERVERS - REVISI: Projects fade in only
+// INTERSECTION OBSERVERS
 // ============================================
 let experienceObservers = [];
 
@@ -597,14 +596,12 @@ function setupIntersectionObservers() {
         toolsObserver.observe(circle);
     });
     
-    // 4. Projects Observer - REVISI: Fade in only (no fade out)
+    // 4. Projects Observer
     const projectsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // REVISI: Hanya tambah class fade-in, jangan hapus
                 entry.target.classList.add('fade-in');
             }
-            // REVISI: Tidak ada else block untuk remove class (no fade out)
         });
     }, { 
         threshold: 0.3,
@@ -615,7 +612,7 @@ function setupIntersectionObservers() {
         projectsObserver.observe(card);
     });
     
-    // 5. Experiences Observer - Smooth fade in/out
+    // 5. Experiences Observer
     const experienceItems = document.querySelectorAll('.experience-item');
     
     // Clear existing observers
