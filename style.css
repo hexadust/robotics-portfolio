@@ -18,7 +18,7 @@ body.light-theme {
 }
 
 /* ============================================
-   NAVIGATION - REVISI: Fix alignment & Logo baru
+   NAVIGATION - REVISI: Gradient sama untuk ROBOTICS dan PORTFOLIO
    ============================================ */
 nav {
     width: 100%;
@@ -58,17 +58,23 @@ body.light-theme nav {
     text-transform: uppercase;
 }
 
+/* REVISI: PORTFOLIO juga gradient sama */
 .nav-logo .logo-line-2 {
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #ffffff;
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     text-transform: uppercase;
     margin-top: 2px;
 }
 
 body.light-theme .nav-logo .logo-line-2 {
-    color: #181b23;
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .nav-links {
@@ -153,7 +159,7 @@ body.light-theme .flag-separator {
 }
 
 /* ============================================
-   INTRO SECTION
+   INTRO SECTION - REVISI: Perbaiki kontras untuk light theme
    ============================================ */
 .intro-section {
     min-height: 100vh;
@@ -172,10 +178,18 @@ body.light-theme .flag-separator {
     margin-bottom: 1.2rem;
 }
 
+body.light-theme .tagline {
+    color: #181b23;
+}
+
 .subtitle {
     color: #b0b3c6;
     font-size: 1.1rem;
     margin-bottom: 0.7rem;
+}
+
+body.light-theme .subtitle {
+    color: #555; /* REVISI: Lebih gelap untuk kontras */
 }
 
 .quote {
@@ -183,6 +197,10 @@ body.light-theme .flag-separator {
     font-style: italic;
     font-size: 1rem;
     margin-bottom: 2.5rem;
+}
+
+body.light-theme .quote {
+    color: #666; /* REVISI: Lebih gelap untuk kontras */
 }
 
 .typed-name {
@@ -198,11 +216,21 @@ body.light-theme .flag-separator {
     min-height: 4rem;
 }
 
+body.light-theme .typed-name {
+    background: linear-gradient(90deg, #21d4fd, #b721ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .role {
     color: #b0b3c6;
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
     font-style: italic;
+}
+
+body.light-theme .role {
+    color: #666; /* REVISI: Lebih gelap untuk kontras */
 }
 
 /* ============================================
@@ -476,6 +504,10 @@ body.light-theme .education-content h4 {
     margin: 0 0 1.2rem 0;
 }
 
+body.light-theme .education-content .education-year {
+    color: #666;
+}
+
 .education-content p {
     font-size: 1rem;
     line-height: 1.6;
@@ -489,7 +521,7 @@ body.light-theme .education-content p {
 }
 
 /* ============================================
-   AWARDS SECTION
+   AWARDS SECTION - REVISI: Perbaiki kontras teks untuk light theme
    ============================================ */
 .awards-section {
     width: 100%;
@@ -597,7 +629,7 @@ body.light-theme .award-badge {
 }
 
 body.light-theme .award-title {
-    color: #181b23;
+    color: #222; /* REVISI: Lebih gelap untuk kontras */
 }
 
 .award-org {
@@ -607,7 +639,7 @@ body.light-theme .award-title {
 }
 
 body.light-theme .award-org {
-    color: #666;
+    color: #444; /* REVISI: Lebih gelap untuk kontras */
 }
 
 /* ============================================
@@ -840,6 +872,10 @@ body.light-theme .experience-title {
     font-style: italic;
 }
 
+body.light-theme .experience-date {
+    color: #666;
+}
+
 .experience-description {
     font-size: 1rem;
     text-align: justify;
@@ -1055,7 +1091,7 @@ body.light-theme .project-btn:hover {
 }
 
 /* ============================================
-   TOOLS SECTION - REVISI: Logo asli, lingkaran, dengan border animasi
+   TOOLS SECTION - REVISI LENGKAP: Gambar langsung jadi lingkaran
    ============================================ */
 .tools-section {
     width: 100%;
@@ -1111,22 +1147,22 @@ body.light-theme .tools-subtitle {
     margin-top: 2rem;
 }
 
-/* Tool circle dengan logo asli - REVISI LENGKAP */
+/* Tool item dengan gambar langsung jadi lingkaran */
 .tool-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 140px;
+    width: 160px; /* REVISI: Lebih besar */
     position: relative;
 }
 
+/* REVISI: Tool-circle menjadi container untuk gambar yang sudah berbentuk lingkaran */
 .tool-circle {
-    width: 130px;
-    height: 130px;
+    width: 150px; /* REVISI: Lebih besar */
+    height: 150px; /* REVISI: Lebih besar */
     border-radius: 50%;
     background: #181b23;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -1136,7 +1172,7 @@ body.light-theme .tools-subtitle {
     cursor: pointer;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     transition: all 0.5s cubic-bezier(0.4, 2, 0.6, 1);
-    border: 3px solid;
+    border: 4px solid; /* REVISI: Border lebih tebal */
     animation: border-color-cycle 8s infinite linear;
 }
 
@@ -1157,8 +1193,8 @@ body.light-theme .tools-subtitle {
     transform: scale(1.15) translateY(-10px);
     box-shadow: 0 15px 40px rgba(255, 224, 102, 0.3);
     z-index: 10;
-    animation-play-state: paused; /* Pause animation on hover */
-    border-color: #ffe066 !important; /* Override animation color on hover */
+    animation-play-state: paused;
+    border-color: #ffe066 !important;
 }
 
 body.light-theme .tool-circle {
@@ -1171,50 +1207,28 @@ body.light-theme .tool-circle:hover {
     border-color: #21d4fd !important;
 }
 
-/* Logo container */
-.tool-logo-container {
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    padding: 10px;
-    transition: all 0.3s ease;
-}
-
-.tool-circle:hover .tool-logo-container {
-    background: rgba(255, 224, 102, 0.1);
-    transform: scale(1.1);
-}
-
-body.light-theme .tool-circle:hover .tool-logo-container {
-    background: rgba(33, 212, 253, 0.1);
-}
-
-/* Logo image */
-.tool-logo {
-    width: 100%;
-    height: 100%;
+/* REVISI: Hapus .tool-logo-container, gambar langsung jadi lingkaran */
+.tool-circle img {
+    width: 80%; /* REVISI: Gambar lebih besar */
+    height: 80%;
     object-fit: contain;
     object-position: center center;
+    border-radius: 50%; /* REVISI: Gambar jadi lingkaran */
     transition: transform 0.4s;
     filter: brightness(0.9) saturate(1.2);
 }
 
-body.light-theme .tool-logo {
+body.light-theme .tool-circle img {
     filter: brightness(0.8) saturate(1.3);
 }
 
-.tool-circle:hover .tool-logo {
+.tool-circle:hover img {
     transform: scale(1.15);
 }
 
 /* Nama tool di bawah lingkaran */
 .tool-name {
-    font-size: 0.85rem;
+    font-size: 0.9rem; /* REVISI: Sedikit lebih besar */
     font-weight: 600;
     color: #fff;
     text-align: center;
@@ -1226,16 +1240,16 @@ body.light-theme .tool-name {
     color: #181b23;
 }
 
-.tool-circle:hover .tool-name {
+.tool-circle:hover ~ .tool-name {
     color: #ffe066;
 }
 
-body.light-theme .tool-circle:hover .tool-name {
+body.light-theme .tool-circle:hover ~ .tool-name {
     color: #21d4fd;
 }
 
 /* ============================================
-   CONTACT SECTION
+   CONTACT SECTION - REVISI: Perbaiki border untuk light theme
    ============================================ */
 .contact-section {
     width: 100%;
@@ -1356,9 +1370,10 @@ body.light-theme .contact-subtitle {
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
 }
 
+/* REVISI: Border solid biru untuk light theme */
 body.light-theme .contact-card {
     background: rgba(247, 247, 250, 0.8);
-    border: 1px solid rgba(227, 232, 240, 0.8);
+    border: 2px solid #21d4fd; /* REVISI: Border solid biru */
 }
 
 body.light-theme .contact-card:hover {
@@ -1468,6 +1483,7 @@ body.light-theme .contact-card-content p {
     transform: translateY(0);
 }
 
+/* REVISI: Perbaiki closing quote untuk light theme */
 .closing-quote {
     font-size: 1.3rem;
     line-height: 1.6;
@@ -1477,9 +1493,6 @@ body.light-theme .contact-card-content p {
     margin: 0 auto;
     padding: 1.5rem;
     position: relative;
-    background: linear-gradient(90deg, 
-        rgba(255, 224, 102, 0.1) 0%, 
-        rgba(183, 33, 255, 0.05) 100%);
     border-radius: 12px;
     border-left: 4px solid #ffe066;
     background: linear-gradient(90deg, #ffe066, #b721ff);
@@ -1493,9 +1506,7 @@ body.light-theme .closing-quote {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     border-left-color: #21d4fd;
-    background: linear-gradient(90deg, 
-        rgba(33, 212, 253, 0.1) 0%, 
-        rgba(183, 33, 255, 0.05) 100%);
+    background-color: rgba(33, 212, 253, 0.1); /* REVISI: Background lebih jelas */
 }
 
 .closing-quote::before {
@@ -1596,13 +1607,8 @@ body.light-theme .theme-toggle {
     }
     
     .tool-circle {
-        width: 115px;
-        height: 115px;
-    }
-    
-    .tool-logo-container {
-        width: 60px;
-        height: 60px;
+        width: 130px;
+        height: 130px;
     }
 }
 
@@ -1723,14 +1729,8 @@ body.light-theme .theme-toggle {
     }
     
     .tool-circle {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .tool-logo-container {
-        width: 50px;
-        height: 50px;
-        margin-bottom: 10px;
+        width: 110px;
+        height: 110px;
     }
     
     .tool-name {
@@ -1857,15 +1857,8 @@ body.light-theme .theme-toggle {
     }
     
     .tool-circle {
-        width: 85px;
-        height: 85px;
-    }
-    
-    .tool-logo-container {
-        width: 45px;
-        height: 45px;
-        margin-bottom: 8px;
-        padding: 8px;
+        width: 95px;
+        height: 95px;
     }
     
     .tool-name {
