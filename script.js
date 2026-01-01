@@ -26,20 +26,6 @@ const translations = {
         workExperiences: "PENGALAMAN KERJA",
         getInTouch: "HUBUNGI SAYA",
         contactDescription: "Mari terhubung! Jangan ragu untuk menghubungi saya melalui salah satu platform berikut."
-    },
-    ru: {
-        aboutMe: "ОБО МНЕ",
-        education: "ОБРАЗОВАНИЕ", // REVISI: Hanya "ОБРАЗОВАНИЕ" di header
-        projects: "ПРОЕКТЫ",
-        awards: "НАГРАДЫ",
-        experiences: "ОПЫТ",
-        tools: "ИНСТРУМЕНТЫ",
-        contact: "КОНТАКТЫ",
-        portfolio: "РОБОТОТЕХНИКА ПОРТФОЛИО",
-        certificationsAwards: "СЕРТИФИКАТЫ И НАГРАДЫ",
-        workExperiences: "ОПЫТ РАБОТЫ",
-        getInTouch: "СВЯЖИТЕСЬ СО МНОЙ",
-        contactDescription: "Давайте свяжемся! Не стесняйтесь обращаться через любую из этих платформ."
     }
 };
 
@@ -168,7 +154,7 @@ function renderAwards() {
 }
 
 // ============================================
-// WORK EXPERIENCES DATA & RENDER - REVISI: Logo positioning fix
+// WORK EXPERIENCES DATA & RENDER
 // ============================================
 const experiences = [
     {
@@ -258,7 +244,7 @@ const experiences = [
     }
 ];
 
-// Render work experiences with logos - REVISI: Better error handling
+// Render work experiences with logos
 function renderExperiences() {
     const experiencesContainer = document.getElementById('experiencesContainer');
     experiencesContainer.innerHTML = '';
@@ -306,7 +292,7 @@ function handleLogoError(imgElement, fallbackText) {
 }
 
 // ============================================
-// EDUCATION DATA & RENDER - REVISI: Logo fix
+// EDUCATION DATA & RENDER
 // ============================================
 const education = [
     {
@@ -373,7 +359,7 @@ function handleEducationLogoError(imgElement, fallbackText) {
 }
 
 // ============================================
-// TOOLS DATA & RENDER - REVISI LENGKAP: Logo asli dari assets
+// TOOLS DATA & RENDER - REVISI: Logo asli dari assets
 // ============================================
 const tools = [
     { 
@@ -428,12 +414,17 @@ const tools = [
     }
 ];
 
-// Render tools dengan logo asli - REVISI LENGKAP
+// Render tools dengan logo asli
 function renderTools() {
     const toolsGrid = document.getElementById('toolsGrid');
     toolsGrid.innerHTML = '';
     
     tools.forEach((tool, idx) => {
+        // Create tool-item container
+        const toolItem = document.createElement('div');
+        toolItem.className = 'tool-item';
+        
+        // Create tool-circle
         const circle = document.createElement('div');
         circle.className = 'tool-circle';
         circle.style.transitionDelay = `${idx * 80}ms`;
@@ -443,17 +434,18 @@ function renderTools() {
                 <img src="${tool.logo}" alt="${tool.name}" class="tool-logo"
                      onerror="handleToolLogoError(this, '${tool.fallbackText}')">
             </div>
-            <div class="tool-name">${tool.name}</div>
         `;
         
-        // Add tool color cycle animation
-        setTimeout(() => {
-            if (circle.parentElement) {
-                circle.style.animationDelay = `${idx * 0.3}s`;
-            }
-        }, 100);
+        // Create tool-name element (di luar lingkaran)
+        const toolName = document.createElement('div');
+        toolName.className = 'tool-name';
+        toolName.textContent = tool.name;
         
-        toolsGrid.appendChild(circle);
+        // Append circle dan name ke tool-item
+        toolItem.appendChild(circle);
+        toolItem.appendChild(toolName);
+        
+        toolsGrid.appendChild(toolItem);
     });
 }
 
@@ -592,7 +584,7 @@ function setupIntersectionObservers() {
         awardsObserver.observe(card);
     });
     
-    // 3. TOOLS Observer
+    // 3. Tools Observer
     const toolsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -605,7 +597,7 @@ function setupIntersectionObservers() {
         toolsObserver.observe(circle);
     });
     
-    // 4. PROJECTS OBSERVER - REVISI: Fade in only (no fade out)
+    // 4. Projects Observer - REVISI: Fade in only (no fade out)
     const projectsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -623,7 +615,7 @@ function setupIntersectionObservers() {
         projectsObserver.observe(card);
     });
     
-    // 5. EXPERIENCES OBSERVER - Smooth fade in/out
+    // 5. Experiences Observer - Smooth fade in/out
     const experienceItems = document.querySelectorAll('.experience-item');
     
     // Clear existing observers
@@ -739,36 +731,23 @@ function setupContactAnimations() {
 }
 
 // ============================================
-// AUTO-COLOR CHANGE FOR TOOL BORDERS
+// ENHANCE SCROLL EXPERIENCE
 // ============================================
-function setupToolBorderAnimation() {
-    const toolCircles = document.querySelectorAll('.tool-circle');
-    const colors = ['#ff0080', '#ff8c00', '#40e0d0', '#9d4edd', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffbe0b'];
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
     
-    toolCircles.forEach((circle, index) => {
-        // Set initial color dengan delay staggered
-        setTimeout(() => {
-            const colorIndex = index % colors.length;
-            circle.style.borderColor = colors[colorIndex];
-            
-            // Animate color change
-            let currentColorIndex = colorIndex;
-            const intervalId = setInterval(() => {
-                if (!circle.parentElement) {
-                    clearInterval(intervalId);
-                    return;
-                }
-                
-                currentColorIndex = (currentColorIndex + 1) % colors.length;
-                circle.style.borderColor = colors[currentColorIndex];
-                circle.style.transition = 'border-color 1.5s ease';
-            }, 3000 + (index * 300));
-            
-            // Store interval ID untuk cleanup
-            circle.dataset.intervalId = intervalId;
-        }, index * 100);
-    });
-}
+    // Add subtle parallax effect to intro section
+    const introSection = document.querySelector('.intro-section');
+    if (introSection && st < window.innerHeight) {
+        const scrolled = st / window.innerHeight;
+        introSection.style.transform = `translateY(${scrolled * 30}px)`;
+        introSection.style.opacity = `${1 - scrolled * 0.5}`;
+    }
+    
+    // Update last scroll position
+    lastScrollTop = st <= 0 ? 0 : st;
+}, false);
 
 // ============================================
 // INITIALIZE EVERYTHING ON PAGE LOAD
@@ -787,7 +766,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupIntersectionObservers();
     setupSmoothScrolling();
     setupContactAnimations();
-    setupToolBorderAnimation();
     
     // Load saved preferences
     loadTheme();
@@ -854,25 +832,6 @@ document.addEventListener('DOMContentLoaded', function() {
             background: linear-gradient(45deg, #21d4fd, #b721ff, #ff0080, #21d4fd);
             background-size: 400% 400%;
         }
-        
-        /* Education section title - tetap "EDUCATION BACKGROUND" */
-        #education > h2::after {
-            content: " BACKGROUND";
-        }
-        
-        @media (max-width: 768px) {
-            #education > h2::after {
-                content: "";
-                display: block;
-                font-size: 1.5rem;
-                margin-top: 0.5rem;
-                color: #b0b3c6;
-            }
-            
-            #education > h2::after {
-                content: "BACKGROUND";
-            }
-        }
     `;
     document.head.appendChild(style);
     
@@ -894,71 +853,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
-    // Add scroll to top button on scroll
-    window.addEventListener('scroll', function() {
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        if (!scrollTopBtn && window.scrollY > 500) {
-            createScrollTopButton();
-        } else if (scrollTopBtn) {
-            scrollTopBtn.style.opacity = window.scrollY > 500 ? '1' : '0';
-            scrollTopBtn.style.pointerEvents = window.scrollY > 500 ? 'auto' : 'none';
-        }
-    });
 });
-
-// Create scroll to top button
-function createScrollTopButton() {
-    const btn = document.createElement('button');
-    btn.id = 'scrollTopBtn';
-    btn.innerHTML = '↑';
-    btn.title = 'Scroll to top';
-    btn.ariaLabel = 'Scroll to top';
-    
-    btn.style.cssText = `
-        position: fixed;
-        bottom: 90px;
-        right: 28px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #181b23;
-        border: 2px solid #ffe066;
-        color: #ffe066;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 199;
-        opacity: 0;
-        transition: opacity 0.3s, transform 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    `;
-    
-    btn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    btn.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.1)';
-    });
-    
-    btn.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-    });
-    
-    document.body.appendChild(btn);
-    
-    // Trigger opacity transition
-    setTimeout(() => {
-        btn.style.opacity = '1';
-    }, 10);
-}
 
 // ============================================
 // WINDOW RESIZE HANDLER
@@ -985,7 +880,6 @@ document.addEventListener('keydown', function(e) {
     if (e.altKey && !e.ctrlKey) {
         if (e.key === '1') changeLanguage('id');
         if (e.key === '2') changeLanguage('en');
-        if (e.key === '3') changeLanguage('ru');
     }
     
     // Scroll to sections with number keys (Ctrl + Number)
@@ -1012,35 +906,9 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ============================================
-// ENHANCE SCROLL EXPERIENCE
-// ============================================
-let lastScrollTop = 0;
-window.addEventListener('scroll', function() {
-    const st = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Add subtle parallax effect to intro section
-    const introSection = document.querySelector('.intro-section');
-    if (introSection && st < window.innerHeight) {
-        const scrolled = st / window.innerHeight;
-        introSection.style.transform = `translateY(${scrolled * 30}px)`;
-        introSection.style.opacity = `${1 - scrolled * 0.5}`;
-    }
-    
-    // Update last scroll position
-    lastScrollTop = st <= 0 ? 0 : st;
-}, false);
-
-// ============================================
 // CLEANUP ON PAGE UNLOAD
 // ============================================
 window.addEventListener('beforeunload', function() {
-    // Clear tool border animation intervals
-    document.querySelectorAll('.tool-circle').forEach(circle => {
-        if (circle.dataset.intervalId) {
-            clearInterval(parseInt(circle.dataset.intervalId));
-        }
-    });
-    
     // Clear experience observers
     experienceObservers.forEach(observer => {
         observer.disconnect();
