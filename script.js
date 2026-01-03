@@ -11,7 +11,34 @@ const translations = {
         certificationsAwards: "CERTIFICATIONS & AWARDS",
         workExperiences: "WORK EXPERIENCES",
         getInTouch: "GET IN TOUCH",
-        contactDescription: "Let's connect! Feel free to reach out through any of these platforms."
+        contactDescription: "Let's connect! Feel free to reach out through any of these platforms.",
+        
+        // New translations from HTML
+        introSubtitle: "The future of robotics is in my hand to create a better world.",
+        introQuote: "The best way to predict the future is to invent it.",
+        introRole: "A robotics engineer with a scientist mindset and work with ethics.",
+        
+        aboutDescription: "Hi! I'm <span class='highlight-name'>Lazuardi Azka Rangkuti</span>, a robotics and AI enthusiast with a background in mechatronics and robotics system. I love building intelligent systems that solve real-world problems, from IoT devices to manipulator robots. Curious, creative, and driven by impact, I am going to make the best robots ever!",
+        
+        toolsSubtitle: "Here are the tools & technologies that I am most skilled at",
+        
+        // Contact section translations
+        emailTitle: "Email",
+        emailDescription: "Send me a message directly",
+        contactHintEmail: "Click to compose email",
+        
+        linkedinTitle: "LinkedIn",
+        linkedinDescription: "Connect professionally",
+        contactHintLinkedIn: "View my experience",
+        
+        whatsappTitle: "WhatsApp",
+        whatsappDescription: "Quick chat",
+        contactHintWhatsApp: "Instant messaging",
+        
+        closingQuote: "To build the future of robotics, we must connect minds as passionately as we connect circuits. Every collaboration sparks innovation for a better world.",
+        
+        // Award badge
+        awardBadge: "AWARD"
     },
     id: {
         aboutMe: "TENTANG SAYA",
@@ -25,7 +52,34 @@ const translations = {
         certificationsAwards: "SERTIFIKASI & PENGHARGAAN",
         workExperiences: "PENGALAMAN KERJA",
         getInTouch: "HUBUNGI SAYA",
-        contactDescription: "Mari terhubung! Jangan ragu untuk menghubungi saya melalui salah satu platform berikut."
+        contactDescription: "Mari terhubung! Jangan ragu untuk menghubungi saya melalui salah satu platform berikut.",
+        
+        // New translations from HTML
+        introSubtitle: "Masa depan robotika ada di tangan saya untuk menciptakan dunia yang lebih baik.",
+        introQuote: "Cara terbaik untuk memprediksi masa depan adalah dengan menciptakannya.",
+        introRole: "Seorang insinyur robotika dengan pola pikir ilmuwan dan bekerja dengan etika.",
+        
+        aboutDescription: "Halo! Saya <span class='highlight-name'>Lazuardi Azka Rangkuti</span>, seorang penggemar robotika dan AI dengan latar belakang sistem mekatronika dan robotika. Saya senang membangun sistem cerdas yang memecahkan masalah dunia nyata, dari perangkat IoT hingga robot manipulator. Penasaran, kreatif, dan digerakkan oleh dampak, saya akan membuat robot terbaik yang pernah ada!",
+        
+        toolsSubtitle: "Berikut adalah alat & teknologi yang paling saya kuasai",
+        
+        // Contact section translations
+        emailTitle: "Email",
+        emailDescription: "Kirim pesan langsung kepada saya",
+        contactHintEmail: "Klik untuk menulis email",
+        
+        linkedinTitle: "LinkedIn",
+        linkedinDescription: "Terhubung secara profesional",
+        contactHintLinkedIn: "Lihat pengalaman saya",
+        
+        whatsappTitle: "WhatsApp",
+        whatsappDescription: "Obrolan cepat",
+        contactHintWhatsApp: "Pesan instan",
+        
+        closingQuote: "Untuk membangun masa depan robotika, kita harus menghubungkan pikiran dengan semangat yang sama seperti kita menghubungkan sirkuit. Setiap kolaborasi memicu inovasi untuk dunia yang lebih baik.",
+        
+        // Award badge
+        awardBadge: "PENGHARGAAN"
     }
 };
 
@@ -47,8 +101,18 @@ function changeLanguage(lang) {
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
         if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
+            // Check if element contains HTML tags (like span in aboutDescription)
+            if (key === 'aboutDescription' || key === 'closingQuote') {
+                el.innerHTML = translations[lang][key];
+            } else {
+                el.textContent = translations[lang][key];
+            }
         }
+    });
+    
+    // Update award badges
+    document.querySelectorAll('.award-badge').forEach(badge => {
+        badge.textContent = translations[lang].awardBadge || "AWARD";
     });
     
     // Save language preference
@@ -143,7 +207,7 @@ function renderAwards() {
         const card = document.createElement('div');
         card.className = 'award-card';
         card.innerHTML = `
-            <div class="award-badge">AWARD</div>
+            <div class="award-badge">${translations[currentLanguage].awardBadge || "AWARD"}</div>
             <div class="award-icon">🏅</div>
             <div class="award-title">${award.title}</div>
             <div class="award-org">${award.org}</div>
@@ -533,7 +597,7 @@ function renderProjects() {
                 <div class="project-title">${project.title}</div>
                 ${project.subtitle ? `<div class="project-subtitle">${project.subtitle}</div>` : ''}
                 <div class="project-description">${project.description}</div>
-                <button class="project-btn">READ MORE</button>
+                <button class="project-btn" data-translate="readMore">READ MORE</button>
             </div>
         `;
         
@@ -752,6 +816,10 @@ window.addEventListener('scroll', function() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Robotics Portfolio Initializing...');
     
+    // Add translation for "READ MORE" button
+    translations.en.readMore = "READ MORE";
+    translations.id.readMore = "BACA SELENGKAPNYA";
+    
     // Render all dynamic content
     renderAwards();
     renderExperiences();
@@ -828,6 +896,16 @@ document.addEventListener('DOMContentLoaded', function() {
         body.light-theme .photo-border-animation {
             background: linear-gradient(45deg, #21d4fd, #b721ff, #ff0080, #21d4fd);
             background-size: 400% 400%;
+        }
+        
+        /* Highlight name styling */
+        .highlight-name {
+            font-weight: 700;
+            color: #21d4fd;
+            background: linear-gradient(90deg, #21d4fd, #b721ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     `;
     document.head.appendChild(style);
