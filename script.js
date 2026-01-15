@@ -191,7 +191,7 @@ const awards = [
     { title: "4th Winner of Indonesian Robotic Olympiad", org: "IRO & Mikrobot" },
     { title: "1st Winner of Jakarta Junior Robotic Competition", org: "Robotics Education Centre" },
     { title: "Favorite Winner Robotics", org: "Santa Ursula Senior High School" },
-    { title: "Certificate of Participation", org: "Robotics Education Centre" },
+    { title: "Certificate of Excellence", org: "REA x Skill Academy" },  // DIUBAH: Certificate of Participation -> Certificate of Excellence, Robotics Education Centre -> REA x Skill Academy
     { title: "Participation on Maze Solving Competition", org: "Robotics Education Centre" },
     { title: "Certified Internet of Things Professional – Excellence", org: "Edspert.id" },
     { title: "Certification in IoT and Digital Transformation", org: "Cisco Networking Academy" },
@@ -370,7 +370,7 @@ const education = [
     {
         school: "14 Senior High School Jakarta",
         degree: "Science Major",
-        year: "2017 - 2020 • Jakarta, Indonesia",
+        year: "2017 • Jakarta, Indonesia",  // DIUBAH: "2017 - 2020 • Jakarta, Indonesia" -> "2017 • Jakarta, Indonesia"
         description: "My academic foundation was built here through a rigorous science curriculum focusing on mathematics, physics, and chemistry. This period was essential in developing my analytical thinking and problem-solving skills, which prepared me for the challenges of studying abroad.",
         logo: "assets/sma14logo.jpeg",
         fallbackText: "SMA 14"
@@ -535,12 +535,12 @@ function handleToolLogoError(imgElement, fallbackText) {
 const projects = [
     {
         title: "Stackster: Intelligent Factory Mobile Robot with IoT",
-        description: "An advanced factory automation robot integrated with IoT sensors for intelligent inventory management, stacking optimization, and real-time production monitoring.",
+        description: "An advanced factory mobile robot with a zigzag lifting mechanism for automated material handling. Features dual mode operation, autonomous line following and remote control via IoT Blynk App for versatile industrial applications.",  // DIUBAH: Deskripsi baru sesuai permintaan
         image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
     },
     {
         title: "Collaborative Robot (COBOT)",
-        description: "A collaborative robotic system designed for safe human-robot interaction in manufacturing environments, featuring advanced safety protocols and intuitive programming.",
+        description: "A gantry style collaborative robot developed at Oppo Indonesia Manufacturing, designed for precision pick and place operations of smartphone units between production machines and conveyor systems for better efficiency",  // DIUBAH: Deskripsi baru sesuai permintaan
         image: "https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=800&q=80"
     },
     {
@@ -555,7 +555,7 @@ const projects = [
     },
     {
         title: "Construction and Mechanical Analysis of Turntable in a 5-DOF Robotic Manipulator",
-        description: "A comprehensive study and mechanical analysis of the turntable component in a five-degree-of-freedom robotic manipulator, focusing on structural design, load distribution, and optimization for precision automation tasks.",
+        description: "A comprehensive study of mechanical and kinematical analysis of the turntable component in a five DOF robotic manipulator, focusing on structural design, load distribution, and optimization for precision automation tasks.",  // DIUBAH: Deskripsi baru sesuai permintaan
         image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80"
     },
     {
