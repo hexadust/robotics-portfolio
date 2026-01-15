@@ -191,7 +191,7 @@ const awards = [
     { title: "4th Winner of Indonesian Robotic Olympiad", org: "IRO & Mikrobot" },
     { title: "1st Winner of Jakarta Junior Robotic Competition", org: "Robotics Education Centre" },
     { title: "Favorite Winner Robotics", org: "Santa Ursula Senior High School" },
-    { title: "Certificate of Excellence", org: "REA x Skill Academy" },  // DIUBAH: Certificate of Participation -> Certificate of Excellence, Robotics Education Centre -> REA x Skill Academy
+    { title: "Certificate of AI Engineering Bootcamp - Excellence", org: "REA x Skill Academy" },  // DIUBAH: Certificate of Participation -> Certificate of Excellence, Robotics Education Centre -> REA x Skill Academy
     { title: "Participation on Maze Solving Competition", org: "Robotics Education Centre" },
     { title: "Certified Internet of Things Professional – Excellence", org: "Edspert.id" },
     { title: "Certification in IoT and Digital Transformation", org: "Cisco Networking Academy" },
