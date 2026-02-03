@@ -363,7 +363,7 @@ const education = [
         school: "Bauman Moscow State Technical University",
         degree: "Robotics System and Mechatronics",
         year: "2020 • Moscow, Russia",
-        description: "Majoring at robotics systems and mechatronics at one of Russia's most prestigious technical universities. My studies focus on developing intelligent robotic systems that combine mechatronics, preparing me to contribute to the next generation of robotic innovations.",
+        description: "Majoring at robotics systems and mechatronics at Russia's most prestigious technical universities. My studies focus on developing intelligent robotic systems that combine mechatronics, preparing me to contribute to the next generation of robotic innovations.",
         logo: "assets/baumanlogo.jpeg",
         fallbackText: "BMSTU"
     },
